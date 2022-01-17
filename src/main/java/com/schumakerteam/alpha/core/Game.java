@@ -2,8 +2,8 @@ package com.schumakerteam.alpha.core;
 
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
-import com.schumakerteam.alpha.ecs.Entity;
-import com.schumakerteam.alpha.ecs.Registry;
+import com.schumakerteam.alpha.ecs.impl.Entity;
+import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;

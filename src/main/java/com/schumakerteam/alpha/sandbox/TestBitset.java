@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.sandbox;
 
-import com.schumakerteam.alpha.ecs.Signature;
+import com.schumakerteam.alpha.ecs.impl.Signature;
 
 public class TestBitset {
 

@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.component;
 
-import com.schumakerteam.alpha.ecs.Registry;
+import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 
 public class RigidBodyComponent extends Component {

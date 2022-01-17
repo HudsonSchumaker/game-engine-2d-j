@@ -1,6 +1,7 @@
-package com.schumakerteam.alpha.ecs;
+package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.ecs.IEntity;
 
 public class Entity implements IEntity {
 
@@ -20,12 +21,20 @@ public class Entity implements IEntity {
     @Override
     public void addComponent(Component c) {
         Registry.getInstance().addComponent(this, c);
-        this.setSignature(c.getTypeId());
+    }
+
+    public void removeComponent(Entity e, Component c) {
+        Registry.getInstance().removeComponent(e, c.getId());
     }
 
     @Override
-    public void setSignature(int n) {
+    public void setOnSignature(int n) {
         this.signature.set(n);
+    }
+
+    @Override
+    public void setOffSignature(int n) {
+        this.signature.set(n, false);
     }
 
     @Override

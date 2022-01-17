@@ -5,6 +5,8 @@ import com.schumakerteam.alpha.component.Component;
 public interface IEntity {
     int getId();
     void addComponent(Component c);
-    void setSignature(int n);
+    void setOnSignature(int n);
+    void setOffSignature(int n);
     boolean getSignature(int n);
+
 }

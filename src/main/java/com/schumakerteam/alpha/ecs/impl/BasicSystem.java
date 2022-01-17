@@ -1,4 +1,4 @@
-package com.schumakerteam.alpha.ecs;
+package com.schumakerteam.alpha.ecs.impl;
 
 import java.util.ArrayList;
 import java.util.List;

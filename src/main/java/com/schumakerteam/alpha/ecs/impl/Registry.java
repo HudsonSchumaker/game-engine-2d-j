@@ -1,13 +1,13 @@
-package com.schumakerteam.alpha.ecs;
+package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
-import com.schumakerteam.alpha.core.IPool;
+import com.schumakerteam.alpha.ecs.IRegistry;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.util.*;
 
-public class Registry {
+public class Registry implements IRegistry {
 
     private static final Registry INSTANCE = new Registry();
 
@@ -45,14 +45,15 @@ public class Registry {
         return entity;
     }
 
+    @Override
     public void addComponent(Entity e, Component c) {
         int entityId = e.getId();
         ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
-
-        //entityComponentSignatures.set();
+        e.setOnSignature(c.getId());
     }
 
-
-
-
+    @Override
+    public void removeComponent(Entity e, int componentId) {
+        e.setOffSignature(componentId);
+    }
 }
