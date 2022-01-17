@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
+import com.schumakerteam.alpha.log.LogService;
 
 public class RigidBodyComponent extends Component {
 
@@ -12,6 +13,7 @@ public class RigidBodyComponent extends Component {
     public RigidBodyComponent(Vector2D velocity) {
         this.id = Registry.getInstance().getComponentId();
         this.velocity = velocity;
+        LogService.getInstance().engine("RigidBodyComponent created with id: " + id);
     }
 
     public double getX() {
