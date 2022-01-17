@@ -5,8 +5,11 @@ import com.schumakerteam.alpha.component.Component;
 public interface IEntity {
     int getId();
     void addComponent(Component c);
+    void removeComponent(Component c);
+    boolean hasComponent(Component c);
+    boolean hasComponentType(int componentTypeId);
     void setOnSignature(int n);
     void setOffSignature(int n);
-    boolean getSignature(int n);
+    boolean testSignature(int n);
 
 }

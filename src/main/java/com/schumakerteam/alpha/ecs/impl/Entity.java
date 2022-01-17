@@ -23,8 +23,19 @@ public class Entity implements IEntity {
         Registry.getInstance().addComponent(this, c);
     }
 
-    public void removeComponent(Entity e, Component c) {
-        Registry.getInstance().removeComponent(e, c.getId());
+    @Override
+    public void removeComponent(Component c) {
+        Registry.getInstance().removeComponent(this, c.getId());
+    }
+
+    @Override
+    public boolean hasComponent(Component c) {
+        return Registry.getInstance().hasComponent(this, c.getId());
+    }
+
+    @Override
+    public boolean hasComponentType(int componentTypeId) {
+        return Registry.getInstance().hasComponentType(this, componentTypeId);
     }
 
     @Override
@@ -38,7 +49,7 @@ public class Entity implements IEntity {
     }
 
     @Override
-    public boolean getSignature(int n) {
+    public boolean testSignature(int n) {
         return this.signature.get(n);
     }
 }

@@ -46,14 +46,25 @@ public class Registry implements IRegistry {
     }
 
     @Override
-    public void addComponent(Entity e, Component c) {
-        int entityId = e.getId();
+    public void addComponent(Entity entity, Component c) {
+        int entityId = entity.getId();
         ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
-        e.setOnSignature(c.getId());
+        entity.setOnSignature(c.getId());
     }
 
     @Override
-    public void removeComponent(Entity e, int componentId) {
-        e.setOffSignature(componentId);
+    public void removeComponent(Entity entity, int componentId) {
+        entity.setOffSignature(componentId);
+    }
+
+    @Override
+    public boolean hasComponent(Entity entity, int componentId) {
+        return entity.testSignature(componentId);
+    }
+
+    @Override
+    public boolean hasComponentType(Entity e, int componentTypeId) {
+        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+        return pool.get(e.getId()) == null;
     }
 }

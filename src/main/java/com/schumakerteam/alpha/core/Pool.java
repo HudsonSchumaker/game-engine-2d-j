@@ -11,8 +11,7 @@ public class Pool<T> implements IPool<Component> {
 
     private Map<Integer, T> data = new HashMap<>();
 
-    public Pool() {
-    }
+    public Pool() {}
 
     public T getComponent(int index) {
         return this.data.get(index);

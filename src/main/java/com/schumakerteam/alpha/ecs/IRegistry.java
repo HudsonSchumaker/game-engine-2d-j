@@ -8,4 +8,6 @@ public interface IRegistry {
     Entity createEntity();
     void addComponent(Entity e, Component c);
     void removeComponent(Entity e, int componentId);
+    boolean hasComponent(Entity e, int componentId);
+    boolean hasComponentType(Entity e, int componentTypeId);
 }
