@@ -72,6 +72,10 @@ public class Game implements Runnable {
 
         MovementSystem ms = new MovementSystem();
         r.addSystem(ms);
+        r.addEntityToSystems(tank);
+
+        Entity floor = r.createEntity();
+        r.addEntityToSystems(floor);
 
 
     }

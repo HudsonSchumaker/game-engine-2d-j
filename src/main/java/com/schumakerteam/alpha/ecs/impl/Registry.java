@@ -40,6 +40,7 @@ public class Registry implements IRegistry {
         return numSystems++;
     }
 
+    @Override
     public Entity createEntity() {
         int entityId = getEntityId();
         Entity entity = new Entity(entityId);
@@ -49,14 +50,21 @@ public class Registry implements IRegistry {
     }
 
     public void addEntityToSystems(Entity entity) {
-
+        List<BasicSystem> systems = SystemTypeIdMap.getSystems();
+        var entitySignature = entity.getSignature();
+        for (var system : systems) {
+            if(system.getComponentSignature().intersects(entitySignature)) {
+                system.addEntityToSystem(entity);
+                LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getName());
+            }
+        }
     }
 
     @Override
     public void addComponent(Entity entity, Component c) {
         int entityId = entity.getId();
         ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
-        entity.setOnSignature(c.getId());
+        entity.setOnSignature(c.getTypeId());
     }
 
     @Override
@@ -80,7 +88,7 @@ public class Registry implements IRegistry {
     }
 
     public void RemoveSystem(BasicSystem system) {
-
+        //TODO
     }
 
 }

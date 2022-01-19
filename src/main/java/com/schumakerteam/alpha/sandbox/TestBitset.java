@@ -6,15 +6,24 @@ public class TestBitset {
 
     public static void main(String ...args) {
 
-        Signature bitset = new Signature();
-        bitset.set(0);
-        bitset.set(1, false);
+        Signature system = new Signature();
+        system.set(2);
+        system.set(1);
 
-        if (bitset.get(0)) {
+
+        if (system.get(0)) {
             System.out.println("verdadeiro");
         }
 
-        System.out.println(bitset.get(1));
 
+        Signature entity = new Signature();
+        entity.set(6);
+        entity.set(8);
+        entity.set(2);
+
+        var s = entity.toString();
+        var b = entity.toString().contains(system.toString());
+        var z = entity.intersects(system);
+        var x = system.intersects(entity);
     }
 }
