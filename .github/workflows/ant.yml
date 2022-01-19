@@ -23,4 +23,4 @@ jobs:
          java-version: '11'
          check-latest: true
     - name: Build with Ant
-      run: java -cp java com.schumakerteam.alpha.Main
+      run: java -cp java com.schumakerteam.alpha.Main.java
