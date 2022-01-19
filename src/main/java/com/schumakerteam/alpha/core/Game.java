@@ -8,6 +8,7 @@ import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
 import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.systems.MovementSystem;
 
 import java.awt.*;
 
@@ -56,7 +57,7 @@ public class Game implements Runnable {
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
-            LogService.getInstance().info(dm.toString());
+           // LogService.getInstance().info(dm.toString());
         }
 
         // LogService.getInstance().engine("engine");
@@ -68,6 +69,9 @@ public class Game implements Runnable {
         Entity tank = r.createEntity();
         tank.addComponent(tc);
         tank.addComponent(rb);
+
+        MovementSystem ms = new MovementSystem();
+        r.addSystem(ms);
 
 
     }

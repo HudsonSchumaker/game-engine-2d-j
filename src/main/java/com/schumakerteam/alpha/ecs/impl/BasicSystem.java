@@ -3,7 +3,7 @@ package com.schumakerteam.alpha.ecs.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasicSystem {
+public abstract class BasicSystem {
     private Signature componentSignature;
     private List<Entity> entities;
 
@@ -11,6 +11,9 @@ public class BasicSystem {
         this.componentSignature = new Signature();
         this.entities = new ArrayList<>();
     }
+
+    public abstract int getId();
+    public abstract int getTypeId();
 
     public void addEntityToSystem(Entity entity) {
         this.entities.add(entity);
@@ -22,6 +25,10 @@ public class BasicSystem {
 
     public List<Entity> getSystemEntities() {
         return this.entities;
+    }
+
+    protected void setOnSignature(int n) {
+        this.componentSignature.set(n);
     }
 
     public Signature getComponentSignature() {

@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
+import com.schumakerteam.alpha.core.SystemTypeIdMap;
 import com.schumakerteam.alpha.ecs.IRegistry;
 import com.schumakerteam.alpha.log.LogService;
 
@@ -13,14 +14,12 @@ public class Registry implements IRegistry {
 
     private static int numEntities = 0;
     private static int numComponents = 0;
-
-    private Map<String, BasicSystem> systems;
+    private static int numSystems = 0;
 
     private Set<Entity> entitiesToBeAdded;
     private Set<Entity> entitiesToBeDestroyed;
 
     private Registry() {
-        this.systems = new HashMap<>();
         this.entitiesToBeAdded = new HashSet<>();
         this.entitiesToBeDestroyed = new HashSet<>();
     }
@@ -37,12 +36,20 @@ public class Registry implements IRegistry {
         return numComponents++;
     }
 
+    public int getSystemId() {
+        return numSystems++;
+    }
+
     public Entity createEntity() {
         int entityId = getEntityId();
         Entity entity = new Entity(entityId);
         this.entitiesToBeAdded.add(entity);
         LogService.getInstance().engine("Entity created with id: " + entityId);
         return entity;
+    }
+
+    public void addEntityToSystems(Entity entity) {
+
     }
 
     @Override
@@ -67,4 +74,13 @@ public class Registry implements IRegistry {
         var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
         return pool.get(e.getId()) == null;
     }
+
+    public void addSystem(BasicSystem system) {
+        SystemTypeIdMap.setSystem(system.getTypeId(), system);
+    }
+
+    public void RemoveSystem(BasicSystem system) {
+
+    }
+
 }
