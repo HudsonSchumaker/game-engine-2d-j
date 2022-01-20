@@ -12,9 +12,9 @@ public abstract class BasicSystem {
         this.entities = new ArrayList<>();
     }
 
+    public abstract void update();
     public abstract int getId();
     public abstract int getTypeId();
-    public abstract void update();
 
     public void addEntityToSystem(Entity entity) {
         this.entities.add(entity);
