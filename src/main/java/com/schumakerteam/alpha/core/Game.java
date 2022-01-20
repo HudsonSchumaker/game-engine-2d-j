@@ -66,7 +66,7 @@ public class Game implements Runnable {
         }
         // LogService.getInstance().engine("engine");
 
-        TransformComponent tc = new TransformComponent(new Vector2D(), Vector2D.Scale(), 0.0);
+        TransformComponent tc = new TransformComponent(new Vector2D(0,255), Vector2D.Scale(), 0.0);
         RigidBodyComponent rb = new RigidBodyComponent(Vector2D.Forward());
         SpriteComponent sp = new SpriteComponent(32, 32);
         Entity tank = r.createEntity();
@@ -89,8 +89,6 @@ public class Game implements Runnable {
 
     public void update(double deltaTime) {
         Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID).update();
-
-
         Registry.getInstance().update();
     }
 
@@ -100,10 +98,10 @@ public class Game implements Runnable {
         //g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         g.setColor(Color.black);
-        g.fillRect(0, 0, 800, 600);
+        g.fillRect(0, 0, 1024, 768);
         g.setColor(Color.blue);
 
-
+        // TODO credo!!!
         var render = (RenderSystem)Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         render.setGraphics2D(g);
         render.update();

@@ -37,7 +37,7 @@ public class RenderSystem extends BasicSystem {
         }
     }
 
-    // credo!!!
+    // TODO credo!!!
     public void setGraphics2D(Graphics2D g) {
         this.g = g;
     }

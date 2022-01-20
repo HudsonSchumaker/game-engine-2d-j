@@ -25,12 +25,6 @@ public final class MovementSystem extends BasicSystem {
 
             transform.getPosition().setX(transform.getPosition().getX() + rigidbody.getVelocity().getX());
             transform.getPosition().setY(transform.getPosition().getY() + rigidbody.getVelocity().getY());
-
-            LogService.getInstance().info("Entity id: " + entity.getId() +
-                    " x : " +
-                    transform.getPosition().getX()
-                    + " y : "+
-                    transform.getPosition().getY());
         }
     }
 
