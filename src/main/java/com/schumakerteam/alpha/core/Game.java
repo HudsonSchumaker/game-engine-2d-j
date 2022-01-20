@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.core;
 
 import com.schumakerteam.alpha.component.RigidBodyComponent;
+import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
@@ -9,6 +10,7 @@ import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
 import com.schumakerteam.alpha.log.LogService;
 import com.schumakerteam.alpha.systems.MovementSystem;
+import com.schumakerteam.alpha.systems.RenderSystem;
 
 import java.awt.*;
 
@@ -66,18 +68,19 @@ public class Game implements Runnable {
 
         TransformComponent tc = new TransformComponent(new Vector2D(), Vector2D.Scale(), 0.0);
         RigidBodyComponent rb = new RigidBodyComponent(Vector2D.Forward());
+        SpriteComponent sp = new SpriteComponent(32, 32);
         Entity tank = r.createEntity();
-
         tank.addComponent(rb);
         tank.addComponent(tc);
-        tank.removeComponent(rb);
+        tank.addComponent(sp);
 
         MovementSystem ms = new MovementSystem();
         r.addSystem(ms);
+        RenderSystem rs = new RenderSystem();
+        r.addSystem(rs);
+
         r.addEntityToSystems(tank);
 
-        Entity floor = r.createEntity();
-        r.addEntityToSystems(floor);
     }
 
     public void processInput() {
