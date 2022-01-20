@@ -27,7 +27,7 @@ public abstract class BasicSystem {
         return this.entities;
     }
 
-    protected void setOnSignature(int n) {
+    public void setOnSignature(int n) {
         this.componentSignature.set(n);
     }
 
