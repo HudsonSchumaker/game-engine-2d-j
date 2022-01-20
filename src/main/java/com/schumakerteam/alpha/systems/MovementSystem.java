@@ -18,7 +18,7 @@ public final class MovementSystem extends BasicSystem {
         LogService.getInstance().engine("MovementSystem created with id: " + id);
     }
 
-    public void Update() {
+    public void update() {
         for (var entity : getSystemEntities()) {
             LogService.getInstance().info("loop");
         }
