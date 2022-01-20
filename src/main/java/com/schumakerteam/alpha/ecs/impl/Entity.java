@@ -38,6 +38,7 @@ public class Entity implements IEntity {
         return Registry.getInstance().hasComponentType(this, componentTypeId);
     }
 
+    @Override
     public Signature getSignature() {
         return this.signature;
     }

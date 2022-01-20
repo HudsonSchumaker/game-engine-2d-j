@@ -49,6 +49,7 @@ public class Registry implements IRegistry {
         return entity;
     }
 
+    @Override
     public void addEntityToSystems(Entity entity) {
         List<BasicSystem> systems = SystemTypeIdMap.getSystems();
         var entitySignature = entity.getSignature();
@@ -83,11 +84,13 @@ public class Registry implements IRegistry {
         return pool.get(e.getId()) == null;
     }
 
+    @Override
     public void addSystem(BasicSystem system) {
         SystemTypeIdMap.setSystem(system.getTypeId(), system);
     }
 
-    public void RemoveSystem(BasicSystem system) {
+    @Override
+    public void removeSystem(BasicSystem system) {
         //TODO
     }
 
