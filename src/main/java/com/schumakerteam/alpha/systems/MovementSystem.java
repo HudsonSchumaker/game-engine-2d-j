@@ -21,6 +21,11 @@ public final class MovementSystem extends BasicSystem {
     public void update() {
         for (var entity : getSystemEntities()) {
             LogService.getInstance().info("loop");
+            var transform = (TransformComponent)entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+            var rigidbody = (RigidBodyComponent)entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+
+            transform.getPosition().setX(transform.getPosition().getX() + rigidbody.getVelocity().getX());
+            transform.getPosition().setY(transform.getPosition().getY() + rigidbody.getVelocity().getY());
         }
     }
 

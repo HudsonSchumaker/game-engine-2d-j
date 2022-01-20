@@ -24,6 +24,11 @@ public class Entity implements IEntity {
     }
 
     @Override
+    public Component getComponent(int componentTypeId) {
+        return Registry.getInstance().getComponent(this, componentTypeId);
+    }
+
+    @Override
     public void removeComponent(Component c) {
         Registry.getInstance().removeComponent(this, c.getId());
     }

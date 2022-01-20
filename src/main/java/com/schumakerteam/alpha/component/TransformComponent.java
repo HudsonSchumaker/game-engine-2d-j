@@ -24,24 +24,32 @@ public class TransformComponent extends Component {
         return position;
     }
 
-    public void setPosition(Vector2D position) {
-        this.position = position;
-    }
-
     public Vector2D getScale() {
         return scale;
-    }
-
-    public void setScale(Vector2D scale) {
-        this.scale = scale;
     }
 
     public double getRotation() {
         return rotation;
     }
 
+    public void setPosition(Vector2D position) {
+        this.position = position;
+    }
+
+    public void setScale(Vector2D scale) {
+        this.scale = scale;
+    }
+
     public void setRotation(double rotation) {
         this.rotation = rotation;
+    }
+
+    public void setX(double x) {
+        position.setX(x);
+    }
+
+    public void setY(double y) {
+        position.setY(y);
     }
 
     @Override

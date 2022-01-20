@@ -4,7 +4,7 @@ import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SystemTypeIdMap {
@@ -19,8 +19,9 @@ public class SystemTypeIdMap {
     }
 
     public static List<BasicSystem> getSystems() {
-        return SYSTEM_MAP.entrySet().stream().map(entry -> {
-            return entry.getValue();
-        }).collect(Collectors.toList());
+        return SYSTEM_MAP.entrySet()
+                .stream()
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
     }
 }

@@ -26,5 +26,4 @@ public class ComponentTypeIdPoolMap {
         var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(c.getTypeId());
         pool.set(entityId, c);
     }
-
 }

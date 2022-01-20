@@ -69,6 +69,12 @@ public class Registry implements IRegistry {
     }
 
     @Override
+    public Component getComponent(Entity entity, int componentTypeId) {
+        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+        return pool.get(entity.getId());
+    }
+
+    @Override
     public void removeComponent(Entity entity, int componentId) {
         entity.setOffSignature(componentId);
     }
@@ -81,7 +87,7 @@ public class Registry implements IRegistry {
     @Override
     public boolean hasComponentType(Entity e, int componentTypeId) {
         var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
-        return pool.get(e.getId()) == null;
+        return pool.get(e.getId()) != null;
     }
 
     @Override
