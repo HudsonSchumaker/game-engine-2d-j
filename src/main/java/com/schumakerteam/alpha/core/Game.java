@@ -51,6 +51,9 @@ public class Game implements Runnable {
     }
 
     public void setup() {
+        Registry r = Registry.getInstance();
+        r.addSystem(new MovementSystem());
+
         // LogService.getInstance().info("info");
         // LogService.getInstance().warning("warning");
         // LogService.getInstance().error("error");
@@ -59,16 +62,15 @@ public class Game implements Runnable {
         for (var dm : displayModes) {
            // LogService.getInstance().info(dm.toString());
         }
-
         // LogService.getInstance().engine("engine");
-
-        Registry r = Registry.getInstance();
 
         TransformComponent tc = new TransformComponent(new Vector2D(), Vector2D.Scale(), 0.0);
         RigidBodyComponent rb = new RigidBodyComponent(Vector2D.Forward());
         Entity tank = r.createEntity();
-        tank.addComponent(tc);
+
         tank.addComponent(rb);
+        tank.addComponent(tc);
+        tank.removeComponent(rb);
 
         MovementSystem ms = new MovementSystem();
         r.addSystem(ms);
@@ -76,20 +78,17 @@ public class Game implements Runnable {
 
         Entity floor = r.createEntity();
         r.addEntityToSystems(floor);
-
-
     }
 
     public void processInput() {
         x++;
-        //y++;
     }
 
     public void update(double deltaTime) {
+        Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID).update();
 
-        ///xx = x * 2.0 ;
-        // LogService.getInstance().info("x " + x);
-        // LogService.getInstance().info("delta " + deltaTime);
+
+        Registry.getInstance().update();
     }
 
     public void render() {

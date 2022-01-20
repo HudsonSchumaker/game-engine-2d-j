@@ -5,6 +5,7 @@ import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
 import com.schumakerteam.alpha.core.SystemTypeIdMap;
 import com.schumakerteam.alpha.ecs.IRegistry;
 import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.systems.MovementSystem;
 
 import java.util.*;
 
@@ -41,6 +42,11 @@ public class Registry implements IRegistry {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public Entity createEntity() {
         int entityId = getEntityId();
         Entity entity = new Entity(entityId);
@@ -54,6 +60,7 @@ public class Registry implements IRegistry {
         List<BasicSystem> systems = SystemTypeIdMap.getSystems();
         var entitySignature = entity.getSignature();
         for (var system : systems) {
+            // TODO intersects in not working in the way needed.
             if(system.getComponentSignature().intersects(entitySignature)) {
                 system.addEntityToSystem(entity);
                 LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getName());
@@ -65,7 +72,7 @@ public class Registry implements IRegistry {
     public void addComponent(Entity entity, Component c) {
         int entityId = entity.getId();
         ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
-        entity.setOnSignature(c.getTypeId());
+        entity.setOnSignature(c.getId()); // TODO check which is better ID or TypeID
     }
 
     @Override
@@ -96,8 +103,12 @@ public class Registry implements IRegistry {
     }
 
     @Override
+    public BasicSystem getSystem(int componentId) {
+        return SystemTypeIdMap.getSystem(MovementSystem.SYSTEM_TYPE_ID);
+    }
+
+    @Override
     public void removeSystem(BasicSystem system) {
         //TODO
     }
-
 }

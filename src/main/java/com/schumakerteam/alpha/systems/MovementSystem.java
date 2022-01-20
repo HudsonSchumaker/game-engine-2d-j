@@ -18,14 +18,20 @@ public final class MovementSystem extends BasicSystem {
         LogService.getInstance().engine("MovementSystem created with id: " + id);
     }
 
+    @Override
     public void update() {
         for (var entity : getSystemEntities()) {
-            LogService.getInstance().info("loop");
             var transform = (TransformComponent)entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var rigidbody = (RigidBodyComponent)entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
             transform.getPosition().setX(transform.getPosition().getX() + rigidbody.getVelocity().getX());
             transform.getPosition().setY(transform.getPosition().getY() + rigidbody.getVelocity().getY());
+
+            LogService.getInstance().info("Entity id: " + entity.getId() +
+                    " x : " +
+                    transform.getPosition().getX()
+                    + " y : "+
+                    transform.getPosition().getY());
         }
     }
 

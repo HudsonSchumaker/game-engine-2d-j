@@ -6,6 +6,7 @@ import com.schumakerteam.alpha.ecs.impl.Entity;
 
 public interface IRegistry {
 
+    void update();
     Entity createEntity();
     void addEntityToSystems(Entity entity);
     void addComponent(Entity e, Component c);
@@ -14,5 +15,6 @@ public interface IRegistry {
     boolean hasComponent(Entity e, int componentId);
     boolean hasComponentType(Entity e, int componentTypeId);
     void addSystem(BasicSystem system);
+    BasicSystem getSystem(int componentId);
     void removeSystem(BasicSystem system);
 }

@@ -28,6 +28,11 @@ public class Pool<T> implements IPool<Component> {
     }
 
     @Override
+    public void remove(int index) {
+        this.data.remove(index);
+    }
+
+    @Override
     public boolean isEmpty() {
         return this.data.isEmpty();
     }
