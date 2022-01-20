@@ -66,13 +66,17 @@ public class Game implements Runnable {
         }
         // LogService.getInstance().engine("engine");
 
-        TransformComponent tc = new TransformComponent(new Vector2D(0,255), Vector2D.Scale(), 0.0);
-        RigidBodyComponent rb = new RigidBodyComponent(Vector2D.Forward());
-        SpriteComponent sp = new SpriteComponent(32, 32);
+
+
         Entity tank = r.createEntity();
-        tank.addComponent(rb);
-        tank.addComponent(tc);
-        tank.addComponent(sp);
+        tank.addComponent(new TransformComponent(new Vector2D(0,255), Vector2D.Scale(), 0.0));
+        tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank.addComponent(new SpriteComponent(32, 32));
+
+        Entity truck = r.createEntity();
+        truck.addComponent(new TransformComponent(new Vector2D(1024,155), Vector2D.Scale(), 0.0));
+        truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
+        truck.addComponent(new SpriteComponent(32, 16));
 
         MovementSystem ms = new MovementSystem();
         r.addSystem(ms);
@@ -80,6 +84,7 @@ public class Game implements Runnable {
         r.addSystem(rs);
 
         r.addEntityToSystems(tank);
+        r.addEntityToSystems(truck);
 
     }
 

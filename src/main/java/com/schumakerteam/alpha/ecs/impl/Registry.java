@@ -72,7 +72,7 @@ public class Registry implements IRegistry {
     public void addComponent(Entity entity, Component c) {
         int entityId = entity.getId();
         ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
-        entity.setOnSignature(c.getId()); // TODO check which is better ID or TypeID
+        entity.setOnSignature(c.getTypeId());
     }
 
     @Override

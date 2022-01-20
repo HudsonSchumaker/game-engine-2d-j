@@ -1,6 +1,5 @@
 package com.schumakerteam.alpha.systems;
 
-import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
@@ -25,8 +24,8 @@ public class RenderSystem extends BasicSystem {
     @Override
     public void update() {
         for (var entity : getSystemEntities()) {
-            var transform = (TransformComponent)entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
-            var sprite = (SpriteComponent)entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+            var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+            var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
             g.draw(new Rectangle.Double(
                     transform.getPosition().getX(),
