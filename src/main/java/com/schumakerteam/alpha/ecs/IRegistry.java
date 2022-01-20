@@ -15,6 +15,6 @@ public interface IRegistry {
     boolean hasComponent(Entity e, int componentId);
     boolean hasComponentType(Entity e, int componentTypeId);
     void addSystem(BasicSystem system);
-    BasicSystem getSystem(int componentId);
+    BasicSystem getSystem(int systemTypeId);
     void removeSystem(BasicSystem system);
 }

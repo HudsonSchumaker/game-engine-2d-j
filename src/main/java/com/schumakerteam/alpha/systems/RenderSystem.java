@@ -1,15 +1,19 @@
 package com.schumakerteam.alpha.systems;
 
+import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
+import java.awt.*;
+
 public class RenderSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 1;
     private final int id;
+    private Graphics2D g;
 
     public RenderSystem() {
         this.id = Registry.getInstance().getSystemId();
@@ -20,7 +24,22 @@ public class RenderSystem extends BasicSystem {
 
     @Override
     public void update() {
+        for (var entity : getSystemEntities()) {
+            var transform = (TransformComponent)entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+            var sprite = (SpriteComponent)entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
+            g.draw(new Rectangle.Double(
+                    transform.getPosition().getX(),
+                    transform.getPosition().getY(),
+                    sprite.w,
+                    sprite.h)
+            );
+        }
+    }
+
+    // credo!!!
+    public void setGraphics2D(Graphics2D g) {
+        this.g = g;
     }
 
     @Override

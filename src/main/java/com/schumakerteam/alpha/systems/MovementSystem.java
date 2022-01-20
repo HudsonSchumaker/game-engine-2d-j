@@ -18,7 +18,6 @@ public final class MovementSystem extends BasicSystem {
         LogService.getInstance().engine("MovementSystem created with id: " + id);
     }
 
-    @Override
     public void update() {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent)entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);

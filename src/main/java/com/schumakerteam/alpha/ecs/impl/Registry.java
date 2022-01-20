@@ -103,8 +103,8 @@ public class Registry implements IRegistry {
     }
 
     @Override
-    public BasicSystem getSystem(int componentId) {
-        return SystemTypeIdMap.getSystem(MovementSystem.SYSTEM_TYPE_ID);
+    public BasicSystem getSystem(int systemTypeId) {
+        return SystemTypeIdMap.getSystem(systemTypeId);
     }
 
     @Override

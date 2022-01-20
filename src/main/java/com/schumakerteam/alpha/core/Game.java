@@ -104,10 +104,12 @@ public class Game implements Runnable {
         g.setColor(Color.blue);
 
 
+        var render = (RenderSystem)Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
+        render.setGraphics2D(g);
+        render.update();
+
         g.fillRect(500, 500, 16, 16);
-
         g.draw(new Rectangle.Double(x, y, 8, 8));
-
         g.setColor(Color.red);
         g.setFont(small);
         g.drawString("Game Engine 2D J", 32, 32);
