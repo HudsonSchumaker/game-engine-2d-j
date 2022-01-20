@@ -15,7 +15,8 @@ public class LogService implements ILogService {
 
     private List<LogEntry> messages = new ArrayList();
 
-    private LogService() {}
+    private LogService() {
+    }
 
     public static LogService getInstance() {
         return INSTANCE;
@@ -33,7 +34,7 @@ public class LogService implements ILogService {
     @Override
     public void warning(String message) {
         new Thread(() -> {
-            var log = new LogEntry(LogTypeEnum.LOG_WARNING, ANSI_YELLOW +"LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
+            var log = new LogEntry(LogTypeEnum.LOG_WARNING, ANSI_YELLOW + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
             System.out.println(log.getMessage());
             messages.add(log);
         }).start();

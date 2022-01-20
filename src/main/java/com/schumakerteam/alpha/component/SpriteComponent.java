@@ -12,7 +12,8 @@ public class SpriteComponent extends Component {
     public int h;
 
     public SpriteComponent(int w, int h) {
-        this.w = w; this.h = h;
+        this.w = w;
+        this.h = h;
         this.id = Registry.getInstance().getComponentId();
         LogService.getInstance().engine("SpriteComponent created with id: " + id);
     }

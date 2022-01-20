@@ -21,5 +21,4 @@ public class LogEntry {
     public String getMessage() {
         return message;
     }
-
 }

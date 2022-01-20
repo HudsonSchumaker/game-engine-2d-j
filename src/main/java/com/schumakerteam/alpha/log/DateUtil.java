@@ -10,11 +10,11 @@ public class DateUtil {
             .withZone(ZoneId.systemDefault());
 
     public static String getLogDate() {
-       try {
-           return FORMATTER.format(new Date().toInstant());
-       } catch (Exception e) {
-           System.err.println(e.getMessage());
-           return " - - - ";
-       }
+        try {
+            return FORMATTER.format(new Date().toInstant());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return " - - - ";
+        }
     }
 }

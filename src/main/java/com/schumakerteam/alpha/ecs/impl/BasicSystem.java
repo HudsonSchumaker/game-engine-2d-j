@@ -13,7 +13,9 @@ public abstract class BasicSystem {
     }
 
     public abstract void update();
+
     public abstract int getId();
+
     public abstract int getTypeId();
 
     public void addEntityToSystem(Entity entity) {
@@ -33,6 +35,6 @@ public abstract class BasicSystem {
     }
 
     public Signature getComponentSignature() {
-       return this.componentSignature;
+        return this.componentSignature;
     }
 }

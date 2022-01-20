@@ -11,7 +11,8 @@ public class Pool<T> implements IPool<Component> {
 
     private Map<Integer, T> data = new HashMap<>();
 
-    public Pool() {}
+    public Pool() {
+    }
 
     public T getComponent(int index) {
         return this.data.get(index);
@@ -19,7 +20,7 @@ public class Pool<T> implements IPool<Component> {
 
     @Override
     public void set(int index, Component object) {
-        this.data.put(index, (T)object);
+        this.data.put(index, (T) object);
     }
 
     @Override

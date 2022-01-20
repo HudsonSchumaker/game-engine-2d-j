@@ -61,7 +61,7 @@ public class Registry implements IRegistry {
         var entitySignature = entity.getSignature();
         for (var system : systems) {
             // TODO intersects in not working in the way needed.
-            if(system.getComponentSignature().intersects(entitySignature)) {
+            if (system.getComponentSignature().intersects(entitySignature)) {
                 system.addEntityToSystem(entity);
                 LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getName());
             }

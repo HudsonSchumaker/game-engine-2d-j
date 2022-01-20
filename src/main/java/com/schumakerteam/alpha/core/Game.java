@@ -62,19 +62,17 @@ public class Game implements Runnable {
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
-           // LogService.getInstance().info(dm.toString());
+            // LogService.getInstance().info(dm.toString());
         }
         // LogService.getInstance().engine("engine");
 
-
-
         Entity tank = r.createEntity();
-        tank.addComponent(new TransformComponent(new Vector2D(0,255), Vector2D.Scale(), 0.0));
+        tank.addComponent(new TransformComponent(new Vector2D(0, 255), Vector2D.Scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent(32, 32));
 
         Entity truck = r.createEntity();
-        truck.addComponent(new TransformComponent(new Vector2D(1024,155), Vector2D.Scale(), 0.0));
+        truck.addComponent(new TransformComponent(new Vector2D(1024, 155), Vector2D.Scale(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent(32, 16));
 
@@ -107,7 +105,7 @@ public class Game implements Runnable {
         g.setColor(Color.blue);
 
         // TODO credo!!!
-        var render = (RenderSystem)Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
+        var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         render.setGraphics2D(g);
         render.update();
 
@@ -167,7 +165,7 @@ public class Game implements Runnable {
                 updates = 0;
             }
 
-           //
+            //
         }
     }
 

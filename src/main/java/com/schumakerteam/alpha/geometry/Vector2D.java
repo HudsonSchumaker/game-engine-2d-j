@@ -11,15 +11,15 @@ public class Vector2D {
     }
 
     public static Vector2D Scale() {
-        return new Vector2D(1,1);
+        return new Vector2D(1, 1);
     }
 
     public static Vector2D Forward() {
-        return new Vector2D(1,0);
+        return new Vector2D(1, 0);
     }
 
     public static Vector2D Backward() {
-        return new Vector2D(-1,0);
+        return new Vector2D(-1, 0);
     }
 
     public Vector2D(double x, double y) {
