@@ -61,7 +61,7 @@ public class Registry implements IRegistry {
         for (var system : systems) {
             if (Signature.contains(entitySignature, system.getComponentSignature())) {
                 system.addEntityToSystem(entity);
-                LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getName());
+                LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getSimpleName());
             }
         }
     }

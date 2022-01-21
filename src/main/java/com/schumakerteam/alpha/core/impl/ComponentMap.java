@@ -5,6 +5,7 @@ import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.core.IPool;
+import com.schumakerteam.alpha.log.LogService;
 
 import java.util.HashMap;
 
@@ -20,6 +21,10 @@ public final class ComponentMap {
         COMPONENT_POOL.put(TransformComponent.COMPONENT_TYPE_ID, transformComponentPool);
         COMPONENT_POOL.put(RigidBodyComponent.COMPONENT_TYPE_ID, rigidBodyComponentPool);
         COMPONENT_POOL.put(SpriteComponent.COMPONENT_TYPE_ID, spriteComponentPool);
+    }
+
+    public ComponentMap() {
+        LogService.getInstance().engine("ComponentMap created.");
     }
 
     public static IPool<Component> getPoolByComponentTypeId(int typeId) {

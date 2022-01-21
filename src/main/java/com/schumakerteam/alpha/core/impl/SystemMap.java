@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
+import com.schumakerteam.alpha.log.LogService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,10 @@ import java.util.stream.Collectors;
 
 public final class SystemMap {
     private static final HashMap<Integer, BasicSystem> SYSTEM_MAP = new HashMap<>();
+
+    public SystemMap() {
+        LogService.getInstance().engine("SystemMap created.");
+    }
 
     public static void setSystem(int systemId, BasicSystem system) {
         SYSTEM_MAP.put(systemId, system);
