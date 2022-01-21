@@ -12,7 +12,7 @@ public class RenderSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 1;
     private final int id;
-    private Graphics2D g;
+    private Graphics2D render;
 
     public RenderSystem() {
         this.id = Registry.getInstance().getSystemId();
@@ -21,24 +21,24 @@ public class RenderSystem extends BasicSystem {
         LogService.getInstance().engine("RenderSystem created with id: " + id);
     }
 
+    public void update(Graphics2D g) {
+        this.render = g;
+        this.update();
+    }
+
     @Override
-    public void update() {
+    protected void update() {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
-            g.draw(new Rectangle.Double(
+            render.draw(new Rectangle.Double(
                     transform.getPosition().getX(),
                     transform.getPosition().getY(),
                     sprite.w,
                     sprite.h)
             );
         }
-    }
-
-    // TODO credo!!!
-    public void setGraphics2D(Graphics2D g) {
-        this.g = g;
     }
 
     @Override

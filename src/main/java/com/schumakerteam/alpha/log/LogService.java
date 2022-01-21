@@ -2,6 +2,10 @@ package com.schumakerteam.alpha.log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class LogService implements ILogService {
 
@@ -24,11 +28,8 @@ public class LogService implements ILogService {
 
     @Override
     public void info(String message) {
-        new Thread(() -> {
-            var log = new LogEntry(LogTypeEnum.LOG_INFO, ANSI_GREEN + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
-            System.out.println(log.getMessage());
-            messages.add(log);
-        }).start();
+        var log = new LogEntry(LogTypeEnum.LOG_INFO, ANSI_GREEN + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
+        System.out.println(log.getMessage());
     }
 
     @Override
@@ -51,10 +52,8 @@ public class LogService implements ILogService {
 
     @Override
     public void engine(String message) {
-        new Thread(() -> {
-            var log = new LogEntry(LogTypeEnum.LOG_ENGINE, ANSI_BLUE + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
-            System.out.println(log.getMessage());
-            messages.add(log);
-        }).start();
+        var log = new LogEntry(LogTypeEnum.LOG_ENGINE, ANSI_BLUE + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
+        System.out.println(log.getMessage());
+
     }
 }

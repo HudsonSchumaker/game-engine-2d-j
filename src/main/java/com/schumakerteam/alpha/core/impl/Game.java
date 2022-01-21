@@ -90,7 +90,8 @@ public class Game implements Runnable {
     }
 
     public void update(double deltaTime) {
-        Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID).update();
+        var system = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
+        system.update(deltaTime);
         Registry.getInstance().update();
     }
 
@@ -103,10 +104,8 @@ public class Game implements Runnable {
         g.fillRect(0, 0, 1024, 768);
         g.setColor(Color.blue);
 
-        // TODO credo!!!
         var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
-        render.setGraphics2D(g);
-        render.update();
+        render.update(g);
 
         g.setColor(Color.red);
         g.setFont(small);

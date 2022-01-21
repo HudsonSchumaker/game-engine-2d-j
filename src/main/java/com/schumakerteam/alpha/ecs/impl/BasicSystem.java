@@ -12,7 +12,7 @@ public abstract class BasicSystem {
         this.entities = new ArrayList<>();
     }
 
-    public abstract void update();
+    protected abstract void update();
 
     public abstract int getId();
 
