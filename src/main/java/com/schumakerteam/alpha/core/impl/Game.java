@@ -49,8 +49,8 @@ public class Game implements Runnable {
     }
 
     public void setup() {
-        AssetManager.addImage("tank-panther-right", "tank-panther-right.png");
-        AssetManager.addImage("truck-ford-left", "truck-ford-left.png");
+        AssetManager.addImage("tank-panther-right.png");
+        AssetManager.addImage( "truck-ford-left.png");
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
@@ -68,12 +68,12 @@ public class Game implements Runnable {
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 255), Vector2D.Scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        tank.addComponent(new SpriteComponent(32, 32, "tank-panther-right"));
+        tank.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
-        truck.addComponent(new SpriteComponent(32, 32, "truck-ford-left"));
+        truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
