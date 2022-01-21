@@ -9,6 +9,7 @@ public interface IEntity {
     void addComponent(Component c);
     Component getComponent(int componentTypeId);
     void removeComponent(Component c);
+    void removeComponent(int componentTypeId);
     boolean hasComponent(Component c);
     boolean hasComponentType(int componentTypeId);
     Signature getSignature();

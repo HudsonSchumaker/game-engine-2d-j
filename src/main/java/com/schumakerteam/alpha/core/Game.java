@@ -23,9 +23,6 @@ public class Game implements Runnable {
     private Scene scene;
     private Window windowGame;
     private boolean isRunning = false;
-
-    private double x = 1.0;
-    private double y = 100.0;
     //private double deltaTime = 0.0;
 
     private final int width;
@@ -72,9 +69,13 @@ public class Game implements Runnable {
         tank.addComponent(new SpriteComponent(32, 32));
 
         Entity truck = r.createEntity();
-        truck.addComponent(new TransformComponent(new Vector2D(1024, 155), Vector2D.Scale(), 0.0));
+        truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent(32, 16));
+
+        //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+
+
 
         MovementSystem ms = new MovementSystem();
         r.addSystem(ms);
@@ -87,7 +88,6 @@ public class Game implements Runnable {
     }
 
     public void processInput() {
-        x++;
     }
 
     public void update(double deltaTime) {
@@ -97,8 +97,8 @@ public class Game implements Runnable {
 
     public void render() {
         Graphics2D g = (Graphics2D) scene.getBufferStrategy().getDrawGraphics();
-        //g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        //g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         g.setColor(Color.black);
         g.fillRect(0, 0, 1024, 768);
@@ -109,8 +109,6 @@ public class Game implements Runnable {
         render.setGraphics2D(g);
         render.update();
 
-        g.fillRect(500, 500, 16, 16);
-        g.draw(new Rectangle.Double(x, y, 8, 8));
         g.setColor(Color.red);
         g.setFont(small);
         g.drawString("Game Engine 2D J", 32, 32);

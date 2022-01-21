@@ -9,4 +9,11 @@ public class Signature extends BitSet {
     public Signature() {
         super(N_BITS);
     }
+
+    // TODO check if is better not be a static method.
+    public static boolean contains(BitSet a, BitSet b) {
+        BitSet aClone = (BitSet) a.clone();
+        aClone.and(b);
+        return aClone.equals(b);
+    }
 }

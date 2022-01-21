@@ -31,7 +31,7 @@ public class ComponentTypeIdPoolMap {
     }
 
     public static void removeComponent(int entityId, int typeId) {
-        var pool = getPoolByComponentTypeId(typeId);
+        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(typeId);
         pool.remove(entityId);
     }
 }

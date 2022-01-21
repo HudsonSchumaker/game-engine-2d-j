@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
 import com.schumakerteam.alpha.ecs.IEntity;
 
 public class Entity implements IEntity {
@@ -30,7 +31,16 @@ public class Entity implements IEntity {
 
     @Override
     public void removeComponent(Component c) {
-        Registry.getInstance().removeComponent(this, c.getId());
+        Registry.getInstance().removeComponent(this, c.getTypeId());
+    }
+
+    @Override
+    public void removeComponent(int componentTypeId) {
+        if (hasComponentType(componentTypeId)) {
+            var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+            var component = pool.get(this.id);
+            this.removeComponent(component);
+        }
     }
 
     @Override
