@@ -55,15 +55,10 @@ public class Game implements Runnable {
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
 
-        // LogService.getInstance().info("info");
-        // LogService.getInstance().warning("warning");
-        // LogService.getInstance().error("error");
-
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
             LogService.getInstance().info(dm.toString());
         }
-        // LogService.getInstance().engine("engine");
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 255), Vector2D.Scale(), 0.0));
@@ -71,7 +66,7 @@ public class Game implements Runnable {
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity truck = r.createEntity();
-        truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale(), 0.0));
+        truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale2x(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
@@ -97,7 +92,7 @@ public class Game implements Runnable {
         g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         g.setColor(Color.black);
-        g.fillRect(0, 0, 640, 480);
+        g.fillRect(0, 0, width, height);
         g.setColor(Color.blue);
 
         var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);

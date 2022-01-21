@@ -14,6 +14,10 @@ public class Vector2D {
         return new Vector2D(1, 1);
     }
 
+    public static Vector2D Scale2x() {
+        return new Vector2D(2, 2);
+    }
+
     public static Vector2D Forward() {
         return new Vector2D(1, 0);
     }

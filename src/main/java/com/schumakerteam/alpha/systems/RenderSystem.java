@@ -42,10 +42,11 @@ public final class RenderSystem extends BasicSystem {
 
             render.drawImage(
                     AssetManager.getImage(sprite.getSpriteName()),
-                    (int)transform.getPosition().getX(),
-                    (int)transform.getPosition().getY(),
-                    sprite.getWidth(),
-                    sprite.getHeight(), null);
+                    (int) transform.getPosition().getX(),
+                    (int) transform.getPosition().getY(),
+                    sprite.getWidth() * (int) transform.getScale().getX(),
+                    sprite.getHeight() * (int) transform.getScale().getY(),
+                    null);
         }
 
     }
