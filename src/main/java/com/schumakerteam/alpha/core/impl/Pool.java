@@ -1,6 +1,7 @@
-package com.schumakerteam.alpha.core;
+package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.core.IPool;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.schumakerteam.alpha.core;
+package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
@@ -74,7 +74,6 @@ public class Game implements Runnable {
         truck.addComponent(new SpriteComponent(32, 16));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
-
 
 
         MovementSystem ms = new MovementSystem();

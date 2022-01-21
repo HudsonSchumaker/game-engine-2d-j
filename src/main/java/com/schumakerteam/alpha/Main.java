@@ -1,7 +1,6 @@
 package com.schumakerteam.alpha;
 
-import com.schumakerteam.alpha.core.Game;
-import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.core.impl.Game;
 
 public class Main {
 

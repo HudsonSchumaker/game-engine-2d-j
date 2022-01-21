@@ -1,7 +1,7 @@
 package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
-import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
+import com.schumakerteam.alpha.core.impl.ComponentMap;
 import com.schumakerteam.alpha.ecs.IEntity;
 
 public class Entity implements IEntity {
@@ -37,7 +37,7 @@ public class Entity implements IEntity {
     @Override
     public void removeComponent(int componentTypeId) {
         if (hasComponentType(componentTypeId)) {
-            var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+            var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
             var component = pool.get(this.id);
             this.removeComponent(component);
         }

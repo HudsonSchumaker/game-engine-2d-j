@@ -1,11 +1,10 @@
 package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
-import com.schumakerteam.alpha.core.ComponentTypeIdPoolMap;
-import com.schumakerteam.alpha.core.SystemTypeIdMap;
+import com.schumakerteam.alpha.core.impl.ComponentMap;
+import com.schumakerteam.alpha.core.impl.SystemMap;
 import com.schumakerteam.alpha.ecs.IRegistry;
 import com.schumakerteam.alpha.log.LogService;
-import com.schumakerteam.alpha.systems.MovementSystem;
 
 import java.util.*;
 
@@ -57,7 +56,7 @@ public class Registry implements IRegistry {
 
     @Override
     public void addEntityToSystems(Entity entity) {
-        List<BasicSystem> systems = SystemTypeIdMap.getSystems();
+        List<BasicSystem> systems = SystemMap.getSystems();
         var entitySignature = entity.getSignature();
         for (var system : systems) {
             if (Signature.contains(entitySignature, system.getComponentSignature())) {
@@ -70,13 +69,13 @@ public class Registry implements IRegistry {
     @Override
     public void addComponent(Entity entity, Component c) {
         int entityId = entity.getId();
-        ComponentTypeIdPoolMap.setComponentToPool(entityId, c);
+        ComponentMap.setComponentToPool(entityId, c);
         entity.setOnSignature(c.getTypeId());
     }
 
     @Override
     public Component getComponent(Entity entity, int componentTypeId) {
-        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+        var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
         return pool.get(entity.getId());
     }
 
@@ -92,18 +91,18 @@ public class Registry implements IRegistry {
 
     @Override
     public boolean hasComponentType(Entity e, int componentTypeId) {
-        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(componentTypeId);
+        var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
         return pool.get(e.getId()) != null;
     }
 
     @Override
     public void addSystem(BasicSystem system) {
-        SystemTypeIdMap.setSystem(system.getTypeId(), system);
+        SystemMap.setSystem(system.getTypeId(), system);
     }
 
     @Override
     public BasicSystem getSystem(int systemTypeId) {
-        return SystemTypeIdMap.getSystem(systemTypeId);
+        return SystemMap.getSystem(systemTypeId);
     }
 
     @Override

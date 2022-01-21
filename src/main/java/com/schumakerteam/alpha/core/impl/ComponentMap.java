@@ -1,13 +1,14 @@
-package com.schumakerteam.alpha.core;
+package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
+import com.schumakerteam.alpha.core.IPool;
 
 import java.util.HashMap;
 
-public class ComponentTypeIdPoolMap {
+public class ComponentMap {
 
     private static Pool<TransformComponent> transformComponentPool = new Pool<>();
     private static Pool<RigidBodyComponent> rigidBodyComponentPool = new Pool<>();
@@ -26,12 +27,12 @@ public class ComponentTypeIdPoolMap {
     }
 
     public static void setComponentToPool(int entityId, Component c) {
-        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(c.getTypeId());
+        var pool = ComponentMap.getPoolByComponentTypeId(c.getTypeId());
         pool.set(entityId, c);
     }
 
     public static void removeComponent(int entityId, int typeId) {
-        var pool = ComponentTypeIdPoolMap.getPoolByComponentTypeId(typeId);
+        var pool = ComponentMap.getPoolByComponentTypeId(typeId);
         pool.remove(entityId);
     }
 }
