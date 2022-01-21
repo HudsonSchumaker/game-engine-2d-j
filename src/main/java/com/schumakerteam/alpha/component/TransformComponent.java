@@ -4,7 +4,7 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
-public class TransformComponent extends Component {
+public final class TransformComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 0;
     private final int id;

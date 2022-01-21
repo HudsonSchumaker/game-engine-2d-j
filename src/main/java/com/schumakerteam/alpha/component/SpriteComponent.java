@@ -3,7 +3,7 @@ package com.schumakerteam.alpha.component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
-public class SpriteComponent extends Component {
+public final class SpriteComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 2;
     private final int id;

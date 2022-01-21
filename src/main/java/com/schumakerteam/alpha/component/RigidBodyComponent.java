@@ -4,7 +4,7 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
-public class RigidBodyComponent extends Component {
+public final class RigidBodyComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 1;
     private final int id;

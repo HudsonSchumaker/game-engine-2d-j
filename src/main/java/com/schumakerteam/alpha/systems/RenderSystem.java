@@ -8,7 +8,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
 
-public class RenderSystem extends BasicSystem {
+public final class RenderSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 1;
     private final int id;

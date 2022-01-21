@@ -8,7 +8,7 @@ import com.schumakerteam.alpha.core.IPool;
 
 import java.util.HashMap;
 
-public class ComponentMap {
+public final class ComponentMap {
 
     private static Pool<TransformComponent> transformComponentPool = new Pool<>();
     private static Pool<RigidBodyComponent> rigidBodyComponentPool = new Pool<>();

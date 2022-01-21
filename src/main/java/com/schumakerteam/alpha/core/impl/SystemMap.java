@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class SystemMap {
+public final class SystemMap {
     private static final HashMap<Integer, BasicSystem> SYSTEM_MAP = new HashMap<>();
 
     public static void setSystem(int systemId, BasicSystem system) {
