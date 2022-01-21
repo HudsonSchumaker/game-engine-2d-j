@@ -41,16 +41,16 @@ public class Game implements Runnable {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
-        // this.device.setFullScreenWindow(windowGame);
-        // this.device.setDisplayMode(displayMode);
+        //this.device.setFullScreenWindow(windowGame);
+        //this.device.setDisplayMode(displayMode);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
-        this.isRunning = true;
     }
 
     public void setup() {
         AssetManager.addImage("tank-panther-right", "tank-panther-right.png");
+        AssetManager.addImage("truck-ford-left", "truck-ford-left.png");
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
@@ -68,17 +68,18 @@ public class Game implements Runnable {
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 255), Vector2D.Scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        tank.addComponent(new SpriteComponent(32, 32));
+        tank.addComponent(new SpriteComponent(32, 32, "tank-panther-right"));
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
-        truck.addComponent(new SpriteComponent(32, 16));
+        truck.addComponent(new SpriteComponent(32, 32, "truck-ford-left"));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         r.addEntityToSystems(tank);
         r.addEntityToSystems(truck);
+        this.isRunning = true;
     }
 
     public void processInput() {
@@ -96,7 +97,7 @@ public class Game implements Runnable {
         g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         g.setColor(Color.black);
-        g.fillRect(0, 0, 1024, 768);
+        g.fillRect(0, 0, 640, 480);
         g.setColor(Color.blue);
 
         var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);

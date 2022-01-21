@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.systems;
 
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
+import com.schumakerteam.alpha.core.impl.AssetManager;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
@@ -32,13 +33,21 @@ public final class RenderSystem extends BasicSystem {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
-            render.draw(new Rectangle.Double(
+        /*    render.draw(new Rectangle.Double(
                     transform.getPosition().getX(),
                     transform.getPosition().getY(),
                     sprite.w,
                     sprite.h)
-            );
+            );*/
+
+            render.drawImage(
+                    AssetManager.getImage(sprite.getSpriteName()),
+                    (int)transform.getPosition().getX(),
+                    (int)transform.getPosition().getY(),
+                    sprite.getWidth(),
+                    sprite.getHeight(), null);
         }
+
     }
 
     @Override
