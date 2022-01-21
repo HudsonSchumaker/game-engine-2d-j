@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.core.impl;
 
-import com.schumakerteam.alpha.ecs.impl.BasicSystem;
+import com.schumakerteam.alpha.common.GeImageLoader;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
@@ -14,12 +14,12 @@ public final class AssetManager {
         LogService.getInstance().engine("AssetManager created.");
     }
 
-    public static void addImage(String assetId, String path) {
-
+    public static void addImage(String assetId, String fileName) {
+        var image = new GeImageLoader().readFromDisk(fileName);
+        IMAGE_CACHE.put(assetId, image);
     }
 
     public static Image getImage(String assetId) {
-
-        return null;
+        return IMAGE_CACHE.get(assetId);
     }
 }

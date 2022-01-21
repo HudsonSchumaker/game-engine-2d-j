@@ -50,8 +50,10 @@ public class Game implements Runnable {
     }
 
     public void setup() {
+        AssetManager.addImage("tank-panther-right", "tank-panther-right.png");
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
+        r.addSystem(new RenderSystem());
 
         // LogService.getInstance().info("info");
         // LogService.getInstance().warning("warning");
@@ -59,7 +61,7 @@ public class Game implements Runnable {
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
-            // LogService.getInstance().info(dm.toString());
+            LogService.getInstance().info(dm.toString());
         }
         // LogService.getInstance().engine("engine");
 
@@ -75,15 +77,8 @@ public class Game implements Runnable {
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
-
-        MovementSystem ms = new MovementSystem();
-        r.addSystem(ms);
-        RenderSystem rs = new RenderSystem();
-        r.addSystem(rs);
-
         r.addEntityToSystems(tank);
         r.addEntityToSystems(truck);
-
     }
 
     public void processInput() {
