@@ -80,6 +80,11 @@ public class Game implements Runnable {
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
+        var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+        spriteComponent.setFlip(true);
+
+
+
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         r.addEntityToSystems(tank);

@@ -24,7 +24,7 @@ public final class AssetManager {
         return IMAGE_CACHE.get(assetId);
     }
 
-    public static Pair<Integer,Integer> getImageDimension(String assetId) {
+    public static Pair<Integer, Integer> getImageDimension(String assetId) {
         var image = new GeImageLoader().readBufferFromDisk(assetId);
         return Pair.of(image.getWidth(null), image.getHeight(null));
     }

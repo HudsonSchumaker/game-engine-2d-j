@@ -8,6 +8,9 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 public final class RenderSystem extends BasicSystem {
 
@@ -40,15 +43,24 @@ public final class RenderSystem extends BasicSystem {
                     sprite.h)
             );*/
 
-            render.drawImage(
-                    AssetManager.getImage(sprite.getSpriteName()),
-                    (int) transform.getPosition().getX(),
-                    (int) transform.getPosition().getY(),
-                    sprite.getWidth() * (int) transform.getScale().getX(),
-                    sprite.getHeight() * (int) transform.getScale().getY(),
-                    null);
+            if (sprite.isFlipped()) {
+                render.drawImage(
+                        this.flip(sprite.getSpriteName()),
+                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getY(),
+                        sprite.getWidth() * (int) transform.getScale().getX(),
+                        sprite.getHeight() * (int) transform.getScale().getY(),
+                        null);
+            } else {
+                render.drawImage(
+                        AssetManager.getImage(sprite.getSpriteName()),
+                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getY(),
+                        sprite.getWidth() * (int) transform.getScale().getX(),
+                        sprite.getHeight() * (int) transform.getScale().getY(),
+                        null);
+            }
         }
-
     }
 
     @Override
@@ -59,5 +71,23 @@ public final class RenderSystem extends BasicSystem {
     @Override
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
+    }
+
+    private BufferedImage flip(String spriteName) {
+        var dimension = AssetManager.getImageDimension(spriteName);
+        var image = AssetManager.getImage(spriteName);
+
+        BufferedImage bufferedImage = new BufferedImage(dimension.getLeft(), dimension.getRight(), BufferedImage.TYPE_INT_RGB);
+
+        Graphics gb = bufferedImage.getGraphics();
+        gb.drawImage(image, 0, 0, null);
+        gb.dispose();
+
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-dimension.getLeft(), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        bufferedImage = op.filter(bufferedImage, null);
+
+        return bufferedImage;
     }
 }

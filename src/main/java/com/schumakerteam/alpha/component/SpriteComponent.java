@@ -12,6 +12,7 @@ public final class SpriteComponent extends Component {
     private int width;
     private int height;
     private String spriteName;
+    private boolean flip = false;
 
     public SpriteComponent(String spriteName) {
         var dimension = AssetManager.getImageDimension(spriteName);
@@ -40,6 +41,14 @@ public final class SpriteComponent extends Component {
 
     public String getSpriteName() {
         return this.spriteName;
+    }
+
+    public void setFlip(boolean f) {
+        this.flip = f;
+    }
+
+    public boolean isFlipped() {
+        return this.flip;
     }
 
     @Override
