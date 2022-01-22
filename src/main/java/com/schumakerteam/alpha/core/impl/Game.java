@@ -61,9 +61,19 @@ public class Game implements Runnable {
         }
 
         Entity tank = r.createEntity();
-        tank.addComponent(new TransformComponent(new Vector2D(0, 255), Vector2D.Scale(), 0.0));
+        tank.addComponent(new TransformComponent(new Vector2D(0, 10), Vector2D.Scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
+
+        Entity tank2 = r.createEntity();
+        tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Vector2D.Scale2x(), 0.0));
+        tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank2.addComponent(new SpriteComponent("tank-panther-right.png"));
+
+        Entity tank3 = r.createEntity();
+        tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Vector2D.Scale3x(), 0.0));
+        tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank3.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale2x(), 0.0));
@@ -73,6 +83,8 @@ public class Game implements Runnable {
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         r.addEntityToSystems(tank);
+        r.addEntityToSystems(tank2);
+        r.addEntityToSystems(tank3);
         r.addEntityToSystems(truck);
         this.isRunning = true;
     }
@@ -107,11 +119,12 @@ public class Game implements Runnable {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    @Override
     public void run() {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 120; // FPS
+        final int MAX_FRAMES_PER_SECOND = 60; // FPS
         final int MAX_UPDATES_SECOND = 60; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
