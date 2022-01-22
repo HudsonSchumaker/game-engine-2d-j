@@ -63,16 +63,6 @@ public final class RenderSystem extends BasicSystem {
         }
     }
 
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public int getTypeId() {
-        return SYSTEM_TYPE_ID;
-    }
-
     private BufferedImage flip(String spriteName) {
         var dimension = AssetManager.getImageDimension(spriteName);
         var image = AssetManager.getImage(spriteName);
@@ -89,5 +79,15 @@ public final class RenderSystem extends BasicSystem {
         bufferedImage = op.filter(bufferedImage, null);
 
         return bufferedImage;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int getTypeId() {
+        return SYSTEM_TYPE_ID;
     }
 }
