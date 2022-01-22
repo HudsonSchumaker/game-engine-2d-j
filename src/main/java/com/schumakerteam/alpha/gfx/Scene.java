@@ -16,11 +16,3 @@ public class Scene extends Canvas {
         this.strategy = getBufferStrategy();
     }
 }
-
-
-
-
-
-
-
-

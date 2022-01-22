@@ -10,6 +10,11 @@ public class Vector2D {
         this.y = 0.0;
     }
 
+    public Vector2D(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public static Vector2D Scale() {
         return new Vector2D(1, 1);
     }
@@ -28,11 +33,6 @@ public class Vector2D {
 
     public static Vector2D Backward() {
         return new Vector2D(-1, 0);
-    }
-
-    public Vector2D(double x, double y) {
-        this.x = x;
-        this.y = y;
     }
 
     public double getX() {

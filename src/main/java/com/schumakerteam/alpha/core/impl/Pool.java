@@ -14,11 +14,7 @@ public class Pool<T> implements IPool<Component> {
 
     public Pool() {
     }
-
-    public T getComponent(int index) {
-        return this.data.get(index);
-    }
-
+    
     @Override
     public void set(int index, Component object) {
         this.data.put(index, (T) object);
