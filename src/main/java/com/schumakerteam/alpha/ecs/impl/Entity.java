@@ -4,7 +4,7 @@ import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
 import com.schumakerteam.alpha.ecs.IEntity;
 
-public class Entity implements IEntity {
+public final class Entity implements IEntity {
 
     private final int id;
     private Signature signature;

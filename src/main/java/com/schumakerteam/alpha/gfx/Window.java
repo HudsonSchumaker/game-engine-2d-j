@@ -3,7 +3,7 @@ package com.schumakerteam.alpha.gfx;
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame {
+public final class Window extends JFrame {
 
     private JPanel panel;
 

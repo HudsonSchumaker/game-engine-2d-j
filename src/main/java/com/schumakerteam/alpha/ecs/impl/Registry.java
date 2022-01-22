@@ -8,7 +8,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 import java.util.*;
 
-public class Registry implements IRegistry {
+public final class Registry implements IRegistry {
 
     private static final Registry INSTANCE = new Registry();
 

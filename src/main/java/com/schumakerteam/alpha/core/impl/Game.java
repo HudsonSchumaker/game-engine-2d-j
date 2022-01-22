@@ -51,6 +51,7 @@ public class Game implements Runnable {
     public void setup() {
         AssetManager.addImage("tank-panther-right.png");
         AssetManager.addImage( "truck-ford-left.png");
+        AssetManager.addImage( "radar.png");
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
@@ -84,6 +85,11 @@ public class Game implements Runnable {
         spriteComponent.setFlip(true);
 
 
+        Entity radar = r.createEntity();
+        radar.addComponent(new TransformComponent(new Vector2D(50, 10), Vector2D.Scale(), 0.0));
+        //radar.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        radar.addComponent(new SpriteComponent("radar.png"));
+
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
@@ -91,6 +97,7 @@ public class Game implements Runnable {
         r.addEntityToSystems(tank2);
         r.addEntityToSystems(tank3);
         r.addEntityToSystems(truck);
+        r.addEntityToSystems(radar);
         this.isRunning = true;
     }
 

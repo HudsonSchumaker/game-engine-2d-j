@@ -3,7 +3,7 @@ package com.schumakerteam.alpha.gfx;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Scene extends Canvas {
+public final class Scene extends Canvas {
 
     private BufferStrategy strategy;
 
