@@ -10,6 +10,10 @@ public final class RigidBodyComponent extends Component {
     private final int id;
     private Vector2D velocity;
 
+    public RigidBodyComponent() {
+        this(Vector2D.Zero());
+    }
+
     public RigidBodyComponent(Vector2D velocity) {
         this.id = Registry.getInstance().getComponentId();
         this.velocity = velocity;
