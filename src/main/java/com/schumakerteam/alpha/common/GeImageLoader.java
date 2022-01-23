@@ -13,7 +13,7 @@ public final class GeImageLoader {
                         .getResource("/resources/images/" + fileName));
     }
 
-    public BufferedImage readBufferFromDisk(String fileName) {
+    public BufferedImage readBufferImageFromDisk(String fileName) {
         try {
             return ImageIO.read(Objects.requireNonNull(this.getClass()
                     .getResourceAsStream("/resources/images/" + fileName)));
