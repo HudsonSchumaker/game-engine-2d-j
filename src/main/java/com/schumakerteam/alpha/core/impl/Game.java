@@ -12,7 +12,18 @@ import com.schumakerteam.alpha.log.LogService;
 import com.schumakerteam.alpha.systems.MovementSystem;
 import com.schumakerteam.alpha.systems.RenderSystem;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.DisplayMode;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Game implements Runnable {
 
@@ -47,22 +58,26 @@ public class Game implements Runnable {
         //this.device.setDisplayMode(displayMode);
         //this.device.setFullScreenWindow(windowGame);
 
-        this.small = new Font("Arial Unicode", Font.BOLD, 14);
+        //this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
     }
 
     public void setup() {
-        AssetManager.addImage("tank-panther-right.png");
-        AssetManager.addImage( "truck-ford-left.png");
-        AssetManager.addImage( "radar.png");
+       // AssetManager.addTexture("tank-panther-right.png");
+       // AssetManager.addTexture("truck-ford-left.png");
+       // AssetManager.addTexture("radar.png");
+        List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
+
+        var future = AssetManager.loadInBatch(textures);
+
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
 
-        var displayModes = this.device.getDisplayModes();
-        for (var dm : displayModes) {
-            LogService.getInstance().info(dm.toString());
-        }
+        //var displayModes = this.device.getDisplayModes();
+        //for (var dm : displayModes) {
+         //   LogService.getInstance().info(dm.toString());
+       // }
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 10), Vector2D.Scale(), 0.0));
@@ -134,6 +149,11 @@ public class Game implements Runnable {
         r.addEntityToSystems(radar2);
         r.addEntityToSystems(radar3);
         r.addEntityToSystems(radar4);
+        try {
+            future.get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
         this.isRunning = true;
     }
 
@@ -158,8 +178,8 @@ public class Game implements Runnable {
         render.update(g);
 
         g.setColor(Color.blue);
-        g.setFont(small);
-        g.drawString("FPS:" + FPS + " UPS: " +  UPS, 32, 32);
+       // g.setFont(small);
+        g.drawString("FPS:" + FPS + " UPS: " + UPS, 32, 32);
         g.dispose();
 
         scene.getBufferStrategy().show();
@@ -171,8 +191,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 96; // UPS
+        final int MAX_FRAMES_PER_SECOND = 120; // FPS
+        final int MAX_UPDATES_SECOND = 80; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
