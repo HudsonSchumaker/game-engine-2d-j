@@ -55,7 +55,7 @@ public final class RenderSystem extends BasicSystem {
                         null);
             } else {
                 render.drawImage(
-                        AssetManager.getImage(sprite.getSpriteName()),
+                        AssetManager.getTexture(sprite.getSpriteName()).getBufferedImage(),
                         (int) transform.getPosition().getX(),
                         (int) transform.getPosition().getY(),
                         sprite.getWidth() * (int) transform.getScale().getX(),
@@ -65,19 +65,16 @@ public final class RenderSystem extends BasicSystem {
         }
     }
 
-    // TODO very bad performance
     private BufferedImage flip(String spriteName) {
-        var dimension = AssetManager.getImageDimension(spriteName);
-        var image = AssetManager.getImage(spriteName);
-
-        BufferedImage bufferedImage = new BufferedImage(dimension.getLeft(), dimension.getRight(), BufferedImage.TYPE_INT_RGB);
+        var image = AssetManager.getTexture(spriteName).getBufferedImage();
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 
         Graphics gb = bufferedImage.getGraphics();
         gb.drawImage(image, 0, 0, null);
         gb.dispose();
 
         AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-        tx.translate(-dimension.getLeft(), 0);
+        tx.translate(-image.getWidth(), 0);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         bufferedImage = op.filter(bufferedImage, null);
 
