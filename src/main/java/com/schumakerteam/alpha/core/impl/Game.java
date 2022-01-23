@@ -42,7 +42,7 @@ public class Game implements Runnable {
         this.windowGame = new Window(scene);
         this.scene.initialize();
         //this.device.setFullScreenWindow(windowGame);
-        //this.device.setDisplayMode(displayMode);
+        this.device.setDisplayMode(displayMode);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
@@ -84,20 +84,45 @@ public class Game implements Runnable {
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
 
+        Entity tank4 = r.createEntity();
+        tank4.addComponent(new TransformComponent(new Vector2D(0, 200), Vector2D.Scale(), 0.0));
+        tank4.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank4.addComponent(new SpriteComponent("tank-panther-right.png"));
+
+        Entity tank5 = r.createEntity();
+        tank5.addComponent(new TransformComponent(new Vector2D(0, 264), Vector2D.Scale(), 0.0));
+        tank5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank5.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity radar = r.createEntity();
         radar.addComponent(new TransformComponent(new Vector2D(50, 10), Vector2D.Scale(), 0.0));
-        //radar.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         radar.addComponent(new SpriteComponent("radar.png"));
+
+        Entity radar2 = r.createEntity();
+        radar2.addComponent(new TransformComponent(new Vector2D(50, 74), Vector2D.Scale(), 0.0));
+        radar2.addComponent(new SpriteComponent("radar.png"));
+
+        Entity radar3 = r.createEntity();
+        radar3.addComponent(new TransformComponent(new Vector2D(50, 138), Vector2D.Scale(), 0.0));
+        radar3.addComponent(new SpriteComponent("radar.png"));
+
+        Entity radar4 = r.createEntity();
+        radar4.addComponent(new TransformComponent(new Vector2D(50, 200), Vector2D.Scale(), 0.0));
+        radar4.addComponent(new SpriteComponent("radar.png"));
 
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         r.addEntityToSystems(tank);
-        r.addEntityToSystems(tank2);
-        r.addEntityToSystems(tank3);
-        r.addEntityToSystems(truck);
-        r.addEntityToSystems(radar);
+       // r.addEntityToSystems(tank2);
+       // r.addEntityToSystems(tank3);
+       // r.addEntityToSystems(tank4);
+       /// r.addEntityToSystems(tank5);
+       // r.addEntityToSystems(truck);
+       // r.addEntityToSystems(radar);
+       // r.addEntityToSystems(radar2);
+       // r.addEntityToSystems(radar3);
+      //  r.addEntityToSystems(radar4);
         this.isRunning = true;
     }
 
@@ -136,8 +161,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 60; // FPS
-        final int MAX_UPDATES_SECOND = 60; // UPS
+        final int MAX_FRAMES_PER_SECOND = 144; // FPS
+        final int MAX_UPDATES_SECOND = 80; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
@@ -176,8 +201,6 @@ public class Game implements Runnable {
                 frames = 0;
                 updates = 0;
             }
-
-            //
         }
     }
 
@@ -187,4 +210,3 @@ public class Game implements Runnable {
         thread.start();
     }
 }
-

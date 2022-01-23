@@ -36,12 +36,14 @@ public final class RenderSystem extends BasicSystem {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
-        /*    render.draw(new Rectangle.Double(
+           /* render.draw(new Rectangle.Double(
                     transform.getPosition().getX(),
                     transform.getPosition().getY(),
                     sprite.w,
                     sprite.h)
             );*/
+
+            // bufferedImage.getSubimage(256, 0, 64, 64);
 
             if (sprite.isFlipped()) {
                 render.drawImage(
