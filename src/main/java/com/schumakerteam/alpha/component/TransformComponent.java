@@ -10,7 +10,19 @@ public final class TransformComponent extends Component {
     private final int id;
     private Vector2D position;
     private Vector2D scale;
-    double rotation;
+    private double rotation;
+
+    public TransformComponent() {
+        this(Vector2D.Zero(), Vector2D.Scale(), 0.0);
+    }
+
+    public TransformComponent(Vector2D position) {
+        this(position, Vector2D.Scale(), 0.0);
+    }
+
+    public TransformComponent(Vector2D position, Vector2D scale) {
+        this(position, scale, 0.0);
+    }
 
     public TransformComponent(Vector2D position, Vector2D scale, double rotation) {
         this.id = Registry.getInstance().getComponentId();
