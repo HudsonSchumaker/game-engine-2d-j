@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class LogService implements ILogService {
+public final class LogService implements ILogService {
 
     private static final LogService INSTANCE = new LogService();
 

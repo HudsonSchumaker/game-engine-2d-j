@@ -35,6 +35,14 @@ public final class Vector2D {
         return new Vector2D(-1, 0);
     }
 
+    public static Vector2D Up() {
+        return new Vector2D(0, -1);
+    }
+
+    public static Vector2D Down() {
+        return new Vector2D(0, 1);
+    }
+
     public double getX() {
         return x;
     }

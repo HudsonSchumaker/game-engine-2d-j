@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Pool<T> implements IPool<Component> {
+public final class Pool<T> implements IPool<Component> {
 
     private Map<Integer, T> data = new HashMap<>();
 

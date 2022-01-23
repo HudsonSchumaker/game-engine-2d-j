@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.log;
 
-public class LogEntry {
+public final class LogEntry {
 
     private LogTypeEnum type;
     private String message;

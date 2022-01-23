@@ -86,7 +86,7 @@ public class Game implements Runnable {
 
         Entity tank4 = r.createEntity();
         tank4.addComponent(new TransformComponent(new Vector2D(0, 200), Vector2D.Scale(), 0.0));
-        tank4.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank4.addComponent(new RigidBodyComponent(Vector2D.Down()));
         tank4.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank5 = r.createEntity();
