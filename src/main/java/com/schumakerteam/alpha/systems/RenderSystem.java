@@ -65,6 +65,7 @@ public final class RenderSystem extends BasicSystem {
         }
     }
 
+    // TODO very bad performance
     private BufferedImage flip(String spriteName) {
         var dimension = AssetManager.getImageDimension(spriteName);
         var image = AssetManager.getImage(spriteName);

@@ -29,10 +29,13 @@ public class Game implements Runnable {
     private final int height;
     private Font small;
 
+    private int FPS = 0;
+    private int UPS = 0;
+
     public Game(int width, int height) {
         this.width = width;
         this.height = height;
-        this.displayMode = new DisplayMode(width, height, 32, DisplayMode.REFRESH_RATE_UNKNOWN);
+        this.displayMode = new DisplayMode(width, height, 32, 60);
         this.environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.device = environment.getDefaultScreenDevice();
     }
@@ -41,8 +44,8 @@ public class Game implements Runnable {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
+        //this.device.setDisplayMode(displayMode);
         //this.device.setFullScreenWindow(windowGame);
-        this.device.setDisplayMode(displayMode);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
@@ -81,9 +84,6 @@ public class Game implements Runnable {
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
-        var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-        spriteComponent.setFlip(true);
-
         Entity tank4 = r.createEntity();
         tank4.addComponent(new TransformComponent(new Vector2D(0, 200), Vector2D.Scale(), 0.0));
         tank4.addComponent(new RigidBodyComponent(Vector2D.Forward()));
@@ -93,6 +93,11 @@ public class Game implements Runnable {
         tank5.addComponent(new TransformComponent(new Vector2D(0, 264), Vector2D.Scale(), 0.0));
         tank5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank5.addComponent(new SpriteComponent("tank-panther-right.png"));
+
+        Entity tank6 = r.createEntity();
+        tank6.addComponent(new TransformComponent(new Vector2D(0, 300), Vector2D.Scale(), 0.0));
+        tank6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank6.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity radar = r.createEntity();
         radar.addComponent(new TransformComponent(new Vector2D(50, 10), Vector2D.Scale(), 0.0));
@@ -110,19 +115,25 @@ public class Game implements Runnable {
         radar4.addComponent(new TransformComponent(new Vector2D(50, 200), Vector2D.Scale(), 0.0));
         radar4.addComponent(new SpriteComponent("radar.png"));
 
+        var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+        spriteComponent.setFlip(true);
+
+        spriteComponent = (SpriteComponent) tank4.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+        spriteComponent.setFlip(true);
+
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         r.addEntityToSystems(tank);
-       // r.addEntityToSystems(tank2);
-       // r.addEntityToSystems(tank3);
-       // r.addEntityToSystems(tank4);
-       /// r.addEntityToSystems(tank5);
-       // r.addEntityToSystems(truck);
-       // r.addEntityToSystems(radar);
-       // r.addEntityToSystems(radar2);
-       // r.addEntityToSystems(radar3);
-      //  r.addEntityToSystems(radar4);
+        r.addEntityToSystems(tank2);
+        r.addEntityToSystems(tank3);
+        r.addEntityToSystems(tank4);
+        r.addEntityToSystems(tank5);
+        r.addEntityToSystems(truck);
+        r.addEntityToSystems(radar);
+        r.addEntityToSystems(radar2);
+        r.addEntityToSystems(radar3);
+        r.addEntityToSystems(radar4);
         this.isRunning = true;
     }
 
@@ -142,14 +153,13 @@ public class Game implements Runnable {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, width, height);
-        g.setColor(Color.blue);
 
         var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         render.update(g);
 
-        g.setColor(Color.red);
+        g.setColor(Color.blue);
         g.setFont(small);
-        g.drawString("Game Engine 2D J", 32, 32);
+        g.drawString("FPS:" + FPS + " UPS: " +  UPS, 32, 32);
         g.dispose();
 
         scene.getBufferStrategy().show();
@@ -162,7 +172,7 @@ public class Game implements Runnable {
         setup();
 
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 80; // UPS
+        final int MAX_UPDATES_SECOND = 96; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
@@ -198,6 +208,8 @@ public class Game implements Runnable {
             if (System.currentTimeMillis() - timer >= 1000) {
                 timer += 1000;
                 windowGame.setTitle("FPS: " + frames + " UPS: " + updates);
+                this.FPS = frames;
+                this.UPS = updates;
                 frames = 0;
                 updates = 0;
             }
