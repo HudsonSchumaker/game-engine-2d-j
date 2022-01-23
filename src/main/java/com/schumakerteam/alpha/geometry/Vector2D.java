@@ -43,6 +43,8 @@ public final class Vector2D {
         return new Vector2D(0, 1);
     }
 
+    public static Vector2D Zero() { return new Vector2D(); }
+
     public double getX() {
         return x;
     }
