@@ -35,39 +35,28 @@ public final class RenderSystem extends BasicSystem {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+            var image = AssetManager.getTexture(sprite.getSpriteName()).getBufferedImage();
 
-           /* render.draw(new Rectangle.Double(
-                    transform.getPosition().getX(),
-                    transform.getPosition().getY(),
-                    sprite.w,
-                    sprite.h)
-            );*/
-
-            // bufferedImage.getSubimage(256, 0, 64, 64);
+            if (transform.getRotation() != 0.0) {
+                image = rotateImageByDegrees(image, transform.getRotation());
+            }
 
             if (sprite.isFlipped()) {
-                render.drawImage(
-                        this.flip(sprite.getSpriteName()),
-                        (int) transform.getPosition().getX(),
-                        (int) transform.getPosition().getY(),
-                        sprite.getWidth() * (int) transform.getScale().getX(),
-                        sprite.getHeight() * (int) transform.getScale().getY(),
-                        null);
-            } else {
-                render.drawImage(
-                        AssetManager.getTexture(sprite.getSpriteName()).getBufferedImage(),
-                        (int) transform.getPosition().getX(),
-                        (int) transform.getPosition().getY(),
-                        sprite.getWidth() * (int) transform.getScale().getX(),
-                        sprite.getHeight() * (int) transform.getScale().getY(),
-                        null);
+                image = flip(image);
             }
+
+            render.drawImage(
+                    image,
+                    (int) transform.getPosition().getX(),
+                    (int) transform.getPosition().getY(),
+                    sprite.getWidth() * (int) transform.getScale().getX(),
+                    sprite.getHeight() * (int) transform.getScale().getY(),
+                    null);
         }
     }
 
-    private BufferedImage flip(String spriteName) {
-        var image = AssetManager.getTexture(spriteName).getBufferedImage();
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+    private BufferedImage flip(BufferedImage image) {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
 
         Graphics gb = bufferedImage.getGraphics();
         gb.drawImage(image, 0, 0, null);
@@ -79,6 +68,30 @@ public final class RenderSystem extends BasicSystem {
         bufferedImage = op.filter(bufferedImage, null);
 
         return bufferedImage;
+    }
+
+    public BufferedImage rotateImageByDegrees(BufferedImage image, double angle) {
+        double rads = Math.toRadians(angle);
+        double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
+        int w = image.getWidth();
+        int h = image.getHeight();
+        int newWidth = (int) Math.floor(w * cos + h * sin);
+        int newHeight = (int) Math.floor(h * cos + w * sin);
+
+        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = rotated.createGraphics();
+        AffineTransform at = new AffineTransform();
+        at.translate((newWidth - w) / 2.0, (newHeight - h) / 2.0);
+
+        int x = w / 2;
+        int y = h / 2;
+
+        at.rotate(rads, x, y);
+        g2d.setTransform(at);
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
+
+        return rotated;
     }
 
     @Override
