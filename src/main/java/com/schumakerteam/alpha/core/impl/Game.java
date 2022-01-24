@@ -241,4 +241,12 @@ public class Game implements Runnable {
         thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }
+
+    public void stop() {
+        try {
+            Thread.currentThread().join();
+            isRunning = false;
+        } catch (InterruptedException ignore) {
+        }
+    }
 }
