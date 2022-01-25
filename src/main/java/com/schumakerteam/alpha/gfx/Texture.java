@@ -6,7 +6,7 @@ public final class Texture {
 
     private final int width;
     private final int height;
-    private BufferedImage bufferedImage;
+    private final BufferedImage bufferedImage;
 
     public Texture(int width, int height, BufferedImage bufferedImage) {
         this.width = width;
