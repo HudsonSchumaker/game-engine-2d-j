@@ -90,7 +90,7 @@ public class Game implements Runnable {
         tank2.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank3 = r.createEntity();
-        tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Vector2D.Scale3x(), 0.0));
+        tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Vector2D.Scale3x(), 45.0));
         tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank3.addComponent(new SpriteComponent("tank-panther-right.png"));
 
@@ -168,6 +168,7 @@ public class Game implements Runnable {
 
     public void render() {
         Graphics2D g = (Graphics2D) scene.getBufferStrategy().getDrawGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
