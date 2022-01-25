@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.core.impl;
 
-import com.schumakerteam.alpha.common.GeImageLoader;
+import com.schumakerteam.alpha.io.GeImageLoader;
 import com.schumakerteam.alpha.common.Pair;
 import com.schumakerteam.alpha.gfx.Texture;
 import com.schumakerteam.alpha.log.LogService;
