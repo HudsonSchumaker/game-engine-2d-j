@@ -14,6 +14,7 @@ public final class SpriteComponent extends Component {
     private String spriteName;
     private boolean flip = false;
 
+    // TODO fix constructor call and w, h init
     public SpriteComponent(String spriteName) {
         var dimension = AssetManager.getImageDimension(spriteName);
         this.width = dimension.getLeft();
