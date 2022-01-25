@@ -17,7 +17,7 @@ public final class Window extends JFrame {
         this.setIgnoreRepaint(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //this.setUndecorated(true);
+        this.setUndecorated(true);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

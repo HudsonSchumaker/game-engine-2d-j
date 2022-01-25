@@ -16,7 +16,7 @@ public final class SpriteComponent extends Component {
 
     // TODO fix constructor call and w, h init
     public SpriteComponent(String spriteName) {
-        var dimension = AssetManager.getImageDimension(spriteName);
+        var dimension = AssetManager.getTextureDimension(spriteName);
         this.width = dimension.getLeft();
         this.height = dimension.getRight();
         this.spriteName = spriteName;

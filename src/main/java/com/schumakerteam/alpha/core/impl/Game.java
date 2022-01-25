@@ -69,6 +69,7 @@ public class Game implements Runnable {
         List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
 
         var future = AssetManager.loadInBatch(textures);
+       AssetManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
 
         Registry r = Registry.getInstance();
         r.addSystem(new MovementSystem());
@@ -78,6 +79,11 @@ public class Game implements Runnable {
         //for (var dm : displayModes) {
          //   LogService.getInstance().info(dm.toString());
        // }
+
+        Entity car = r.createEntity();
+        car.addComponent(new TransformComponent(new Vector2D(768, 0), Vector2D.Scale(), 0.0));
+        car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
+        car.addComponent(new SpriteComponent("car.png"));
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 10), Vector2D.Scale(), 0.0));
@@ -149,6 +155,7 @@ public class Game implements Runnable {
         r.addEntityToSystems(radar2);
         r.addEntityToSystems(radar3);
         r.addEntityToSystems(radar4);
+        r.addEntityToSystems(car);
         try {
             future.get();
         } catch (ExecutionException | InterruptedException e) {
