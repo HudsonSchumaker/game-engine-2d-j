@@ -31,11 +31,8 @@ public final class GeImageLoader {
         try {
             www = new URL(url);
             Image image = ImageIO.read(www);
-
-            var mapper = new Image2BufferedImageMap();
-            return mapper.from(image);
-        } catch (IOException ignore) {
-        }
+            return new Image2BufferedImageMap().from(image);
+        } catch (IOException ignore) {}
         return null;
     }
 }
