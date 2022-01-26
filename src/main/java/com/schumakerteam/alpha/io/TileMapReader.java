@@ -22,7 +22,6 @@ public final class TileMapReader {
             line = buffer.readLine();
             line.split(COMMA_DELIMITER);
         }
-
     }
 
     private void setValue(String[] split) {
