@@ -2,7 +2,7 @@ package com.schumakerteam.alpha.gfx;
 
 import java.awt.image.BufferedImage;
 
-public final class TileMap {
+public final class TileMapTexture {
 
     private final int mapWidth;
     private final int mapHeight;
@@ -10,7 +10,7 @@ public final class TileMap {
     private final int tileHeight;
     private final BufferedImage bufferedImage;
 
-    public TileMap(int mapWidth, int mapHeight, int tileWidth, int tileHeight, BufferedImage bufferedImage) {
+    public TileMapTexture(int mapWidth, int mapHeight, int tileWidth, int tileHeight, BufferedImage bufferedImage) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
         this.tileWidth = tileWidth;
