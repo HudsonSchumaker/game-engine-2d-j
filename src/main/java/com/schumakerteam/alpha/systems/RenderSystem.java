@@ -70,7 +70,7 @@ public final class RenderSystem extends BasicSystem {
         return bufferedImage;
     }
 
-    public BufferedImage rotateImageByDegrees(BufferedImage image, double angle) {
+    private BufferedImage rotateImageByDegrees(BufferedImage image, double angle) {
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
         int w = image.getWidth();
