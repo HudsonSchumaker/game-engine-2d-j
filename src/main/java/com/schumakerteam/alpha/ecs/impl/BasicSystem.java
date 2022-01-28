@@ -13,9 +13,7 @@ public abstract class BasicSystem {
     }
 
     protected abstract void update();
-
     public abstract int getId();
-
     public abstract int getTypeId();
 
     public void addEntityToSystem(Entity entity) {
