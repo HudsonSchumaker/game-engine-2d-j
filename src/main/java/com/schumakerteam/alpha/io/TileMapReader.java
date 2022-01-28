@@ -20,13 +20,12 @@ public final class TileMapReader {
 
         while(buffer.readLine() != null) {
             line = buffer.readLine();
-            line.split(COMMA_DELIMITER);
+
         }
     }
 
-    private void setValue(String[] split) {
-
+    private void setValue(String line) {
+        var split = line.split(COMMA_DELIMITER);
 
     }
-
 }
