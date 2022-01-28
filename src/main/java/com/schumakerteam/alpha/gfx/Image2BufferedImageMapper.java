@@ -5,7 +5,7 @@ import com.schumakerteam.alpha.common.Mapper;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Image2BufferedImageMap implements Mapper<Image, BufferedImage> {
+public class Image2BufferedImageMapper implements Mapper<Image, BufferedImage> {
 
     @Override
     public BufferedImage from(Image source) {
