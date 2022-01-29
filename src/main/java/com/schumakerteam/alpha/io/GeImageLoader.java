@@ -14,6 +14,7 @@ import static com.schumakerteam.alpha.common.Commons.TILEMAP_PATH;
 
 public final class GeImageLoader {
 
+    @Deprecated
     public Image readFromDisk(String fileName) {
         return Toolkit.getDefaultToolkit()
                 .getImage(this.getClass()
@@ -30,8 +31,8 @@ public final class GeImageLoader {
 
     private BufferedImage readBufferImageFromDisk(String path, String fileName) {
         try {
-            return ImageIO.read(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(path + fileName)));
+            return this.toCompatibleImageV2(ImageIO.read(Objects.requireNonNull(this.getClass()
+                    .getResourceAsStream(path + fileName))));
         } catch (IOException ignore) {
             return null;
         }
@@ -40,10 +41,53 @@ public final class GeImageLoader {
     public BufferedImage readFromWeb(String url) {
         try {
             var www = new URL(url);
-            var image = ImageIO.read(www);
-            return new Image2BufferedImageMapper().from(image);
+            var rawImage = ImageIO.read(www);
+            return this.toCompatibleImageV2(new Image2BufferedImageMapper().from(rawImage));
         } catch (IOException ignore) {
             return null;
         }
+    }
+
+    private BufferedImage toCompatibleImage(BufferedImage image) {
+        GraphicsConfiguration gfxConfig = GraphicsEnvironment
+                .getLocalGraphicsEnvironment()
+                .getDefaultScreenDevice()
+                .getDefaultConfiguration();
+
+        if (image.getColorModel().equals(gfxConfig.getColorModel())) {
+            return image;
+        }
+
+        BufferedImage newImage = gfxConfig.createCompatibleImage(
+                image.getWidth(),
+                image.getHeight(),
+                image.getTransparency());
+
+        Graphics2D g2d = newImage.createGraphics();
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
+
+        newImage.setAccelerationPriority(1.0f);
+        // return the new optimized image
+        return newImage;
+    }
+
+    private BufferedImage toCompatibleImageV2(BufferedImage image) {
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        GraphicsConfiguration gc = gd.getDefaultConfiguration();
+
+        var convertedImage = gc.createCompatibleImage(
+                image.getWidth(),
+                image.getHeight(),
+                image.getTransparency());
+
+        Graphics2D g2d = convertedImage.createGraphics();
+        g2d.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+        g2d.dispose();
+
+        convertedImage.setAccelerationPriority(1.0f);
+        return convertedImage;
     }
 }
