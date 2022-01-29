@@ -53,4 +53,9 @@ public final class RigidBodyComponent extends Component {
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "RigidBodyComponent{" + "id=" + id + ", velocity=" + velocity + '}';
+    }
 }
