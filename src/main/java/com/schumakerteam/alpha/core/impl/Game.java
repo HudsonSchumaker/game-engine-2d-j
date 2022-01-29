@@ -142,20 +142,8 @@ public class Game implements Runnable {
         spriteComponent = (SpriteComponent) tank4.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
 
-
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
-        r.addEntityToSystems(tank);
-        r.addEntityToSystems(tank2);
-        r.addEntityToSystems(tank3);
-        r.addEntityToSystems(tank4);
-        r.addEntityToSystems(tank5);
-        r.addEntityToSystems(truck);
-        r.addEntityToSystems(radar);
-        r.addEntityToSystems(radar2);
-        r.addEntityToSystems(radar3);
-        r.addEntityToSystems(radar4);
-        r.addEntityToSystems(car);
         try {
             future.get();
         } catch (ExecutionException | InterruptedException e) {
