@@ -15,18 +15,6 @@ public final class Vector2D {
         this.y = y;
     }
 
-    public static Vector2D Scale() {
-        return new Vector2D(1, 1);
-    }
-
-    public static Vector2D Scale2x() {
-        return new Vector2D(2, 2);
-    }
-
-    public static Vector2D Scale3x() {
-        return new Vector2D(3, 3);
-    }
-
     public static Vector2D Forward() {
         return new Vector2D(1, 0);
     }
