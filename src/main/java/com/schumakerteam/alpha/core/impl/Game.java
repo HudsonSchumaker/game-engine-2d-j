@@ -2,24 +2,19 @@ package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
+import com.schumakerteam.alpha.component.TileMapComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
+import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
-import com.schumakerteam.alpha.log.LogService;
 import com.schumakerteam.alpha.systems.MovementSystem;
 import com.schumakerteam.alpha.systems.RenderSystem;
+import com.schumakerteam.alpha.systems.TileMapSystem;
 
-import java.awt.Color;
-import java.awt.DisplayMode;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.GraphicsDevice;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
+import java.awt.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,83 +53,92 @@ public class Game implements Runnable {
         //this.device.setDisplayMode(displayMode);
         //this.device.setFullScreenWindow(windowGame);
 
-        //this.small = new Font("Arial Unicode", Font.BOLD, 14);
+
+
+        this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
     }
 
     public void setup() {
-       // AssetManager.addTexture("tank-panther-right.png");
-       // AssetManager.addTexture("truck-ford-left.png");
-       // AssetManager.addTexture("radar.png");
-        List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
-
-        var future = AssetManager.loadInBatch(textures);
-       AssetManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
-
         Registry r = Registry.getInstance();
+        r.addSystem(new TileMapSystem());
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
 
+        // AssetManager.addTexture("tank-panther-right.png");
+        // AssetManager.addTexture("truck-ford-left.png");
+        // AssetManager.addTexture("radar.png");
+        List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
+
+        var future = AssetManager.loadInBatch(textures);
+        AssetManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
+        AssetManager.addTileMap("jungle.png");
+
+        Entity map = r.createEntity();
+        map.addComponent(new TransformComponent(Vector2D.Zero(), Scale2D.scale2x(), 0.0));
+        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale2x(),32));
+
+
         //var displayModes = this.device.getDisplayModes();
         //for (var dm : displayModes) {
-         //   LogService.getInstance().info(dm.toString());
-       // }
+        //   LogService.getInstance().info(dm.toString());
+        // }
 
         Entity car = r.createEntity();
-        car.addComponent(new TransformComponent(new Vector2D(768, 0), Vector2D.Scale(), 0.0));
+        car.addComponent(new TransformComponent(new Vector2D(768, 0)));
         car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
         car.addComponent(new SpriteComponent("car.png"));
 
         Entity tank = r.createEntity();
-        tank.addComponent(new TransformComponent(new Vector2D(0, 10), Vector2D.Scale(), 0.0));
+        tank.addComponent(new TransformComponent(new Vector2D(0, 10)));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank2 = r.createEntity();
-        tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Vector2D.Scale2x(), 0.0));
+        tank2.addComponent(new TransformComponent(new Vector2D(0, 50),  Scale2D.scale2x(), 0.0));
         tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank2.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank3 = r.createEntity();
-        tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Vector2D.Scale3x(), 45.0));
+        tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Scale2D.scale3x(), 0.0));
         tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank3.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity truck = r.createEntity();
-        truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Vector2D.Scale2x(), 0.0));
+        truck.addComponent(new TransformComponent(new Vector2D(1000, 155),  Scale2D.scale2x(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
         Entity tank4 = r.createEntity();
-        tank4.addComponent(new TransformComponent(new Vector2D(0, 200), Vector2D.Scale(), 0.0));
+        tank4.addComponent(new TransformComponent(new Vector2D(0, 200)));
         tank4.addComponent(new RigidBodyComponent(Vector2D.Down()));
         tank4.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank5 = r.createEntity();
-        tank5.addComponent(new TransformComponent(new Vector2D(0, 264), Vector2D.Scale(), 0.0));
+        tank5.addComponent(new TransformComponent(new Vector2D(0, 264)));
         tank5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank5.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank6 = r.createEntity();
-        tank6.addComponent(new TransformComponent(new Vector2D(0, 300), Vector2D.Scale(), 0.0));
+        tank6.addComponent(new TransformComponent(new Vector2D(0, 300)));
         tank6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank6.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity radar = r.createEntity();
-        radar.addComponent(new TransformComponent(new Vector2D(50, 10), Vector2D.Scale(), 0.0));
+        radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
         radar.addComponent(new SpriteComponent("radar.png"));
 
-        Entity radar2 = r.createEntity();
-        radar2.addComponent(new TransformComponent(new Vector2D(50, 74), Vector2D.Scale(), 0.0));
-        radar2.addComponent(new SpriteComponent("radar.png"));
+       Entity radar2 = r.createEntity();
+       radar2.addComponent(new TransformComponent(new Vector2D(50, 74)));
+       radar2.addComponent(new SpriteComponent("radar.png"));
 
-        Entity radar3 = r.createEntity();
-        radar3.addComponent(new TransformComponent(new Vector2D(50, 138), Vector2D.Scale(), 0.0));
-        radar3.addComponent(new SpriteComponent("radar.png"));
+       Entity radar3 = r.createEntity();
+       radar3.addComponent(new TransformComponent(new Vector2D(50, 138)));
+       radar3.addComponent(new SpriteComponent("radar.png"));
 
-        Entity radar4 = r.createEntity();
-        radar4.addComponent(new TransformComponent(new Vector2D(50, 200), Vector2D.Scale(), 0.0));
-        radar4.addComponent(new SpriteComponent("radar.png"));
+       Entity radar4 = r.createEntity();
+       radar4.addComponent(new TransformComponent(new Vector2D(50, 200)));
+       radar4.addComponent(new SpriteComponent("radar.png"));
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
@@ -156,8 +160,8 @@ public class Game implements Runnable {
     }
 
     public void update(double deltaTime) {
-        var system = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
-        system.update(deltaTime);
+        var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
+        movementSystem.update(deltaTime);
         Registry.getInstance().update();
     }
 
@@ -170,11 +174,14 @@ public class Game implements Runnable {
         g.setColor(Color.black);
         g.fillRect(0, 0, width, height);
 
-        var render = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
-        render.update(g);
+        var tileMapSystem = (TileMapSystem) Registry.getInstance().getSystem(TileMapSystem.SYSTEM_TYPE_ID);
+        tileMapSystem.update(g);
+
+        var renderSystem = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
+        renderSystem.update(g);
 
         g.setColor(Color.blue);
-       // g.setFont(small);
+        g.setFont(small);
         g.drawString("FPS:" + FPS + " UPS: " + UPS, 32, 32);
         g.dispose();
 
@@ -187,8 +194,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 120; // FPS
-        final int MAX_UPDATES_SECOND = 80; // UPS
+        final int MAX_FRAMES_PER_SECOND = 144; // FPS
+        final int MAX_UPDATES_SECOND = 96; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
@@ -234,7 +241,7 @@ public class Game implements Runnable {
 
     public void start() {
         Thread thread = new Thread(this, "Engine2DJ");
-        thread.setPriority(Thread.MAX_PRIORITY);
+        //thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }
 
