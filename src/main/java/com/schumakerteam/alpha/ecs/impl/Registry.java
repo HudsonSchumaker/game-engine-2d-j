@@ -42,7 +42,15 @@ public final class Registry implements IRegistry {
 
     @Override
     public void update() {
+        for (var entity : entitiesToBeAdded) {
+            this.addEntityToSystems(entity);
+        }
+        this.entitiesToBeAdded.clear();
 
+        for (var entity : entitiesToBeDestroyed) {
+            this.removeEntityFromSystem(entity);
+        }
+       this.entitiesToBeDestroyed.clear();
     }
 
     @Override
@@ -64,6 +72,11 @@ public final class Registry implements IRegistry {
                 LogService.getInstance().engine("Entity with id: " + entity.getId() + " added to system: " + system.getClass().getSimpleName());
             }
         }
+    }
+
+    @Override
+    public void removeEntityFromSystem(Entity entity) {
+        //TODO remove entity from a system
     }
 
     @Override
