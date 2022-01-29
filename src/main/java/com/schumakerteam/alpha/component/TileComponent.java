@@ -7,13 +7,27 @@ public class TileComponent extends Component {
     public static final int COMPONENT_TYPE_ID = 2;
     private final int id;
 
-    int tileSize = 32;
-    double tileScale = 2.0;
-    int mapNumCols = 25;
-    int mapNumRows = 20;
+    private final int tileSize;
+    private final int tileX;
+    private final int tileY;
 
-    public TileComponent() {
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public TileComponent(int tileSize, int tileX, int tileY) {
+        this.tileSize = tileSize;
+        this.tileX = tileX;
+        this.tileY = tileY;
         this.id = Registry.getInstance().getComponentId();
+    }
+
+    public int getTileX() {
+        return tileX;
+    }
+
+    public int getTileY() {
+        return tileY;
     }
 
     @Override
