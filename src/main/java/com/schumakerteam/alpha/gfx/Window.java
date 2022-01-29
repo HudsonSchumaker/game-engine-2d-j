@@ -5,13 +5,12 @@ import java.awt.*;
 
 public final class Window extends JFrame {
 
-    private JPanel panel;
-
     public Window(Canvas canvas) {
         this.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        panel = (JPanel) this.getContentPane();
-        panel.setPreferredSize(new Dimension(canvas.getWidth(), canvas.getHeight()));
+        JPanel panel = (JPanel) this.getContentPane();
         panel.setLayout(null);
+        panel.setPreferredSize(new Dimension(canvas.getWidth(), canvas.getHeight()));
+        panel.setIgnoreRepaint(true);
         panel.add(canvas);
 
         this.setIgnoreRepaint(true);
