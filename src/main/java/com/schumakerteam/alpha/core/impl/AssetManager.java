@@ -49,9 +49,9 @@ public final class AssetManager {
         });
     }
 
-    public static void addTileMap(int tileWidth, int tileHeight, String fileName) {
+    public static void addTileMap(String fileName) {
         var image = new GeImageLoader().readImageFromDisk(fileName);
         if (image != null)
-            TILEMAP_CACHE.put(fileName, new TileMapTexture(tileWidth, tileHeight, image.getWidth(), image.getTileHeight(), image));
+            TILEMAP_CACHE.put(fileName, new TileMapTexture(image.getWidth(), image.getTileHeight(), image));
     }
 }
