@@ -54,6 +54,5 @@ public final class LogService implements ILogService {
     public void engine(String message) {
         var log = new LogEntry(LogTypeEnum.LOG_ENGINE, ANSI_BLUE + "LOG [" + DateUtil.getLogDate() + "] " + message + ANSI_RESET);
         System.out.println(log.getMessage());
-
     }
 }
