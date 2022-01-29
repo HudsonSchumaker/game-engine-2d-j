@@ -50,8 +50,12 @@ public final class AssetManager {
     }
 
     public static void addTileMap(String fileName) {
-        var image = new GeImageLoader().readImageFromDisk(fileName);
+        var image = new GeImageLoader().readTileMapTexture(fileName);
         if (image != null)
             TILEMAP_CACHE.put(fileName, new TileMapTexture(image.getWidth(), image.getTileHeight(), image));
+    }
+
+    public static TileMapTexture getTileMap(final String assetId) {
+        return TILEMAP_CACHE.get(assetId);
     }
 }
