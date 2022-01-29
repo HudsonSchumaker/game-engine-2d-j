@@ -41,4 +41,14 @@ public class TileComponent extends Component {
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "TileComponent{" +
+                "id=" + id +
+                ", tileX=" + tileX +
+                ", tileY=" + tileY +
+                ", transform=" + transform +
+                '}';
+    }
 }
