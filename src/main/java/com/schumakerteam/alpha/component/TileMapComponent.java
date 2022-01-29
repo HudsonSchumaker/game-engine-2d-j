@@ -1,7 +1,7 @@
 package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.ecs.impl.Registry;
-import com.schumakerteam.alpha.geometry.Vector2D;
+import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.io.TileMapReader;
 import com.schumakerteam.alpha.log.LogService;
 
@@ -17,14 +17,14 @@ public class TileMapComponent extends Component {
     private final String spriteName;
     private final String mapFileName;
     private final int tileSize;
-    private final Vector2D scale;
+    private final Scale2D scale;
     private List<TileComponent> tiles = new ArrayList<>();
 
     public TileMapComponent(String spriteName, String mapFileName, int tileSize) {
-        this(spriteName, mapFileName, Vector2D.Scale(), tileSize);
+        this(spriteName, mapFileName, Scale2D.scale(), tileSize);
     }
 
-    public TileMapComponent(String spriteName, String mapFileName, Vector2D scale, int tileSize) {
+    public TileMapComponent(String spriteName, String mapFileName, Scale2D scale, int tileSize) {
         this.spriteName = spriteName;
         this.mapFileName = mapFileName;
         this.scale = scale;
@@ -61,7 +61,7 @@ public class TileMapComponent extends Component {
         return tileSize;
     }
 
-    public Vector2D getScale() {
+    public Scale2D getScale() {
         return scale;
     }
 
@@ -73,5 +73,17 @@ public class TileMapComponent extends Component {
     @Override
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
+    }
+
+    @Override
+    public String toString() {
+        return "TileMapComponent{" +
+                "id=" + id +
+                ", spriteName='" + spriteName + '\'' +
+                ", mapFileName='" + mapFileName + '\'' +
+                ", tileSize=" + tileSize +
+                ", scale=" + scale +
+                ", tiles=" + tiles +
+                '}';
     }
 }
