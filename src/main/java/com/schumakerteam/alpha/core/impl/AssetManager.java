@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class AssetManager {
     private static Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
-    private static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
+    private volatile static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
 
     public AssetManager() {
         LogService.getInstance().engine("AssetManager created.");
