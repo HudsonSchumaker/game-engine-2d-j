@@ -61,4 +61,9 @@ public final class SpriteComponent extends Component {
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "SpriteComponent{" + "id=" + id + ", width=" + width + ", height=" + height + ", spriteName='" + spriteName + '\'' + ", flip=" + flip + '}';
+    }
 }
