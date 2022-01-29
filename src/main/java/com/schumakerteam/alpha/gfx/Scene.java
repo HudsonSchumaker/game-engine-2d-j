@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 public final class Scene extends Canvas {
 
     public Scene(int width, int height) {
+        this.setIgnoreRepaint(true);
         this.setSize(width, height);
     }
 
