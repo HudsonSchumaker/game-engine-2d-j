@@ -6,15 +6,11 @@ public final class TileMapTexture {
 
     private final int mapWidth;
     private final int mapHeight;
-    private final int tileWidth;
-    private final int tileHeight;
     private final BufferedImage bufferedImage;
 
-    public TileMapTexture(int mapWidth, int mapHeight, int tileWidth, int tileHeight, BufferedImage bufferedImage) {
+    public TileMapTexture(int mapWidth, int mapHeight, BufferedImage bufferedImage) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
         this.bufferedImage = bufferedImage;
     }
 
@@ -24,14 +20,6 @@ public final class TileMapTexture {
 
     public int getMapHeight() {
         return mapHeight;
-    }
-
-    public int getTileWidth() {
-        return tileWidth;
-    }
-
-    public int getTileHeight() {
-        return tileHeight;
     }
 
     public BufferedImage getBufferedImage() {
