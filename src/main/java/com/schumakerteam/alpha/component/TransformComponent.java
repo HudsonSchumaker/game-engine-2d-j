@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.ecs.impl.Registry;
+import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
@@ -9,22 +10,30 @@ public final class TransformComponent extends Component {
     public static final int COMPONENT_TYPE_ID = 0;
     private final int id;
     private Vector2D position;
-    private Vector2D scale;
+    private Scale2D scale;
     private double rotation;
 
     public TransformComponent() {
-        this(Vector2D.Zero(), Vector2D.Scale(), 0.0);
+        this(Vector2D.Zero(), Scale2D.scale(), 0.0);
     }
 
     public TransformComponent(Vector2D position) {
-        this(position, Vector2D.Scale(), 0.0);
+        this(position, Scale2D.scale(), 0.0);
     }
 
-    public TransformComponent(Vector2D position, Vector2D scale) {
+    public TransformComponent(Scale2D scale) {
+        this(Vector2D.Zero(), scale, 0.0);
+    }
+
+    public TransformComponent(Vector2D position, double rotation) {
+        this(position, Scale2D.scale(), rotation);
+    }
+
+    public TransformComponent(Vector2D position, Scale2D scale) {
         this(position, scale, 0.0);
     }
 
-    public TransformComponent(Vector2D position, Vector2D scale, double rotation) {
+    public TransformComponent(Vector2D position, Scale2D scale, double rotation) {
         this.id = Registry.getInstance().getComponentId();
         this.position = position;
         this.scale = scale;
@@ -36,7 +45,7 @@ public final class TransformComponent extends Component {
         return position;
     }
 
-    public Vector2D getScale() {
+    public Scale2D getScale() {
         return scale;
     }
 
@@ -48,7 +57,7 @@ public final class TransformComponent extends Component {
         this.position = position;
     }
 
-    public void setScale(Vector2D scale) {
+    public void setScale(Scale2D scale) {
         this.scale = scale;
     }
 
