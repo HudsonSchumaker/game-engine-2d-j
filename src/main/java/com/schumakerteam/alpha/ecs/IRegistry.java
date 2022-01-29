@@ -9,6 +9,7 @@ public interface IRegistry {
     void update();
     Entity createEntity();
     void addEntityToSystems(Entity entity);
+    void removeEntityFromSystem(Entity entity);
     void addComponent(Entity e, Component c);
     Component getComponent(Entity entity, int componentTypeId);
     void removeComponent(Entity e, int componentId);
