@@ -55,30 +55,30 @@ public final class RenderSystem extends BasicSystem {
         }
     }
 
-    private BufferedImage flip(BufferedImage image) {
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+    private BufferedImage flip(Image image) {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.BITMASK);
 
         Graphics gb = bufferedImage.getGraphics();
         gb.drawImage(image, 0, 0, null);
         gb.dispose();
 
         AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-        tx.translate(-image.getWidth(), 0);
+        tx.translate(-image.getWidth(null), 0);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         bufferedImage = op.filter(bufferedImage, null);
 
         return bufferedImage;
     }
 
-    private BufferedImage rotateImageByDegrees(BufferedImage image, double angle) {
+    private BufferedImage rotateImageByDegrees(Image image, double angle) {
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
-        int w = image.getWidth();
-        int h = image.getHeight();
+        int w = image.getWidth(null);
+        int h = image.getHeight(null);
         int newWidth = (int) Math.floor(w * cos + h * sin);
         int newHeight = (int) Math.floor(h * cos + w * sin);
 
-        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.BITMASK);
         Graphics2D g2d = rotated.createGraphics();
         AffineTransform at = new AffineTransform();
         at.translate((newWidth - w) / 2.0, (newHeight - h) / 2.0);
