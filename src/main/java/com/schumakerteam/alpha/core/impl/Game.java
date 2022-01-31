@@ -10,6 +10,7 @@ import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
+import com.schumakerteam.alpha.log.LogService;
 import com.schumakerteam.alpha.systems.MovementSystem;
 import com.schumakerteam.alpha.systems.RenderSystem;
 import com.schumakerteam.alpha.systems.TileMapSystem;
@@ -53,8 +54,6 @@ public class Game implements Runnable {
         //this.device.setDisplayMode(displayMode);
         //this.device.setFullScreenWindow(windowGame);
 
-
-
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
     }
@@ -79,10 +78,10 @@ public class Game implements Runnable {
         map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale2x(),32));
 
 
-        //var displayModes = this.device.getDisplayModes();
-        //for (var dm : displayModes) {
-        //   LogService.getInstance().info(dm.toString());
-        // }
+        var displayModes = this.device.getDisplayModes();
+        for (var dm : displayModes) {
+            LogService.getInstance().info(dm.toString());
+        }
 
         Entity car = r.createEntity();
         car.addComponent(new TransformComponent(new Vector2D(768, 0)));
@@ -128,17 +127,17 @@ public class Game implements Runnable {
         radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
         radar.addComponent(new SpriteComponent("radar.png"));
 
-       Entity radar2 = r.createEntity();
-       radar2.addComponent(new TransformComponent(new Vector2D(50, 74)));
-       radar2.addComponent(new SpriteComponent("radar.png"));
+        Entity radar2 = r.createEntity();
+        radar2.addComponent(new TransformComponent(new Vector2D(50, 74)));
+        radar2.addComponent(new SpriteComponent("radar.png"));
 
-       Entity radar3 = r.createEntity();
-       radar3.addComponent(new TransformComponent(new Vector2D(50, 138)));
-       radar3.addComponent(new SpriteComponent("radar.png"));
+        Entity radar3 = r.createEntity();
+        radar3.addComponent(new TransformComponent(new Vector2D(50, 138)));
+        radar3.addComponent(new SpriteComponent("radar.png"));
 
-       Entity radar4 = r.createEntity();
-       radar4.addComponent(new TransformComponent(new Vector2D(50, 200)));
-       radar4.addComponent(new SpriteComponent("radar.png"));
+        Entity radar4 = r.createEntity();
+        radar4.addComponent(new TransformComponent(new Vector2D(50, 200)));
+        radar4.addComponent(new SpriteComponent("radar.png"));
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
@@ -166,6 +165,7 @@ public class Game implements Runnable {
     }
 
     public void render() {
+        Toolkit.getDefaultToolkit().sync();
         Graphics2D g = (Graphics2D) scene.getBufferStrategy().getDrawGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -186,7 +186,7 @@ public class Game implements Runnable {
         g.dispose();
 
         scene.getBufferStrategy().show();
-        Toolkit.getDefaultToolkit().sync();
+
     }
 
     @Override
@@ -194,8 +194,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 96; // UPS
+        final int MAX_FRAMES_PER_SECOND = 120; // FPS
+        final int MAX_UPDATES_SECOND = 80; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
@@ -241,7 +241,7 @@ public class Game implements Runnable {
 
     public void start() {
         Thread thread = new Thread(this, "Engine2DJ");
-        //thread.setPriority(Thread.MAX_PRIORITY);
+        thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }
 
