@@ -23,13 +23,13 @@ public final class AssetManager {
     public static void addTextureFromWeb(String url) {
         var image = new GeImageLoader().readFromWeb(url);
         var fileName = FileUtils.getName(url);
-        TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(), image.getHeight(), image));
+        TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(null), image.getHeight(null), image));
     }
 
     public static void addTexture(String fileName) {
         var image = new GeImageLoader().readImageFromDisk(fileName);
         if (image != null)
-            TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(), image.getHeight(), image));
+            TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(null), image.getHeight(null), image));
     }
 
     public static Texture getTexture(final String assetId) {
@@ -52,7 +52,7 @@ public final class AssetManager {
     public static void addTileMap(String fileName) {
         var image = new GeImageLoader().readTileMapTexture(fileName);
         if (image != null)
-            TILEMAP_CACHE.put(fileName, new TileMapTexture(image.getWidth(), image.getTileHeight(), image));
+            TILEMAP_CACHE.put(fileName, new TileMapTexture(image.getWidth(null), image.getHeight(null), image));
     }
 
     public static TileMapTexture getTileMap(final String assetId) {
