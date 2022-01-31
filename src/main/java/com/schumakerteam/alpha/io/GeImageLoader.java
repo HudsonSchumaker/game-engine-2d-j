@@ -21,73 +21,40 @@ public final class GeImageLoader {
                         .getResource(IMAGES_PATH + fileName));
     }
 
-    public BufferedImage readImageFromDisk(String fileName) {
+    public Image readImageFromDisk(String fileName) {
         return readBufferImageFromDisk(IMAGES_PATH, fileName);
     }
 
-    public BufferedImage readTileMapTexture(String fileName) {
+    public Image readTileMapTexture(String fileName) {
         return readBufferImageFromDisk(TILEMAP_PATH, fileName);
     }
 
-    private BufferedImage readBufferImageFromDisk(String path, String fileName) {
+    private Image readBufferImageFromDisk(String path, String fileName) {
         try {
-            return this.toCompatibleImageV2(ImageIO.read(Objects.requireNonNull(this.getClass()
+            return this.createAcceleratedImage(ImageIO.read(Objects.requireNonNull(this.getClass()
                     .getResourceAsStream(path + fileName))));
         } catch (IOException ignore) {
             return null;
         }
     }
 
-    public BufferedImage readFromWeb(String url) {
+    public Image readFromWeb(String url) {
         try {
             var www = new URL(url);
             var rawImage = ImageIO.read(www);
-            return this.toCompatibleImageV2(new Image2BufferedImageMapper().from(rawImage));
+            return this.createAcceleratedImage(new Image2BufferedImageMapper().from(rawImage));
         } catch (IOException ignore) {
             return null;
         }
     }
 
-    private BufferedImage toCompatibleImage(BufferedImage image) {
-        GraphicsConfiguration gfxConfig = GraphicsEnvironment
-                .getLocalGraphicsEnvironment()
-                .getDefaultScreenDevice()
-                .getDefaultConfiguration();
+    private Image createAcceleratedImage(BufferedImage source) {
+        GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+        Image image = gc.createCompatibleImage(source.getWidth(), source.getHeight(), Transparency.TRANSLUCENT);
 
-        if (image.getColorModel().equals(gfxConfig.getColorModel())) {
-            return image;
-        }
-
-        BufferedImage newImage = gfxConfig.createCompatibleImage(
-                image.getWidth(),
-                image.getHeight(),
-                image.getTransparency());
-
-        Graphics2D g2d = newImage.createGraphics();
-        g2d.drawImage(image, 0, 0, null);
-        g2d.dispose();
-
-        newImage.setAccelerationPriority(1.0f);
-        // return the new optimized image
-        return newImage;
+        image.getGraphics().drawImage(source,0,0,null);
+        return image;
     }
 
-    private BufferedImage toCompatibleImageV2(BufferedImage image) {
 
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        GraphicsConfiguration gc = gd.getDefaultConfiguration();
-
-        var convertedImage = gc.createCompatibleImage(
-                image.getWidth(),
-                image.getHeight(),
-                image.getTransparency());
-
-        Graphics2D g2d = convertedImage.createGraphics();
-        g2d.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
-        g2d.dispose();
-
-        convertedImage.setAccelerationPriority(1.0f);
-        return convertedImage;
-    }
 }
