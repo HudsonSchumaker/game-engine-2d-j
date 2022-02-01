@@ -55,6 +55,4 @@ public final class GeImageLoader {
         image.getGraphics().drawImage(source,0,0,null);
         return image;
     }
-
-
 }
