@@ -1,7 +1,5 @@
 package com.schumakerteam.alpha.systems;
 
-import com.schumakerteam.alpha.component.SpriteComponent;
-import com.schumakerteam.alpha.component.TileComponent;
 import com.schumakerteam.alpha.component.TileMapComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.core.impl.AssetManager;
@@ -10,8 +8,6 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 
 public class TileMapSystem extends BasicSystem {
 
@@ -37,7 +33,7 @@ public class TileMapSystem extends BasicSystem {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
 
-            var image = AssetManager.getTileMap(tileMap.getSpriteName()).getBufferedImage();
+            var image = AssetManager.getTileMap(tileMap.getSpriteName()).getTexture();
             image.setAccelerationPriority(1.0f);
             for (var tile : tileMap.getTiles()) {
                 /*var tileImage = image.getSubimage(
@@ -53,14 +49,6 @@ public class TileMapSystem extends BasicSystem {
                 rect.height = tileMap.getTileSize();
 
 
-                VolatileImage vi = null;
-              /*  render.drawImage(
-                        tileImage,
-                        (int) (transform.getPosition().getX() + tile.getTransformComponent().getPosition().getX()),
-                        (int) (transform.getPosition().getY() + tile.getTransformComponent().getPosition().getY()),
-                        tileImage.getWidth() * (int) tile.getTransformComponent().getScale().getX(),
-                        tileImage.getHeight() * (int) tile.getTransformComponent().getScale().getY(),
-                        null);*/
 
                 render.drawImage(
                         image,
