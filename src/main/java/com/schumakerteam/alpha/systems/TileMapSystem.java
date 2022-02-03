@@ -34,7 +34,6 @@ public class TileMapSystem extends BasicSystem {
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
 
             var image = AssetManager.getTileMap(tileMap.getSpriteName()).getTexture();
-            image.setAccelerationPriority(1.0f);
             for (var tile : tileMap.getTiles()) {
                 /*var tileImage = image.getSubimage(
                         tile.getTileX(),
@@ -45,22 +44,12 @@ public class TileMapSystem extends BasicSystem {
                 Rectangle rect = new Rectangle();
                 rect.x = tile.getTileX();
                 rect.y = tile.getTileY();
-                rect.width = tileMap.getTileSize();
-                rect.height = tileMap.getTileSize();
+                rect.width = tileMap.getTileSize() * transform.getScale().getX();
+                rect.height = tileMap.getTileSize() * transform.getScale().getY();
 
+                render.clipRect(rect.x, rect.y, rect.width, rect.height);
 
-
-                render.drawImage(
-                        image,
-                        (int) (transform.getPosition().getX() + tile.getTransformComponent().getPosition().getX()),
-                        (int) (transform.getPosition().getY() + tile.getTransformComponent().getPosition().getY()),
-                        (int) rect.getWidth() * (int) tile.getTransformComponent().getScale().getX(),
-                        (int) rect.getHeight() * (int) tile.getTransformComponent().getScale().getY(),
-                        (int) rect.getX(),
-                        (int) rect.getY(),
-                        (int) (rect.getX() + (rect.getWidth() * (int) tile.getTransformComponent().getScale().getX())),
-                        (int) (rect.getY() + (rect.getHeight() * (int) tile.getTransformComponent().getScale().getY())),
-                        null);
+                render.drawImage(image, tile.getTileX(), tile.getTileY(), tileMap.getTileSize(), tileMap.getTileSize(), null);
             }
         }
     }
