@@ -1,18 +1,17 @@
 package com.schumakerteam.alpha.gfx;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public final class Texture {
 
     private final int width;
     private final int height;
-    private final Image bufferedImage;
+    private final Image texture;
 
-    public Texture(int width, int height, Image bufferedImage) {
+    public Texture(int width, int height, Image image) {
         this.width = width;
         this.height = height;
-        this.bufferedImage = bufferedImage;
+        this.texture = image;
     }
 
     public int getWidth() {
@@ -23,7 +22,7 @@ public final class Texture {
         return height;
     }
 
-    public Image getBufferedImage() {
-        return bufferedImage;
+    public Image getTexture() {
+        return texture;
     }
 }
