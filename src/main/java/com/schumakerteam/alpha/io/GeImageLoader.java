@@ -53,6 +53,7 @@ public final class GeImageLoader {
         Image image = gc.createCompatibleImage(source.getWidth(), source.getHeight(), Transparency.TRANSLUCENT);
 
         image.getGraphics().drawImage(source,0,0,null);
+        image.setAccelerationPriority(1.0f);
         return image;
     }
 }
