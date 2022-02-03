@@ -35,7 +35,7 @@ public final class RenderSystem extends BasicSystem {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-            var image = AssetManager.getTexture(sprite.getSpriteName()).getBufferedImage();
+            var image = AssetManager.getTexture(sprite.getSpriteName()).getTexture();
 
             if (transform.getRotation() != 0.0) {
                 image = rotateImageByDegrees(image, transform.getRotation());
