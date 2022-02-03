@@ -1,18 +1,17 @@
 package com.schumakerteam.alpha.gfx;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public final class TileMapTexture {
 
     private final int mapWidth;
     private final int mapHeight;
-    private final Image bufferedImage;
+    private final Image texture;
 
-    public TileMapTexture(int mapWidth, int mapHeight, Image bufferedImage) {
+    public TileMapTexture(int mapWidth, int mapHeight, Image image) {
         this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
-        this.bufferedImage = bufferedImage;
+        this.texture = image;
     }
 
     public int getMapWidth() {
@@ -23,7 +22,7 @@ public final class TileMapTexture {
         return mapHeight;
     }
 
-    public Image getBufferedImage() {
-        return bufferedImage;
+    public Image getTexture() {
+        return texture;
     }
 }
