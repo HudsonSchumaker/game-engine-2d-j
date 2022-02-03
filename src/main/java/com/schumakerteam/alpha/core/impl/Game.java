@@ -165,7 +165,6 @@ public class Game implements Runnable {
     }
 
     public void render() {
-        Toolkit.getDefaultToolkit().sync();
         Graphics2D g = (Graphics2D) scene.getBufferStrategy().getDrawGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -175,7 +174,7 @@ public class Game implements Runnable {
         g.fillRect(0, 0, width, height);
 
         var tileMapSystem = (TileMapSystem) Registry.getInstance().getSystem(TileMapSystem.SYSTEM_TYPE_ID);
-        tileMapSystem.update(g);
+       // tileMapSystem.update(g);
 
         var renderSystem = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         renderSystem.update(g);
@@ -185,6 +184,7 @@ public class Game implements Runnable {
         g.drawString("FPS:" + FPS + " UPS: " + UPS, 32, 32);
         g.dispose();
 
+        Toolkit.getDefaultToolkit().sync();
         scene.getBufferStrategy().show();
 
     }
@@ -194,8 +194,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 120; // FPS
-        final int MAX_UPDATES_SECOND = 80; // UPS
+        final int MAX_FRAMES_PER_SECOND = 144; // FPS
+        final int MAX_UPDATES_SECOND = 96; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
