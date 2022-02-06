@@ -2,7 +2,8 @@ package com.schumakerteam.alpha.gfx;
 
 import com.schumakerteam.alpha.common.Mapper;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class Image2BufferedImageMapper implements Mapper<Image, BufferedImage> {
