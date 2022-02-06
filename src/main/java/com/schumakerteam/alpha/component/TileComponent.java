@@ -10,6 +10,7 @@ public class TileComponent extends Component {
 
     private final int tileX;
     private final int tileY;
+    private String tileName;
     private final TransformComponent transform;
 
     public TileComponent(int tileX, int tileY, TransformComponent transform) {
@@ -26,6 +27,14 @@ public class TileComponent extends Component {
 
     public int getTileY() {
         return tileY;
+    }
+
+    public void setTileName(String name) {
+        this.tileName = name;
+    }
+
+    public String getTileName() {
+        return this.tileName;
     }
 
     public TransformComponent getTransformComponent() {
