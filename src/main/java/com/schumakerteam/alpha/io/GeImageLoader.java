@@ -15,13 +15,6 @@ import static com.schumakerteam.alpha.common.Commons.TILEMAP_PATH;
 
 public final class GeImageLoader {
 
-    @Deprecated
-    public Image readFromDisk(String fileName) {
-        return Toolkit.getDefaultToolkit()
-                .getImage(this.getClass()
-                        .getResource(IMAGES_PATH + fileName));
-    }
-
     public Image readImageFromDisk(String fileName) {
         return readImageFromDisk(IMAGES_PATH, fileName);
     }
@@ -40,12 +33,22 @@ public final class GeImageLoader {
         }
     }
 
+    public Image readFromDisk(String path, String fileName) {
+        return Toolkit.getDefaultToolkit()
+                .getImage(this.getClass()
+                        .getResource(path + fileName));
+    }
+
     public BufferedImage readBufferedImage(String path, String fileName) {
+        return readBufferedImage(path + fileName);
+    }
+
+    public BufferedImage readBufferedImage(String path) {
         try {
             return ImageIO.read(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(path + fileName)));
+                    .getResourceAsStream(path)));
         } catch (IOException ignore) {
-            LogService.getInstance().error("Could not read image: " + fileName);
+            LogService.getInstance().error("Could not read image: " + path);
             return null;
         }
     }
@@ -65,7 +68,7 @@ public final class GeImageLoader {
         GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
         Image image = gc.createCompatibleImage(source.getWidth(), source.getHeight(), Transparency.TRANSLUCENT);
 
-        image.getGraphics().drawImage(source,0,0,null);
+        image.getGraphics().drawImage(source, 0, 0, null);
         image.setAccelerationPriority(1.0f);
         return image;
     }
