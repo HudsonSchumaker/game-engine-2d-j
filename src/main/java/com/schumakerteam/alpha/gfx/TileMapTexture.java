@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.gfx;
 
-import java.awt.*;
+import java.awt.Image;
 
 public final class TileMapTexture {
 
