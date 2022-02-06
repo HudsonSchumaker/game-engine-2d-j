@@ -179,7 +179,7 @@ public class Game implements Runnable {
         var renderSystem = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         renderSystem.update(g);
 
-        g.setColor(Color.blue);
+        g.setColor(Color.white);
         g.setFont(small);
         g.drawString("FPS:" + FPS + " UPS: " + UPS, 32, 32);
         g.dispose();
