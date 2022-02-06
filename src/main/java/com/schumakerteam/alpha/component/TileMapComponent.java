@@ -18,7 +18,6 @@ public class TileMapComponent extends Component {
     private final String mapFileName;
     private final int tileSize;
     private final Scale2D scale;
-    private String tileName;
 
     private List<TileComponent> tiles = new ArrayList<>();
 
@@ -41,6 +40,7 @@ public class TileMapComponent extends Component {
             var tileMapReader = new TileMapReader();
             this.tiles = tileMapReader.loadTileMap(mapFileName, spriteName, scale, tileSize);
         } catch (IOException ignore) {
+            LogService.getInstance().error("Load map fail: " + mapFileName);
         }
     }
 
@@ -66,14 +66,6 @@ public class TileMapComponent extends Component {
 
     public Scale2D getScale() {
         return scale;
-    }
-
-    public void setTileName(String name) {
-        this.tileName = name;
-    }
-
-    public String getTileName() {
-        return this.tileName;
     }
 
     @Override
