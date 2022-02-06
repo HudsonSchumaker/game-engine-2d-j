@@ -174,7 +174,7 @@ public class Game implements Runnable {
         g.fillRect(0, 0, width, height);
 
         var tileMapSystem = (TileMapSystem) Registry.getInstance().getSystem(TileMapSystem.SYSTEM_TYPE_ID);
-       // tileMapSystem.update(g);
+        tileMapSystem.update(g);
 
         var renderSystem = (RenderSystem) Registry.getInstance().getSystem(RenderSystem.SYSTEM_TYPE_ID);
         renderSystem.update(g);
