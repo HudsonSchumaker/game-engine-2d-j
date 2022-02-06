@@ -30,26 +30,19 @@ public class TileMapSystem extends BasicSystem {
     @Override
     protected void update() {
         for (var entity : getSystemEntities()) {
-            var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+            var mapTransform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
 
-            var image = AssetManager.getTileMap(tileMap.getSpriteName()).getTexture();
             for (var tile : tileMap.getTiles()) {
-                /*var tileImage = image.getSubimage(
-                        tile.getTileX(),
-                        tile.getTileY(),
-                        tileMap.getTileSize(),
-                        tileMap.getTileSize());*/
+                var image = AssetManager.getTileTexture(tile.getTileName()).getTexture();
 
-                Rectangle rect = new Rectangle();
-                rect.x = tile.getTileX();
-                rect.y = tile.getTileY();
-                rect.width = tileMap.getTileSize() * transform.getScale().getX();
-                rect.height = tileMap.getTileSize() * transform.getScale().getY();
-
-                render.clipRect(rect.x, rect.y, rect.width, rect.height);
-
-                render.drawImage(image, tile.getTileX(), tile.getTileY(), tileMap.getTileSize(), tileMap.getTileSize(), null);
+                render.drawImage(
+                        image,
+                        (int) mapTransform.getX() + (int) tile.getTransformComponent().getX(),
+                        (int) mapTransform.getY() + (int) tile.getTransformComponent().getY(),
+                        tileMap.getTileSize() * tileMap.getScale().getX(),
+                        tileMap.getTileSize() * tileMap.getScale().getY(),
+                        null);
             }
         }
     }
