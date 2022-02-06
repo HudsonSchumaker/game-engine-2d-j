@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.common.FileUtils;
 import com.schumakerteam.alpha.gfx.TileMapTexture;
+import com.schumakerteam.alpha.gfx.TileTexture;
 import com.schumakerteam.alpha.io.GeImageLoader;
 import com.schumakerteam.alpha.common.Pair;
 import com.schumakerteam.alpha.gfx.Texture;
@@ -15,6 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public final class AssetManager {
     private static Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
     private volatile static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
+    private static Map<String, TileTexture> TILE_TEXTURE_CACHE = new HashMap<>();
 
     public AssetManager() {
         LogService.getInstance().engine("AssetManager created.");
@@ -57,5 +59,13 @@ public final class AssetManager {
 
     public static TileMapTexture getTileMap(final String assetId) {
         return TILEMAP_CACHE.get(assetId);
+    }
+
+    public static void addTileTexture(String name, TileTexture tileTexture) {
+        TILE_TEXTURE_CACHE.put(name, tileTexture);
+    }
+
+    public static TileTexture getTileTexture(String name) {
+        return TILE_TEXTURE_CACHE.get(name);
     }
 }
