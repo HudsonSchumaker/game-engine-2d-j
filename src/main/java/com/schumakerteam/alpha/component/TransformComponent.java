@@ -66,11 +66,19 @@ public final class TransformComponent extends Component {
     }
 
     public void setX(double x) {
-        position.setX(x);
+        this.position.setX(x);
     }
 
     public void setY(double y) {
-        position.setY(y);
+        this.position.setY(y);
+    }
+
+    public double getX() {
+        return this.position.getX();
+    }
+
+    public double getY() {
+        return this.position.getY();
     }
 
     @Override
