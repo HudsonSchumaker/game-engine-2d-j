@@ -18,6 +18,8 @@ public class TileMapComponent extends Component {
     private final String mapFileName;
     private final int tileSize;
     private final Scale2D scale;
+    private String tileName;
+
     private List<TileComponent> tiles = new ArrayList<>();
 
     public TileMapComponent(String spriteName, String mapFileName, int tileSize) {
@@ -37,8 +39,9 @@ public class TileMapComponent extends Component {
     private void load() {
         try {
             var tileMapReader = new TileMapReader();
-            this.tiles = tileMapReader.loadTileMap(mapFileName, scale, tileSize);
-        } catch (IOException ignore) {}
+            this.tiles = tileMapReader.loadTileMap(mapFileName, spriteName, scale, tileSize);
+        } catch (IOException ignore) {
+        }
     }
 
     public void addTile(TileComponent tile) {
@@ -65,6 +68,14 @@ public class TileMapComponent extends Component {
         return scale;
     }
 
+    public void setTileName(String name) {
+        this.tileName = name;
+    }
+
+    public String getTileName() {
+        return this.tileName;
+    }
+
     @Override
     public int getId() {
         return id;
@@ -77,13 +88,6 @@ public class TileMapComponent extends Component {
 
     @Override
     public String toString() {
-        return "TileMapComponent{" +
-                "id=" + id +
-                ", spriteName='" + spriteName + '\'' +
-                ", mapFileName='" + mapFileName + '\'' +
-                ", tileSize=" + tileSize +
-                ", scale=" + scale +
-                ", tiles=" + tiles +
-                '}';
+        return "TileMapComponent{" + "id=" + id + ", spriteName='" + spriteName + '\'' + ", mapFileName='" + mapFileName + '\'' + ", tileSize=" + tileSize + ", scale=" + scale + ", tiles=" + tiles + '}';
     }
 }
