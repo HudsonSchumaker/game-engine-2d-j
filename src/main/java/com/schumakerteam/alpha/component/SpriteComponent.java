@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.component;
 
-import com.schumakerteam.alpha.core.impl.AssetManager;
+import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
@@ -16,7 +16,7 @@ public final class SpriteComponent extends Component {
 
     // TODO fix constructor call and w, h init
     public SpriteComponent(String spriteName) {
-        var dimension = AssetManager.getTextureDimension(spriteName);
+        var dimension = AssetTextureManager.getTextureDimension(spriteName);
         this.width = dimension.getLeft();
         this.height = dimension.getRight();
         this.spriteName = spriteName;
