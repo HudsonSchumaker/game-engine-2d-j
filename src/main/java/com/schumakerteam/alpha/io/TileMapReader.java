@@ -2,7 +2,7 @@ package com.schumakerteam.alpha.io;
 
 import com.schumakerteam.alpha.component.TileComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
-import com.schumakerteam.alpha.core.impl.AssetManager;
+import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.TileTexture;
@@ -82,7 +82,7 @@ public final class TileMapReader {
             var acceleratedImage = imageLoader.createAcceleratedImage(tileImage);
             var name = this.createTileTextureName(spriteName, tile.getTransformComponent(), k);
             tile.setTileName(name);
-            AssetManager.addTileTexture(name, new TileTexture(acceleratedImage));
+            AssetTextureManager.addTileTexture(name, new TileTexture(acceleratedImage));
         }
     }
 
