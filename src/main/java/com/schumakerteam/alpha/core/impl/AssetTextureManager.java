@@ -13,17 +13,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public final class AssetManager {
+public final class AssetTextureManager {
     private static Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
-    private volatile static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
+    private static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
     private static Map<String, TileTexture> TILE_TEXTURE_CACHE = new HashMap<>();
 
-    public AssetManager() {
+    public AssetTextureManager() {
         LogService.getInstance().engine("AssetManager created.");
     }
 
     public static void addTextureFromWeb(String url) {
-        var image = new GeImageLoader().readFromWeb(url);
+        var image = new GeImageLoader().readAcceleratedFromWeb(url);
         var fileName = FileUtils.getName(url);
         TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(null), image.getHeight(null), image));
     }
