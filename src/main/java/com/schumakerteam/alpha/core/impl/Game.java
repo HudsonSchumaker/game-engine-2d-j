@@ -75,7 +75,7 @@ public class Game implements Runnable {
 
         Entity map = r.createEntity();
         map.addComponent(new TransformComponent(Vector2D.Zero(), Scale2D.scale2x(), 0.0));
-        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale(),32));
+        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale(), 32));
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
@@ -93,7 +93,7 @@ public class Game implements Runnable {
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
 
         Entity tank2 = r.createEntity();
-        tank2.addComponent(new TransformComponent(new Vector2D(0, 50),  Scale2D.scale2x(), 0.0));
+        tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Scale2D.scale2x(), 0.0));
         tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank2.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
 
@@ -105,10 +105,10 @@ public class Game implements Runnable {
         Entity tank7 = r.createEntity();
         tank7.addComponent(new TransformComponent(new Vector2D(32, 116), Scale2D.scale(), 0.0));
         tank7.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        tank7.addComponent(new SpriteComponent(10,"tank-panther-right.png"));
+        tank7.addComponent(new SpriteComponent(10, "tank-panther-right.png"));
 
         Entity truck = r.createEntity();
-        truck.addComponent(new TransformComponent(new Vector2D(1000, 155),  Scale2D.scale2x(), 0.0));
+        truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Scale2D.scale2x(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
 
