@@ -1,11 +1,9 @@
 package com.schumakerteam.alpha.core.impl;
 
-import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.core.IPool;
+import com.schumakerteam.alpha.component.Component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public final class Pool<T> implements IPool<Component> {
