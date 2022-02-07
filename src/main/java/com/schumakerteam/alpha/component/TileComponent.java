@@ -53,11 +53,6 @@ public class TileComponent extends Component {
 
     @Override
     public String toString() {
-        return "TileComponent{" +
-                "id=" + id +
-                ", tileX=" + tileX +
-                ", tileY=" + tileY +
-                ", transform=" + transform +
-                '}';
+        return "TileComponent{" + "id=" + id + ", tileX=" + tileX + ", tileY=" + tileY + ", transform=" + transform + '}';
     }
 }
