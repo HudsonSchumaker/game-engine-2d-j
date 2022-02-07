@@ -2,7 +2,7 @@ package com.schumakerteam.alpha.systems;
 
 import com.schumakerteam.alpha.component.TileMapComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
-import com.schumakerteam.alpha.core.impl.AssetManager;
+import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
@@ -34,7 +34,7 @@ public class TileMapSystem extends BasicSystem {
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
 
             for (var tile : tileMap.getTiles()) {
-                var image = AssetManager.getTileTexture(tile.getTileName()).getTexture();
+                var image = AssetTextureManager.getTileTexture(tile.getTileName()).getTexture();
 
                 render.drawImage(
                         image,
