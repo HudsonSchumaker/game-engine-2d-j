@@ -24,6 +24,7 @@ public final class AssetTextureManager {
 
     public static void addTextureFromWeb(String url) {
         var image = new GeImageLoader().readAcceleratedFromWeb(url);
+        assert image != null;
         var fileName = FileUtils.getName(url);
         TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(null), image.getHeight(null), image));
     }
