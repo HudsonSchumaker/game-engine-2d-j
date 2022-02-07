@@ -8,10 +8,10 @@ import java.util.HashMap;
 
 public final class ComponentMap {
 
-    private static Pool<TransformComponent> transformComponentPool = new Pool<>();
-    private static Pool<RigidBodyComponent> rigidBodyComponentPool = new Pool<>();
-    private static Pool<SpriteComponent> spriteComponentPool = new Pool<>();
-    private static Pool<TileMapComponent> tileMapComponentPool = new Pool<>();
+    private static final Pool<TransformComponent> transformComponentPool = new Pool<>();
+    private static final Pool<RigidBodyComponent> rigidBodyComponentPool = new Pool<>();
+    private static final Pool<SpriteComponent> spriteComponentPool = new Pool<>();
+    private static final Pool<TileMapComponent> tileMapComponentPool = new Pool<>();
 
     private static final HashMap<Integer, IPool<Component>> COMPONENT_POOL = new HashMap<>();
 
