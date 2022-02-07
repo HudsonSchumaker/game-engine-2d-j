@@ -12,7 +12,7 @@ public final class Pool<T> implements IPool<Component> {
 
     public Pool() {
     }
-    
+
     @Override
     public void set(int index, Component object) {
         this.data.put(index, (T) object);
