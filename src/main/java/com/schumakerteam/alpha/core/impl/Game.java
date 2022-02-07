@@ -51,8 +51,8 @@ public class Game implements Runnable {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
-        //this.device.setDisplayMode(displayMode);
-        //this.device.setFullScreenWindow(windowGame);
+        this.device.setDisplayMode(displayMode);
+        this.device.setFullScreenWindow(windowGame);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
@@ -69,14 +69,13 @@ public class Game implements Runnable {
         // AssetManager.addTexture("radar.png");
         List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
 
-        var future = AssetManager.loadInBatch(textures);
-        AssetManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
-        AssetManager.addTileMap("jungle.png");
+        var future = AssetTextureManager.loadInBatch(textures);
+        AssetTextureManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
+        AssetTextureManager.addTileMap("jungle.png");
 
         Entity map = r.createEntity();
         map.addComponent(new TransformComponent(Vector2D.Zero(), Scale2D.scale2x(), 0.0));
-        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale2x(),32));
-
+        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale(),32));
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
@@ -194,8 +193,8 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 96; // UPS
+        final int MAX_FRAMES_PER_SECOND = 60; // FPS
+        final int MAX_UPDATES_SECOND = 60; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
