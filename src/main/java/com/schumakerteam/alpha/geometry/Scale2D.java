@@ -15,7 +15,6 @@ public class Scale2D {
         this.y = y;
     }
 
-
     public static Scale2D scale() {
         return new Scale2D(1, 1);
     }
