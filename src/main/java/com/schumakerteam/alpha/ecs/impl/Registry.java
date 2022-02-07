@@ -1,12 +1,16 @@
 package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
 import com.schumakerteam.alpha.core.impl.SystemMap;
 import com.schumakerteam.alpha.ecs.IRegistry;
 import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.systems.RenderSystem;
 
 import java.util.*;
+
+import static java.util.Comparator.comparingInt;
 
 public final class Registry implements IRegistry {
 
@@ -50,7 +54,12 @@ public final class Registry implements IRegistry {
         for (var entity : entitiesToBeDestroyed) {
             this.removeEntityFromSystem(entity);
         }
-       this.entitiesToBeDestroyed.clear();
+        this.entitiesToBeDestroyed.clear();
+
+        var renderSystem = SystemMap.getSystem(RenderSystem.SYSTEM_TYPE_ID);
+        renderSystem.getSystemEntities().sort(comparingInt(
+                e -> ((SpriteComponent) e.getComponent(SpriteComponent.COMPONENT_TYPE_ID)).getzOrder()
+        ));
     }
 
     @Override
