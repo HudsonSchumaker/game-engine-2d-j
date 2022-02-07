@@ -8,11 +8,11 @@ public final class SpriteComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 2;
     private final int id;
-
-    private int width;
-    private int height;
-    private String spriteName;
+    private final int width;
+    private final int height;
+    private final String spriteName;
     private boolean flip = false;
+    private int zOrder = 0;
 
     // TODO fix constructor call and w, h init
     public SpriteComponent(String spriteName) {
@@ -24,9 +24,28 @@ public final class SpriteComponent extends Component {
         LogService.getInstance().engine("SpriteComponent created with id: " + id);
     }
 
+    public SpriteComponent(int z, String spriteName) {
+        var dimension = AssetTextureManager.getTextureDimension(spriteName);
+        this.width = dimension.getLeft();
+        this.height = dimension.getRight();
+        this.zOrder = z;
+        this.spriteName = spriteName;
+        this.id = Registry.getInstance().getComponentId();
+        LogService.getInstance().engine("SpriteComponent created with id: " + id);
+    }
+
     public SpriteComponent(int w, int h, String spriteName) {
         this.width = w;
         this.height = h;
+        this.spriteName = spriteName;
+        this.id = Registry.getInstance().getComponentId();
+        LogService.getInstance().engine("SpriteComponent created with id: " + id);
+    }
+
+    public SpriteComponent(int w, int h, int z, String spriteName) {
+        this.width = w;
+        this.height = h;
+        this.zOrder = z;
         this.spriteName = spriteName;
         this.id = Registry.getInstance().getComponentId();
         LogService.getInstance().engine("SpriteComponent created with id: " + id);
@@ -50,6 +69,14 @@ public final class SpriteComponent extends Component {
 
     public boolean isFlipped() {
         return this.flip;
+    }
+
+    public int getzOrder() {
+        return this.zOrder;
+    }
+
+    public void setzOrder(int zOrder) {
+        this.zOrder = zOrder;
     }
 
     @Override
