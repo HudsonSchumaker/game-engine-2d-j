@@ -1,18 +1,22 @@
 package com.schumakerteam.alpha.io;
 
-import com.schumakerteam.alpha.gfx.Image2BufferedImageMapper;
 import com.schumakerteam.alpha.log.LogService;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import javax.imageio.ImageIO;
 
 import static com.schumakerteam.alpha.common.Commons.IMAGES_PATH;
 import static com.schumakerteam.alpha.common.Commons.TILEMAP_PATH;
 
+/**
+ * A class to be used for load images from disk. Is valid to notice that only java.awt.Image is an accelerated image.
+ *
+ * @see java.awt.Image
+ */
 public final class GeImageLoader {
 
     public Image readImageFromDisk(String fileName) {
@@ -53,15 +57,19 @@ public final class GeImageLoader {
         }
     }
 
-    public Image readFromWeb(String url) {
+    public BufferedImage readFromWeb(String url) {
         try {
             var www = new URL(url);
-            var rawImage = ImageIO.read(www);
-            return this.createAcceleratedImage(new Image2BufferedImageMapper().from(rawImage));
+            return ImageIO.read(www);
         } catch (IOException ignore) {
             LogService.getInstance().error("Could not read image: " + url);
             return null;
         }
+    }
+
+    public Image readAcceleratedFromWeb(String url) {
+        var rawImage = readFromWeb(url);
+        return rawImage == null ? null : this.createAcceleratedImage(rawImage);
     }
 
     public Image createAcceleratedImage(BufferedImage source) {
