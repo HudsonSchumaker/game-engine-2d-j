@@ -95,12 +95,17 @@ public class Game implements Runnable {
         Entity tank2 = r.createEntity();
         tank2.addComponent(new TransformComponent(new Vector2D(0, 50),  Scale2D.scale2x(), 0.0));
         tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        tank2.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank2.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
 
         Entity tank3 = r.createEntity();
         tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Scale2D.scale3x(), 0.0));
         tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        tank3.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank3.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
+
+        Entity tank7 = r.createEntity();
+        tank7.addComponent(new TransformComponent(new Vector2D(32, 116), Scale2D.scale(), 0.0));
+        tank7.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank7.addComponent(new SpriteComponent(10,"tank-panther-right.png"));
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155),  Scale2D.scale2x(), 0.0));
