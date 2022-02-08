@@ -5,7 +5,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 public class TileComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 2;
+    public static final int COMPONENT_TYPE_ID = 4;
     private final int id;
 
     private final int tileX;
