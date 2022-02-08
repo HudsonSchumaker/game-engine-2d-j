@@ -42,4 +42,9 @@ public final class MovementSystem extends BasicSystem {
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "MovementSystem{" + "id=" + id + '}';
+    }
 }
