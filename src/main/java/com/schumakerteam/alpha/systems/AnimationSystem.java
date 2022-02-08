@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.systems;
 
+import com.schumakerteam.alpha.component.AnimationComponent;
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
@@ -17,6 +18,7 @@ public class AnimationSystem extends BasicSystem {
     public AnimationSystem() {
         this.id = Registry.getInstance().getSystemId();
        // TODO set necessary components signatures.
+        this.setOnSignature(AnimationComponent.COMPONENT_TYPE_ID);
         LogService.getInstance().engine("AnimationSystem created with id: " + id);
     }
 
