@@ -64,10 +64,9 @@ public final class Registry implements IRegistry {
 
     @Override
     public Entity createEntity() {
-        int entityId = getEntityId();
-        Entity entity = new Entity(entityId);
+        Entity entity = new Entity(getEntityId());
         this.entitiesToBeAdded.add(entity);
-        LogService.getInstance().engine("Entity created with id: " + entityId);
+        LogService.getInstance().engine("Entity created with id: " + entity.getId());
         return entity;
     }
 
