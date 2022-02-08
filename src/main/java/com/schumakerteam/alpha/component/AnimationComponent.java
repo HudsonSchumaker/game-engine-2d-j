@@ -11,6 +11,7 @@ public class AnimationComponent extends Component {
     private final int numberFrames;
     private int currentFrame;
     private int animationSpeed;
+    private long startTime;
     private final boolean loop;
 
     public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop) {
@@ -20,6 +21,14 @@ public class AnimationComponent extends Component {
         this.animationSpeed = animationSpeed;
         this.loop = loop;
         LogService.getInstance().engine("AnimationComponent created with id: " + id);
+    }
+
+    public void start() {
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public void stop() {
+
     }
 
     public int getNumberFrames() {
