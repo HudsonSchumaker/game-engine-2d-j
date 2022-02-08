@@ -26,7 +26,7 @@ public final class TileMapReader {
         this.imageLoader = new GeImageLoader();
     }
 
-    public List<TileComponent> loadTileMap(String fileName, String spriteName, Scale2D scale, Integer tileSize) throws IOException {
+    public List<TileComponent> loadTileMap(String fileName, String spriteName, Scale2D scale, int tileSize) throws IOException {
         var stream = this.getClass().getResourceAsStream(TILEMAP_PATH + fileName);
         assert stream != null;
 
@@ -50,7 +50,7 @@ public final class TileMapReader {
         return tiles;
     }
 
-    private void createTile(String line, List<TileComponent> tiles, Scale2D scale, Integer tileSize, int row) {
+    private void createTile(String line, List<TileComponent> tiles, Scale2D scale, int tileSize, int row) {
         var split = line.split(COMMA_DELIMITER);
         for (int column = 0; column < split.length; column++) {
             var posX = split[column].substring(0, 1);
@@ -70,7 +70,7 @@ public final class TileMapReader {
         }
     }
 
-    private void createTileTexture(List<TileComponent> tiles, Integer tileSize, String spriteName, BufferedImage mapTexture) {
+    private void createTileTexture(List<TileComponent> tiles, int tileSize, String spriteName, BufferedImage mapTexture) {
         for (int k = 0; k < tiles.size(); k++) {
             var tile = tiles.get(k);
             var tileImage = mapTexture.getSubimage(
