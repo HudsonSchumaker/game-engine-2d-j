@@ -51,8 +51,8 @@ public class Game implements Runnable {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
-        this.device.setDisplayMode(displayMode);
-        this.device.setFullScreenWindow(windowGame);
+        //this.device.setDisplayMode(displayMode);
+        //this.device.setFullScreenWindow(windowGame);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
