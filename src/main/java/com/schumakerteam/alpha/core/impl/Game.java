@@ -128,7 +128,8 @@ public class Game implements Runnable {
 
         Entity radar = r.createEntity();
         radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
-        radar.addComponent(new SpriteComponent("radar.png"));
+        radar.addComponent(new SpriteSheetComponent(512, 64, 1, 64, 64, 8, "radar.png"));
+        radar.addComponent(new AnimationComponent(8, 1, 8, true));
 
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
