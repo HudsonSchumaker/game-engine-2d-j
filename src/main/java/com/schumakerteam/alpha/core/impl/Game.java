@@ -1,9 +1,6 @@
 package com.schumakerteam.alpha.core.impl;
 
-import com.schumakerteam.alpha.component.RigidBodyComponent;
-import com.schumakerteam.alpha.component.SpriteComponent;
-import com.schumakerteam.alpha.component.TileMapComponent;
-import com.schumakerteam.alpha.component.TransformComponent;
+import com.schumakerteam.alpha.component.*;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Scale2D;
@@ -69,7 +66,7 @@ public class Game implements Runnable {
         // AssetManager.addTexture("tank-panther-right.png");
         // AssetManager.addTexture("truck-ford-left.png");
         // AssetManager.addTexture("radar.png");
-        List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png");
+        List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png", "chopper.png");
 
         var future = AssetTextureManager.loadInBatch(textures);
         AssetTextureManager.addTextureFromWeb("https://schumakerteam.com/lab/car.png");
@@ -150,6 +147,13 @@ public class Game implements Runnable {
 
         spriteComponent = (SpriteComponent) tank4.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
+
+        Entity chopper = r.createEntity();
+        chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
+        chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        var chopperSpriteComponent = new SpriteComponent("chopper.png");
+        chopper.addComponent(chopperSpriteComponent);
+        chopper.addComponent(new AnimationComponent(2, 1, 5, true, chopperSpriteComponent));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
