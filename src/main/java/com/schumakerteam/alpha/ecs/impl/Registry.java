@@ -20,8 +20,8 @@ public final class Registry implements IRegistry {
     private static int numComponents = 0;
     private static int numSystems = 0;
 
-    private Set<Entity> entitiesToBeAdded;
-    private Set<Entity> entitiesToBeDestroyed;
+    private final Set<Entity> entitiesToBeAdded;
+    private final Set<Entity> entitiesToBeDestroyed;
 
     private Registry() {
         this.entitiesToBeAdded = new HashSet<>();
