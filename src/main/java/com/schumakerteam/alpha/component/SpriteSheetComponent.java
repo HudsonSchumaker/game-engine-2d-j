@@ -2,14 +2,13 @@ package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.gfx.Image2BufferedImageMapper;
-import com.schumakerteam.alpha.gfx.TileTexture;
 import com.schumakerteam.alpha.io.GeImageLoader;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpriteSheetComponent extends SpriteComponent {
+public final class SpriteSheetComponent extends SpriteComponent {
 
     private final int frameWidth;
     private final int frameHeight;
@@ -50,7 +49,7 @@ public class SpriteSheetComponent extends SpriteComponent {
     }
 
     public void setCurrentFrame(int index) {
-        setSpriteName(frameNames.get(index -1));
+        setSpriteName(frameNames.get(index));
     }
 
     public int getFrameWidth() {
