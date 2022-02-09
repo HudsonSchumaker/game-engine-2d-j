@@ -3,10 +3,7 @@ package com.schumakerteam.alpha.component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AnimationComponent extends Component {
+public final class AnimationComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 4;
     private final int id;
@@ -18,7 +15,7 @@ public class AnimationComponent extends Component {
     private final boolean loop;
 
     public AnimationComponent(int animationSpeed) {
-        this(1, 1, animationSpeed, true);
+        this(1, 0, animationSpeed, true);
     }
 
     public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop) {
