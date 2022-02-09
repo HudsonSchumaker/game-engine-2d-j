@@ -3,6 +3,9 @@ package com.schumakerteam.alpha.component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AnimationComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 4;
@@ -11,40 +14,63 @@ public class AnimationComponent extends Component {
     private final int numberFrames;
     private int currentFrame;
     private int animationSpeed;
-    private long startTime;
+    private final long startTime;
     private final boolean loop;
+    private List<String> frameNames;
+    private final SpriteComponent spriteComponent;
 
-    public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop) {
+    public AnimationComponent(int animationSpeed, SpriteComponent spriteComponent) {
+        this(1, 1, animationSpeed, true, spriteComponent);
+    }
+
+    public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop, SpriteComponent spriteComponent) {
         this.id = Registry.getInstance().getComponentId();
         this.numberFrames = numberFrames;
         this.currentFrame = currentFrame;
         this.animationSpeed = animationSpeed;
         this.loop = loop;
+        this.startTime = System.currentTimeMillis();
+        this.frameNames = new ArrayList<>();
+        this.spriteComponent = spriteComponent;
+        this.loadFrames();
         LogService.getInstance().engine("AnimationComponent created with id: " + id);
     }
 
+    private void loadFrames() {
+        var spriteName = spriteComponent.getSpriteName();
+
+    }
+
     public void start() {
-        this.startTime = System.currentTimeMillis();
+
     }
 
     public void stop() {
 
     }
 
+    public String getCurrentFrameName(int index) {
+        return frameNames.get(index -1);
+    }
+
     public int getNumberFrames() {
-        return numberFrames;
+        return this.numberFrames;
     }
 
     public int getCurrentFrame() {
-        return currentFrame;
+        return this.currentFrame;
     }
 
     public int getAnimationSpeed() {
-        return animationSpeed;
+        return this.animationSpeed;
     }
 
     public boolean isLoop() {
-        return loop;
+        return this.loop;
+    }
+
+    public long getStartTime() {
+        return this.startTime;
     }
 
     public void setCurrentFrame(int currentFrame) {
