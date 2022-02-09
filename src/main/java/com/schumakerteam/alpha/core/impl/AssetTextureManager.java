@@ -8,6 +8,7 @@ import com.schumakerteam.alpha.common.Pair;
 import com.schumakerteam.alpha.gfx.Texture;
 import com.schumakerteam.alpha.log.LogService;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,10 @@ public final class AssetTextureManager {
         var image = new GeImageLoader().readImageFromDisk(fileName);
         if (image != null)
             TEXTURE_CACHE.put(fileName, new Texture(image.getWidth(null), image.getHeight(null), image));
+    }
+
+    public static void addTexture(String spriteName, Image texture) {
+        TEXTURE_CACHE.put(spriteName, new Texture(texture.getWidth(null), texture.getHeight(null), texture));
     }
 
     public static Texture getTexture(final String assetId) {
