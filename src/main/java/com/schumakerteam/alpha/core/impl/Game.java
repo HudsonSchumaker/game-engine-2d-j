@@ -11,6 +11,7 @@ import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
 import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.systems.AnimationSystem;
 import com.schumakerteam.alpha.systems.MovementSystem;
 import com.schumakerteam.alpha.systems.RenderSystem;
 import com.schumakerteam.alpha.systems.TileMapSystem;
@@ -63,6 +64,7 @@ public class Game implements Runnable {
         r.addSystem(new TileMapSystem());
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
+        r.addSystem(new AnimationSystem());
 
         // AssetManager.addTexture("tank-panther-right.png");
         // AssetManager.addTexture("truck-ford-left.png");
@@ -165,6 +167,10 @@ public class Game implements Runnable {
     public void update(double deltaTime) {
         var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
         movementSystem.update(deltaTime);
+
+        var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
+        animationSystem.update(null);
+
         Registry.getInstance().update();
     }
 
@@ -198,7 +204,7 @@ public class Game implements Runnable {
         initialize();
         setup();
 
-        final int MAX_FRAMES_PER_SECOND = 60; // FPS
+        final int MAX_FRAMES_PER_SECOND = 144; // FPS
         final int MAX_UPDATES_SECOND = 60; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
