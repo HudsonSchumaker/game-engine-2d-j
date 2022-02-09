@@ -130,17 +130,6 @@ public class Game implements Runnable {
         radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
         radar.addComponent(new SpriteComponent("radar.png"));
 
-        Entity radar2 = r.createEntity();
-        radar2.addComponent(new TransformComponent(new Vector2D(50, 74)));
-        radar2.addComponent(new SpriteComponent("radar.png"));
-
-        Entity radar3 = r.createEntity();
-        radar3.addComponent(new TransformComponent(new Vector2D(50, 138)));
-        radar3.addComponent(new SpriteComponent("radar.png"));
-
-        Entity radar4 = r.createEntity();
-        radar4.addComponent(new TransformComponent(new Vector2D(50, 200)));
-        radar4.addComponent(new SpriteComponent("radar.png"));
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         spriteComponent.setFlip(true);
@@ -152,7 +141,7 @@ public class Game implements Runnable {
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
         chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         chopper.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
-        chopper.addComponent(new AnimationComponent(2, 1, 5, true));
+        chopper.addComponent(new AnimationComponent(2, 1, 15, true));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
