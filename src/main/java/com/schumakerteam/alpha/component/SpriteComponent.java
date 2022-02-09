@@ -4,13 +4,13 @@ import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
-public final class SpriteComponent extends Component {
+public class SpriteComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 2;
     private final int id;
     private final int width;
     private final int height;
-    private final String spriteName;
+    private String spriteName;
     private boolean flip = false;
     private int zOrder = 0;
 
@@ -34,17 +34,17 @@ public final class SpriteComponent extends Component {
         LogService.getInstance().engine("SpriteComponent created with id: " + id);
     }
 
-    public SpriteComponent(int w, int h, String spriteName) {
-        this.width = w;
-        this.height = h;
+    public SpriteComponent(int width, int height, String spriteName) {
+        this.width = width;
+        this.height = height;
         this.spriteName = spriteName;
         this.id = Registry.getInstance().getComponentId();
         LogService.getInstance().engine("SpriteComponent created with id: " + id);
     }
 
-    public SpriteComponent(int w, int h, int z, String spriteName) {
-        this.width = w;
-        this.height = h;
+    public SpriteComponent(int width, int height, int z, String spriteName) {
+        this.width = width;
+        this.height = height;
         this.zOrder = z;
         this.spriteName = spriteName;
         this.id = Registry.getInstance().getComponentId();
@@ -61,6 +61,10 @@ public final class SpriteComponent extends Component {
 
     public String getSpriteName() {
         return this.spriteName;
+    }
+
+    public void setSpriteName(String spriteName) {
+        this.spriteName = spriteName;
     }
 
     public void setFlip(boolean f) {
