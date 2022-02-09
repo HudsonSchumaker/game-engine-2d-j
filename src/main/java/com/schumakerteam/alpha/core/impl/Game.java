@@ -151,9 +151,9 @@ public class Game implements Runnable {
         Entity chopper = r.createEntity();
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
         chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-        var chopperSpriteComponent = new SpriteComponent("chopper.png");
-        chopper.addComponent(chopperSpriteComponent);
-        chopper.addComponent(new AnimationComponent(2, 1, 5, true, chopperSpriteComponent));
+
+        chopper.addComponent(null);
+        chopper.addComponent(new AnimationComponent(2, 1, 5, true));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
@@ -173,7 +173,7 @@ public class Game implements Runnable {
         movementSystem.update(deltaTime);
 
         var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
-        animationSystem.update(null);
+        animationSystem.update(deltaTime);
 
         Registry.getInstance().update();
     }
