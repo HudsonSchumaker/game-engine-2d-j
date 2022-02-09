@@ -49,12 +49,13 @@ public final class RenderSystem extends BasicSystem {
                     image,
                     (int) transform.getPosition().getX(),
                     (int) transform.getPosition().getY(),
-                    sprite.getWidth() * (int) transform.getScale().getX(),
-                    sprite.getHeight() * (int) transform.getScale().getY(),
+                    sprite.getWidth() *  transform.getScale().getX(),
+                    sprite.getHeight() * transform.getScale().getY(),
                     null);
         }
     }
 
+    // TODO check flip image
     private BufferedImage flip(Image image) {
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.BITMASK);
 
@@ -70,6 +71,7 @@ public final class RenderSystem extends BasicSystem {
         return bufferedImage;
     }
 
+    // TODO check rotate image
     private BufferedImage rotateImageByDegrees(Image image, double angle) {
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
