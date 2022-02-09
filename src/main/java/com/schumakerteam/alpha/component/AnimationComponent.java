@@ -16,29 +16,19 @@ public class AnimationComponent extends Component {
     private int animationSpeed;
     private final long startTime;
     private final boolean loop;
-    private List<String> frameNames;
-    private final SpriteComponent spriteComponent;
 
-    public AnimationComponent(int animationSpeed, SpriteComponent spriteComponent) {
-        this(1, 1, animationSpeed, true, spriteComponent);
+    public AnimationComponent(int animationSpeed) {
+        this(1, 1, animationSpeed, true);
     }
 
-    public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop, SpriteComponent spriteComponent) {
+    public AnimationComponent(int numberFrames, int currentFrame, int animationSpeed, boolean loop) {
         this.id = Registry.getInstance().getComponentId();
         this.numberFrames = numberFrames;
         this.currentFrame = currentFrame;
         this.animationSpeed = animationSpeed;
         this.loop = loop;
         this.startTime = System.currentTimeMillis();
-        this.frameNames = new ArrayList<>();
-        this.spriteComponent = spriteComponent;
-        this.loadFrames();
         LogService.getInstance().engine("AnimationComponent created with id: " + id);
-    }
-
-    private void loadFrames() {
-        var spriteName = spriteComponent.getSpriteName();
-
     }
 
     public void start() {
@@ -47,10 +37,6 @@ public class AnimationComponent extends Component {
 
     public void stop() {
 
-    }
-
-    public String getCurrentFrameName(int index) {
-        return frameNames.get(index -1);
     }
 
     public int getNumberFrames() {
