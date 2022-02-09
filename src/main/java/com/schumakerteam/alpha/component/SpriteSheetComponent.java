@@ -50,7 +50,7 @@ public class SpriteSheetComponent extends SpriteComponent {
     }
 
     public void setCurrentFrame(int index) {
-
+        setSpriteName(frameNames.get(index -1));
     }
 
     public int getFrameWidth() {
