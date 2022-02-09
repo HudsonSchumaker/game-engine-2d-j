@@ -11,6 +11,7 @@ public final class ComponentMap {
     private static final Pool<TransformComponent> transformComponentPool = new Pool<>();
     private static final Pool<RigidBodyComponent> rigidBodyComponentPool = new Pool<>();
     private static final Pool<SpriteComponent> spriteComponentPool = new Pool<>();
+    private static final Pool<AnimationComponent> animationComponentPool = new Pool<>();
     private static final Pool<TileMapComponent> tileMapComponentPool = new Pool<>();
 
     private static final HashMap<Integer, IPool<Component>> COMPONENT_POOL = new HashMap<>();
@@ -19,6 +20,7 @@ public final class ComponentMap {
         COMPONENT_POOL.put(TransformComponent.COMPONENT_TYPE_ID, transformComponentPool);
         COMPONENT_POOL.put(RigidBodyComponent.COMPONENT_TYPE_ID, rigidBodyComponentPool);
         COMPONENT_POOL.put(SpriteComponent.COMPONENT_TYPE_ID, spriteComponentPool);
+        COMPONENT_POOL.put(AnimationComponent.COMPONENT_TYPE_ID, animationComponentPool);
         COMPONENT_POOL.put(TileMapComponent.COMPONENT_TYPE_ID, tileMapComponentPool);
     }
 
