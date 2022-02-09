@@ -49,17 +49,20 @@ public final class Registry implements IRegistry {
         for (var entity : entitiesToBeAdded) {
             this.addEntityToSystems(entity);
         }
-        this.entitiesToBeAdded.clear();
 
         for (var entity : entitiesToBeDestroyed) {
             this.removeEntityFromSystem(entity);
         }
         this.entitiesToBeDestroyed.clear();
 
-        var renderSystem = SystemMap.getSystem(RenderSystem.SYSTEM_TYPE_ID);
-        renderSystem.getSystemEntities().sort(comparingInt(
-                e -> ((SpriteComponent) e.getComponent(SpriteComponent.COMPONENT_TYPE_ID)).getzOrder()
-        ));
+        if (entitiesToBeAdded.size() > 0) {
+            var renderSystem = SystemMap.getSystem(RenderSystem.SYSTEM_TYPE_ID);
+            renderSystem.getSystemEntities().sort(comparingInt(
+                    e -> ((SpriteComponent) e.getComponent(SpriteComponent.COMPONENT_TYPE_ID)).getzOrder()
+            ));
+        }
+        this.entitiesToBeAdded.clear();
+
     }
 
     @Override
