@@ -151,8 +151,7 @@ public class Game implements Runnable {
         Entity chopper = r.createEntity();
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
         chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
-
-        chopper.addComponent(null);
+        chopper.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper.addComponent(new AnimationComponent(2, 1, 5, true));
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
