@@ -7,8 +7,7 @@ import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
-
-public class AnimationSystem extends BasicSystem {
+public final class AnimationSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 3;
     private final int id;
