@@ -73,8 +73,8 @@ public class Game implements Runnable {
         AssetTextureManager.addTileMap("jungle.png");
 
         Entity map = r.createEntity();
-        map.addComponent(new TransformComponent(Vector2D.Zero(), Scale2D.scale2x(), 0.0));
-        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale(), 32));
+        map.addComponent(new TransformComponent(Vector2D.Zero(), Scale2D.scale2x()));
+        map.addComponent(new TileMapComponent("jungle.png", "tileMap.map", Scale2D.scale2x(), 32));
 
         var displayModes = this.device.getDisplayModes();
         for (var dm : displayModes) {
@@ -87,7 +87,7 @@ public class Game implements Runnable {
         car.addComponent(new SpriteComponent("car.png"));
 
         Entity tank = r.createEntity();
-        tank.addComponent(new TransformComponent(new Vector2D(0, 10)));
+        tank.addComponent(new TransformComponent(new Vector2D(0, 10), Scale2D.scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
 
@@ -133,16 +133,19 @@ public class Game implements Runnable {
 
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-        spriteComponent.setFlip(true);
+        //spriteComponent.setFlip(true);
 
         spriteComponent = (SpriteComponent) tank4.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-        spriteComponent.setFlip(true);
+        //spriteComponent.setFlip(true);
 
         Entity chopper = r.createEntity();
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
         chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         chopper.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper.addComponent(new AnimationComponent(2, 1, 15, true));
+
+        spriteComponent = (SpriteComponent) chopper.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
+        // spriteComponent.setFlip(true);
 
         //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
@@ -198,7 +201,7 @@ public class Game implements Runnable {
         setup();
 
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 60; // UPS
+        final int MAX_UPDATES_SECOND = 96; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
