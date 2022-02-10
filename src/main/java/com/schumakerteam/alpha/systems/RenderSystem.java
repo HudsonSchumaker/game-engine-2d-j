@@ -1,10 +1,12 @@
 package com.schumakerteam.alpha.systems;
 
 import com.schumakerteam.alpha.component.SpriteComponent;
+import com.schumakerteam.alpha.component.SpriteSheetComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
+import com.schumakerteam.alpha.io.GeImageLoader;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
@@ -17,11 +19,13 @@ public final class RenderSystem extends BasicSystem {
     public static final int SYSTEM_TYPE_ID = 1;
     private final int id;
     private Graphics2D render;
+    private final GeImageLoader imageLoader;
 
     public RenderSystem() {
         this.id = Registry.getInstance().getSystemId();
         this.setOnSignature(SpriteComponent.COMPONENT_TYPE_ID);
         this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
+        this.imageLoader = new GeImageLoader();
         LogService.getInstance().engine("RenderSystem created with id: " + id);
     }
 
@@ -34,30 +38,53 @@ public final class RenderSystem extends BasicSystem {
     protected void update() {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
-            var sprite = (SpriteComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-            var image = AssetTextureManager.getTexture(sprite.getSpriteName()).getTexture();
+            var sprite = entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
 
-            if (transform.getRotation() != 0.0) {
-                image = rotateImageByDegrees(image, transform.getRotation());
+            if (sprite instanceof SpriteSheetComponent) {
+                var spriteSheet = (SpriteSheetComponent) sprite;
+                var image = AssetTextureManager.getTexture(spriteSheet.getSpriteName()).getTexture();
+
+                if (transform.getRotation() != 0.0) {
+                    image = rotateImageByDegrees(image, transform.getRotation());
+                }
+
+                if (spriteSheet.isFlipped()) {
+                    image = flip(image);
+                }
+
+                render.drawImage(
+                        image,
+                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getY(),
+                        spriteSheet.getFrameWidth() * transform.getScale().getX(),
+                        spriteSheet.getFrameHeight() * transform.getScale().getY(),
+                        null);
+            } else {
+                var spriteComponent = (SpriteComponent) sprite;
+                var image = AssetTextureManager.getTexture(spriteComponent.getSpriteName()).getTexture();
+
+                if (transform.getRotation() != 0.0) {
+                    image = rotateImageByDegrees(image, transform.getRotation());
+                }
+
+                if (spriteComponent.isFlipped()) {
+                    image = flip(image);
+                }
+
+                render.drawImage(
+                        image,
+                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getY(),
+                        spriteComponent.getWidth() * transform.getScale().getX(),
+                        spriteComponent.getHeight() * transform.getScale().getY(),
+                        null);
             }
-
-            if (sprite.isFlipped()) {
-                image = flip(image);
-            }
-
-            render.drawImage(
-                    image,
-                    (int) transform.getPosition().getX(),
-                    (int) transform.getPosition().getY(),
-                    sprite.getWidth() *  transform.getScale().getX(),
-                    sprite.getHeight() * transform.getScale().getY(),
-                    null);
         }
     }
 
     // TODO check flip image
-    private BufferedImage flip(Image image) {
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.BITMASK);
+    private Image flip(Image image) {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TRANSLUCENT);
 
         Graphics gb = bufferedImage.getGraphics();
         gb.drawImage(image, 0, 0, null);
@@ -68,11 +95,11 @@ public final class RenderSystem extends BasicSystem {
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         bufferedImage = op.filter(bufferedImage, null);
 
-        return bufferedImage;
+        return imageLoader.createAcceleratedImage(bufferedImage);
     }
 
     // TODO check rotate image
-    private BufferedImage rotateImageByDegrees(Image image, double angle) {
+    private Image rotateImageByDegrees(Image image, double angle) {
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
         int w = image.getWidth(null);
@@ -80,7 +107,7 @@ public final class RenderSystem extends BasicSystem {
         int newWidth = (int) Math.floor(w * cos + h * sin);
         int newHeight = (int) Math.floor(h * cos + w * sin);
 
-        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.BITMASK);
+        BufferedImage rotated = new BufferedImage(newWidth, newHeight, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = rotated.createGraphics();
         AffineTransform at = new AffineTransform();
         at.translate((newWidth - w) / 2.0, (newHeight - h) / 2.0);
@@ -93,7 +120,7 @@ public final class RenderSystem extends BasicSystem {
         g2d.drawImage(image, 0, 0, null);
         g2d.dispose();
 
-        return rotated;
+        return imageLoader.createAcceleratedImage(rotated);
     }
 
     @Override
