@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.component.*;
+import com.schumakerteam.alpha.core.IGame;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Scale2D;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class Game implements Runnable {
+public class Game implements IGame {
 
     private DisplayMode displayMode;
     private GraphicsEnvironment environment;
@@ -45,6 +46,7 @@ public class Game implements Runnable {
         this.device = environment.getDefaultScreenDevice();
     }
 
+    @Override
     public void initialize() {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
@@ -56,6 +58,7 @@ public class Game implements Runnable {
         this.scene.requestFocus();
     }
 
+    @Override
     public void setup() {
         Registry r = Registry.getInstance();
         r.addSystem(new TileMapSystem());
@@ -157,9 +160,11 @@ public class Game implements Runnable {
         this.isRunning = true;
     }
 
+    @Override
     public void processInput() {
     }
 
+    @Override
     public void update(double deltaTime) {
         var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
         movementSystem.update(deltaTime);
@@ -170,6 +175,7 @@ public class Game implements Runnable {
         Registry.getInstance().update();
     }
 
+    @Override
     public void render() {
         Graphics2D g = (Graphics2D) scene.getBufferStrategy().getDrawGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
