@@ -9,10 +9,7 @@ import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
 import com.schumakerteam.alpha.log.LogService;
-import com.schumakerteam.alpha.systems.AnimationSystem;
-import com.schumakerteam.alpha.systems.MovementSystem;
-import com.schumakerteam.alpha.systems.RenderSystem;
-import com.schumakerteam.alpha.systems.TileMapSystem;
+import com.schumakerteam.alpha.systems.*;
 
 import java.awt.*;
 
@@ -65,6 +62,7 @@ public class Game implements IGame {
         r.addSystem(new MovementSystem());
         r.addSystem(new RenderSystem());
         r.addSystem(new AnimationSystem());
+        r.addSystem(new CollisionSystem());
 
         // AssetManager.addTexture("tank-panther-right.png");
         // AssetManager.addTexture("truck-ford-left.png");
@@ -171,6 +169,9 @@ public class Game implements IGame {
 
         var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
         animationSystem.update(deltaTime);
+
+        var collisionSystem = (CollisionSystem) Registry.getInstance().getSystem(CollisionSystem.SYSTEM_TYPE_ID);
+        collisionSystem.update(deltaTime);
 
         Registry.getInstance().update();
     }
