@@ -71,6 +71,7 @@ public final class RenderSystem extends BasicSystem {
                     image = flip(image);
                 }
 
+
                 render.drawImage(
                         image,
                         (int) transform.getPosition().getX(),
@@ -78,6 +79,13 @@ public final class RenderSystem extends BasicSystem {
                         spriteComponent.getWidth() * transform.getScale().getX(),
                         spriteComponent.getHeight() * transform.getScale().getY(),
                         null);
+
+                render.setColor(Color.green);
+                render.drawRect(
+                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getY(),
+                        32,
+                        32);
             }
         }
     }
