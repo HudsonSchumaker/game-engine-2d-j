@@ -1,8 +1,6 @@
 package com.schumakerteam.alpha.systems;
 
-import com.schumakerteam.alpha.component.AnimationComponent;
 import com.schumakerteam.alpha.component.BoxColliderComponent;
-import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
@@ -10,7 +8,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 public class CollisionSystem extends BasicSystem {
 
-    public static final int SYSTEM_TYPE_ID = 3;
+    public static final int SYSTEM_TYPE_ID = 4;
     private final int id;
 
     public CollisionSystem() {
