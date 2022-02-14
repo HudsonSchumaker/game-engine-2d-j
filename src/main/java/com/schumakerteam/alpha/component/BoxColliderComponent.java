@@ -11,7 +11,7 @@ public class BoxColliderComponent extends Component {
 
     private final int width;
     private final int height;
-    private Vector2D offset;
+    private final Vector2D offset;
 
     public BoxColliderComponent() {
         this(0, 0, Vector2D.Zero());
