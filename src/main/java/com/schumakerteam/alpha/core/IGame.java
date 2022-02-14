@@ -1,10 +1,9 @@
 package com.schumakerteam.alpha.core;
 
-public interface IGame {
+public interface IGame extends Runnable {
     void initialize();
     void setup();
+    void update(double deltaTime);
     void processInput();
-    void update();
     void render();
-    void destroy();
 }
