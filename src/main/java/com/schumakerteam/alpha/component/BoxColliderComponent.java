@@ -4,7 +4,7 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
-public class BoxColliderComponent {
+public class BoxColliderComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = 4;
     private final int id;
@@ -24,5 +24,15 @@ public class BoxColliderComponent {
         this.offset = offset;
         this.id = Registry.getInstance().getComponentId();
         LogService.getInstance().engine("BoxColliderComponent created with id: " + id);
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int getTypeId() {
+        return COMPONENT_TYPE_ID;
     }
 }
