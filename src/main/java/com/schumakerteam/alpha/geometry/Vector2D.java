@@ -33,6 +33,8 @@ public final class Vector2D {
 
     public static Vector2D Zero() { return new Vector2D(); }
 
+    public static Vector2D offset() { return new Vector2D(1, 1); }
+
     public double getX() {
         return x;
     }
