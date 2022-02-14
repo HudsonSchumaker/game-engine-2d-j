@@ -20,6 +20,10 @@ public class CollisionSystem extends BasicSystem {
         LogService.getInstance().engine("CollisionSystem created with id: " + id);
     }
 
+    public void update(double deltaTime) {
+        this.update();
+    }
+
     @Override
     protected void update() {
 
@@ -34,7 +38,6 @@ public class CollisionSystem extends BasicSystem {
                 var bCollider = (BoxColliderComponent) bEntity.getComponent(BoxColliderComponent.COMPONENT_TYPE_ID);
             }
         }
-
     }
 
     @Override
