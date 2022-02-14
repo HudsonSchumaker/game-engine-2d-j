@@ -48,8 +48,8 @@ public class Game implements IGame {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
-        //this.device.setDisplayMode(displayMode);
-        //this.device.setFullScreenWindow(windowGame);
+        this.device.setDisplayMode(displayMode);
+        this.device.setFullScreenWindow(windowGame);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
@@ -86,26 +86,31 @@ public class Game implements IGame {
         car.addComponent(new TransformComponent(new Vector2D(768, 0)));
         car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
         car.addComponent(new SpriteComponent("car.png"));
+        car.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 10), Scale2D.scale(), 0.0));
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank2 = r.createEntity();
         tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Scale2D.scale2x(), 0.0));
         tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank2.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
+        tank2.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank3 = r.createEntity();
         tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Scale2D.scale3x(), 0.0));
         tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank3.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
+        tank3.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank7 = r.createEntity();
         tank7.addComponent(new TransformComponent(new Vector2D(32, 116), Scale2D.scale(), 0.0));
         tank7.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank7.addComponent(new SpriteComponent(10, "tank-panther-right.png"));
+        tank7.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Scale2D.scale2x(), 0.0));
@@ -116,22 +121,30 @@ public class Game implements IGame {
         tank4.addComponent(new TransformComponent(new Vector2D(0, 200)));
         tank4.addComponent(new RigidBodyComponent(Vector2D.Down()));
         tank4.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank4.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank5 = r.createEntity();
         tank5.addComponent(new TransformComponent(new Vector2D(0, 264)));
         tank5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank5.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank5.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank6 = r.createEntity();
         tank6.addComponent(new TransformComponent(new Vector2D(0, 300)));
         tank6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank6.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity tank8 = r.createEntity();
+        tank8.addComponent(new TransformComponent(new Vector2D(0, 316)));
+        tank8.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank8.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank8.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity radar = r.createEntity();
         radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
         radar.addComponent(new SpriteSheetComponent(512, 64, 1, 64, 64, 8, "radar.png"));
         radar.addComponent(new AnimationComponent(8, 1, 8, true));
-
 
         var spriteComponent = (SpriteComponent) tank2.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         //spriteComponent.setFlip(true);
@@ -139,16 +152,45 @@ public class Game implements IGame {
         spriteComponent = (SpriteComponent) tank4.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         //spriteComponent.setFlip(true);
 
+        Entity chopper0 = r.createEntity();
+        chopper0.addComponent(new TransformComponent(new Vector2D(0.0, 377.0)));
+        chopper0.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper0.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper0.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper0.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
         Entity chopper = r.createEntity();
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
         chopper.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         chopper.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity chopper2 = r.createEntity();
+        chopper2.addComponent(new TransformComponent(new Vector2D(0.0, 444.0)));
+        chopper2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper2.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper2.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper2.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity chopper3 = r.createEntity();
+        chopper3.addComponent(new TransformComponent(new Vector2D(0.0, 477.0)));
+        chopper3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper3.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper3.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper3.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity chopper4 = r.createEntity();
+        chopper4.addComponent(new TransformComponent(new Vector2D(0.0, 511.0)));
+        chopper4.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper4.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper4.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper4.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         spriteComponent = (SpriteComponent) chopper.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         // spriteComponent.setFlip(true);
 
-        //truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+        // truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
         try {
             future.get();
