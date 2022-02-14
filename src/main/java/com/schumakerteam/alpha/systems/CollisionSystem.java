@@ -23,7 +23,6 @@ public class CollisionSystem extends BasicSystem {
     @Override
     protected void update() {
 
-
         for (int i = 0; i < getSystemEntities().size(); i++) {
             var aEntity = getSystemEntities().get(i);
             var aTransform = (TransformComponent) aEntity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
@@ -31,6 +30,8 @@ public class CollisionSystem extends BasicSystem {
 
             for (int j = i; j < getSystemEntities().size(); j++) {
                 var bEntity = getSystemEntities().get(j);
+                var bTransform = (TransformComponent) bEntity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+                var bCollider = (BoxColliderComponent) bEntity.getComponent(BoxColliderComponent.COMPONENT_TYPE_ID);
             }
         }
 
