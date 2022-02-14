@@ -6,7 +6,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 public class BoxColliderComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 4;
+    public static final int COMPONENT_TYPE_ID = 5;
     private final int id;
 
     private int width;
