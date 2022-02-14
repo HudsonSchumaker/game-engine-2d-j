@@ -22,9 +22,18 @@ public class CollisionSystem extends BasicSystem {
 
     @Override
     protected void update() {
-        for (var entity : getSystemEntities()) {
-            //TODO AABB collision
+
+
+        for (int i = 0; i < getSystemEntities().size(); i++) {
+            var aEntity = getSystemEntities().get(i);
+            var aTransform = (TransformComponent) aEntity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+            var aCollider = (BoxColliderComponent) aEntity.getComponent(BoxColliderComponent.COMPONENT_TYPE_ID);
+
+            for (int j = i; j < getSystemEntities().size(); j++) {
+                var bEntity = getSystemEntities().get(j);
+            }
         }
+
     }
 
     @Override
