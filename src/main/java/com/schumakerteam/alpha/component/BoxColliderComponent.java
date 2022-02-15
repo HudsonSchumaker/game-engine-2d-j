@@ -26,15 +26,15 @@ public class BoxColliderComponent extends Component {
     }
 
     public int getWidth() {
-        return width;
+        return this.width;
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public Vector2D getOffset() {
-        return offset;
+        return this.offset;
     }
 
     @Override
