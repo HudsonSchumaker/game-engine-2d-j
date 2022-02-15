@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.systems;
 
+import com.schumakerteam.alpha.component.BoxColliderComponent;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.component.SpriteSheetComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
@@ -71,7 +72,6 @@ public final class RenderSystem extends BasicSystem {
                     image = flip(image);
                 }
 
-
                 render.drawImage(
                         image,
                         (int) transform.getPosition().getX(),
@@ -81,12 +81,16 @@ public final class RenderSystem extends BasicSystem {
                         null);
 
                 render.setColor(Color.green);
-                render.drawRect(
-                        (int) transform.getPosition().getX() ,
-                        (int) transform.getPosition().getY(),
-                        32,
-                        32);
                 render.drawString("" + entity.getId(), (int) transform.getPosition().getX(), (int) transform.getPosition().getY());
+
+                var collider = (BoxColliderComponent) entity.getComponent(BoxColliderComponent.COMPONENT_TYPE_ID);
+                if (collider != null) {
+                    render.drawRect(
+                            (int) transform.getPosition().getX() + (int) collider.getOffset().getX(),
+                            (int) transform.getPosition().getY() + (int) collider.getOffset().getY(),
+                            collider.getWidth(),
+                            collider.getHeight());
+                }
             }
         }
     }
