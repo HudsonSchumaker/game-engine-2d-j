@@ -20,9 +20,9 @@ public final class Pool<T> implements IPool<Component> {
 
     @Override
     public Component get(int index) {
-        return (Component) this.data.get(index);
+        return (Component) this.data.getOrDefault(index, null);
     }
-
+    
     @Override
     public void remove(int index) {
         this.data.remove(index);
