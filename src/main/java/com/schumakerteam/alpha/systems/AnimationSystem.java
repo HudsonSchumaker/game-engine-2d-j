@@ -19,7 +19,7 @@ public final class AnimationSystem extends BasicSystem {
         LogService.getInstance().engine("AnimationSystem created with id: " + id);
     }
 
-    public void update(double deltaTime) {
+    public void update(double ignore) {
         this.update();
     }
 
