@@ -62,7 +62,7 @@ public class CollisionSystem extends BasicSystem {
 
     @Override
     public int getId() {
-        return id;
+        return this.id;
     }
 
     @Override
