@@ -52,12 +52,12 @@ public class CollisionSystem extends BasicSystem {
         var phA = (int) aTransform.getY() + aCollider.getHeight();
         var phB = (int) bTransform.getY() + bCollider.getHeight();
 
+        var aX = aTransform.getX() + aCollider.getOffset().getX();
+        var aY = aTransform.getY() + aCollider.getOffset().getY();
+        var bX = bTransform.getX() + bCollider.getOffset().getX();
+        var bY = bTransform.getY() + bCollider.getOffset().getY();
 
-        if (pwA > bTransform.getX() && aTransform.getX() < pwB && phA > bTransform.getY() && aTransform.getY() < phB) {
-            return true;
-        }
-
-        return false;
+        return pwA > bX && aX < pwB && phA > bY && aY < phB;
     }
 
     @Override
