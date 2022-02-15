@@ -13,6 +13,7 @@ public final class AnimationComponent extends Component {
     private int animationSpeed;
     private final long startTime;
     private final boolean loop;
+    private boolean isPlaying;
 
     public AnimationComponent(int animationSpeed) {
         this(1, 0, animationSpeed, true);
@@ -29,11 +30,11 @@ public final class AnimationComponent extends Component {
     }
 
     public void start() {
-
+        this.isPlaying = true;
     }
 
     public void stop() {
-
+        this.isPlaying = false;
     }
 
     public int getNumberFrames() {
