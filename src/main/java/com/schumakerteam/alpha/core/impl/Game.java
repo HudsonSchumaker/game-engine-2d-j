@@ -48,8 +48,8 @@ public class Game implements IGame {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
         this.scene.initialize();
-        this.device.setDisplayMode(displayMode);
-        this.device.setFullScreenWindow(windowGame);
+        //this.device.setDisplayMode(displayMode);
+        //this.device.setFullScreenWindow(windowGame);
 
         this.small = new Font("Arial Unicode", Font.BOLD, 14);
         this.scene.requestFocus();
@@ -86,7 +86,7 @@ public class Game implements IGame {
         car.addComponent(new TransformComponent(new Vector2D(768, 0)));
         car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
         car.addComponent(new SpriteComponent("car.png"));
-        car.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        car.addComponent(new BoxColliderComponent(32, 32, new Vector2D(8, -2)));
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 10), Scale2D.scale(), 0.0));
