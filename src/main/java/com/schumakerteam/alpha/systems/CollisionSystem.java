@@ -19,7 +19,7 @@ public class CollisionSystem extends BasicSystem {
         LogService.getInstance().engine("CollisionSystem created with id: " + id);
     }
 
-    public void update(double deltaTime) {
+    public void update(double ignore) {
         this.update();
     }
 
