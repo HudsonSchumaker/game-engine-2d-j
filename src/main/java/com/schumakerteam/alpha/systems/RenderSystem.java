@@ -82,10 +82,11 @@ public final class RenderSystem extends BasicSystem {
 
                 render.setColor(Color.green);
                 render.drawRect(
-                        (int) transform.getPosition().getX(),
+                        (int) transform.getPosition().getX() ,
                         (int) transform.getPosition().getY(),
                         32,
                         32);
+                render.drawString("" + entity.getId(), (int) transform.getPosition().getX(), (int) transform.getPosition().getY());
             }
         }
     }
