@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.component;
 
+import com.schumakerteam.alpha.common.IdComponentMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
@@ -7,7 +8,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 public final class TransformComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 0;
+    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(TransformComponent.class.getName());
     private final int id;
     private Vector2D position;
     private Scale2D scale;
