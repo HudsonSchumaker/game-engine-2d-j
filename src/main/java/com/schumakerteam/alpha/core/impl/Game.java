@@ -187,6 +187,21 @@ public class Game implements IGame {
         chopper4.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper4.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
+        Entity chopper5 = r.createEntity();
+        chopper5.addComponent(new TransformComponent(new Vector2D(0.0, 544.0)));
+        chopper5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper5.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper5.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper5.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity chopper6 = r.createEntity();
+        chopper6.addComponent(new TransformComponent(new Vector2D(0.0, 577.0)));
+        chopper6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
+        chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+
         spriteComponent = (SpriteComponent) chopper.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         // spriteComponent.setFlip(true);
 
@@ -250,7 +265,7 @@ public class Game implements IGame {
         setup();
 
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 96; // UPS
+        final int MAX_UPDATES_SECOND = 60; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
