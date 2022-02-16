@@ -1,9 +1,6 @@
 package com.schumakerteam.alpha.common;
 
-import com.schumakerteam.alpha.component.RigidBodyComponent;
-import com.schumakerteam.alpha.component.SpriteComponent;
-import com.schumakerteam.alpha.component.TileMapComponent;
-import com.schumakerteam.alpha.component.TransformComponent;
+import com.schumakerteam.alpha.component.*;
 
 import java.util.HashMap;
 
@@ -16,6 +13,7 @@ public final class IdComponentMap {
         systemTypeId.put(RigidBodyComponent.class.getName(), 1);
         systemTypeId.put(SpriteComponent.class.getName(), 2);
         systemTypeId.put(TileMapComponent.class.getName(), 3);
+        systemTypeId.put(TileComponent.class.getName(), 4);
 
     }
 
