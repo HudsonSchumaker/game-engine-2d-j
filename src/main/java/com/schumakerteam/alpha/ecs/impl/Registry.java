@@ -97,7 +97,7 @@ public final class Registry implements IRegistry {
         //entitySignature.
 
 
-
+        LogService.getInstance().engine("Entity removed");
     }
 
     @Override
