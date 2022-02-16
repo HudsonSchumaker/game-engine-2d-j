@@ -7,7 +7,7 @@ import com.schumakerteam.alpha.ecs.IEntity;
 public final class Entity implements IEntity {
 
     private final int id;
-    private Signature signature;
+    private final Signature signature;
 
     public Entity(int id) {
         this.id = id;
