@@ -4,7 +4,6 @@ import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.ecs.impl.Signature;
 
 public interface IEntity {
-
     int getId();
     void addComponent(Component c);
     Component getComponent(int componentTypeId);
