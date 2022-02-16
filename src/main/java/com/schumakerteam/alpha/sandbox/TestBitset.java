@@ -22,6 +22,11 @@ public class TestBitset {
         entity.set(2);
 
         var s = entity.toString();
+        System.out.println(s);
+
+        var a = entity.toLongArray();
+        System.out.println(a);
+
         var b = entity.toString().contains(system.toString());
         var z = entity.intersects(system);
         var x = system.intersects(entity);
