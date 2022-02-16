@@ -26,7 +26,7 @@ public final class ComponentMap {
         COMPONENT_POOL.put(BoxColliderComponent.COMPONENT_TYPE_ID, boxColliderComponentPool);
     }
 
-    public ComponentMap() {
+    private ComponentMap() {
         LogService.getInstance().engine("ComponentMap created.");
     }
 
