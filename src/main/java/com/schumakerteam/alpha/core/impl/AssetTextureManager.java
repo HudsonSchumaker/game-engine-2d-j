@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public final class AssetTextureManager {
-    private static Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
-    private static Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
-    private static Map<String, TileTexture> TILE_TEXTURE_CACHE = new HashMap<>();
+    private static final Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
+    private static final Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
+    private static final Map<String, TileTexture> TILE_TEXTURE_CACHE = new HashMap<>();
 
     public AssetTextureManager() {
         LogService.getInstance().engine("AssetManager created.");
