@@ -1,12 +1,13 @@
 package com.schumakerteam.alpha.component;
 
+import com.schumakerteam.alpha.common.IdComponentMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
 public final class RigidBodyComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 1;
+    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(RigidBodyComponent.class.getName());
     private final int id;
     private Vector2D velocity;
 
