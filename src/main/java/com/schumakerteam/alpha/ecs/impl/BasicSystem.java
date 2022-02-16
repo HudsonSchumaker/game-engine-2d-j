@@ -20,7 +20,7 @@ public abstract class BasicSystem {
         this.entities.add(entity);
     }
 
-    public void removeEntityFromSystem(Entity entity) {
+    public void removeEntityFromSystem (Entity entity) {
         this.entities.remove(entity);
     }
 
