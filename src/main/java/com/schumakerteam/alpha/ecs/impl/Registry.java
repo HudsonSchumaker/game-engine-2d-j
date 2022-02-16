@@ -46,14 +46,14 @@ public final class Registry implements IRegistry {
 
     @Override
     public void update() {
-        for (var entity : entitiesToBeAdded) {
-            this.addEntityToSystems(entity);
-        }
-
         for (var entity : entitiesToBeDestroyed) {
             this.removeEntityFromSystem(entity);
         }
         this.entitiesToBeDestroyed.clear();
+
+        for (var entity : entitiesToBeAdded) {
+            this.addEntityToSystems(entity);
+        }
 
         if (entitiesToBeAdded.size() > 0) {
             var renderSystem = SystemMap.getSystem(RenderSystem.SYSTEM_TYPE_ID);
@@ -62,7 +62,6 @@ public final class Registry implements IRegistry {
             ));
         }
         this.entitiesToBeAdded.clear();
-
     }
 
     @Override
@@ -87,7 +86,18 @@ public final class Registry implements IRegistry {
 
     @Override
     public void removeEntityFromSystem(Entity entity) {
-        //TODO remove entity from a system
+        List<BasicSystem> systems = SystemMap.getSystems();
+        var entitySignature = entity.getSignature();
+        for (var system : systems) {
+            if (Signature.contains(entitySignature, system.getComponentSignature())) {
+                system.removeEntityFromSystem(entity);
+            }
+        }
+
+        //entitySignature.
+
+
+
     }
 
     @Override
