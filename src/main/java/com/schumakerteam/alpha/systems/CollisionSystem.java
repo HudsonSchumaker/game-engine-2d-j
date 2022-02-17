@@ -5,9 +5,10 @@ import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
+import com.schumakerteam.alpha.events.OnCollisionEventPublisher;
 import com.schumakerteam.alpha.log.LogService;
 
-public class CollisionSystem extends BasicSystem {
+public class CollisionSystem extends BasicSystem implements OnCollisionEventPublisher {
 
     public static final int SYSTEM_TYPE_ID = 4;
     private final int id;
@@ -72,5 +73,10 @@ public class CollisionSystem extends BasicSystem {
     @Override
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
+    }
+
+    @Override
+    public void onCollisionEvent(Entity a, Entity b) {
+
     }
 }
