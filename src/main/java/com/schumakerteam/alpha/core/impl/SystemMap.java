@@ -3,6 +3,7 @@ package com.schumakerteam.alpha.core.impl;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.log.LogService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +25,6 @@ public final class SystemMap {
     }
 
     public static List<BasicSystem> getSystems() {
-        return SYSTEM_MAP.entrySet()
-                .stream()
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
+        return new ArrayList<>(SYSTEM_MAP.values());
     }
 }
