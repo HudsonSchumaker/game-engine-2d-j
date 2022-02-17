@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.ecs.impl;
 
-import com.schumakerteam.alpha.common.IdComponentMap;
+import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
@@ -124,7 +124,7 @@ public final class Registry implements IRegistry {
 
     @Override
     public void removeComponents(Entity entity) {
-        List<Integer> componentTypeIds = IdComponentMap.getTypeIds();
+        List<Integer> componentTypeIds = ComponentIdMap.getTypeIds();
         for (var id : componentTypeIds) {
             removeComponent(entity, id);
         }
