@@ -5,7 +5,6 @@ import com.schumakerteam.alpha.log.LogService;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import java.io.IOException;
 import java.util.Objects;
 
