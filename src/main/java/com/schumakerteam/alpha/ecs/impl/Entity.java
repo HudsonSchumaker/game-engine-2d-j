@@ -4,6 +4,9 @@ import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
 import com.schumakerteam.alpha.ecs.IEntity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public final class Entity implements IEntity {
 
     private final int id;
@@ -31,16 +34,12 @@ public final class Entity implements IEntity {
 
     @Override
     public void removeComponent(Component c) {
-        Registry.getInstance().removeComponent(this, c.getTypeId());
+       this.removeComponent(c.getTypeId());
     }
 
     @Override
     public void removeComponent(int componentTypeId) {
-        if (hasComponentType(componentTypeId)) {
-            var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
-            var component = pool.get(this.id);
-            this.removeComponent(component);
-        }
+        Registry.getInstance().removeComponent(this, componentTypeId);
     }
 
     @Override
@@ -50,7 +49,23 @@ public final class Entity implements IEntity {
 
     @Override
     public boolean hasComponentType(int componentTypeId) {
-        return Registry.getInstance().hasComponentType(this, componentTypeId);
+        return this.testSignature(componentTypeId);
+    }
+
+    @Override
+    public void destroy() {
+        Registry.getInstance().destroyEntity(this);
+    }
+
+    @Override
+    public void destroy(long milliseconds) {
+        Timer timer = new Timer(true);
+        TimerTask task = new TimerTask() {
+            public void run() {
+                destroy();
+            }
+        };
+        timer.schedule(task,  milliseconds);
     }
 
     @Override
