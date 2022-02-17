@@ -210,7 +210,7 @@ public class Game implements IGame {
         chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
-        chopper6.addComponent(new AudioComponent(true, true, PlayType.MEMORY, "helicopter.wav"));
+        chopper6.addComponent(new AudioComponent(true, true, PlayType.STREAM, "helicopter.wav"));
 
         var a = (AudioComponent) chopper6.getComponent(AudioComponent.COMPONENT_TYPE_ID);
         Timer timer = new Timer(true);
