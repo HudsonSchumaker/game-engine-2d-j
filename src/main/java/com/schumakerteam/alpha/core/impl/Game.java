@@ -9,12 +9,15 @@ import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
 import com.schumakerteam.alpha.gfx.Window;
 import com.schumakerteam.alpha.log.LogService;
+import com.schumakerteam.alpha.sfx.PlayType;
 import com.schumakerteam.alpha.systems.*;
 
 import java.awt.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 public class Game implements IGame {
@@ -93,6 +96,12 @@ public class Game implements IGame {
         tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+
+        Entity tank9 = r.createEntity();
+        tank9.addComponent(new TransformComponent(new Vector2D(1560, 10), Scale2D.scale(), 0.0));
+        tank9.addComponent(new RigidBodyComponent(Vector2D.Backward()));
+        tank9.addComponent(new SpriteComponent("tank-panther-right.png"));
+        tank9.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
 
         Entity tank2 = r.createEntity();
         tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Scale2D.scale2x(), 0.0));
@@ -201,7 +210,17 @@ public class Game implements IGame {
         chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper6.addComponent(new AudioComponent(true, true, PlayType.MEMORY, "helicopter.wav"));
 
+        var a = (AudioComponent) chopper6.getComponent(AudioComponent.COMPONENT_TYPE_ID);
+        Timer timer = new Timer(true);
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                a.play();
+            }
+        };
+        //timer.schedule(task, 5000);
 
         spriteComponent = (SpriteComponent) chopper.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
         // spriteComponent.setFlip(true);

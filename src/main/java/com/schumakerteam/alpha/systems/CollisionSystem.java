@@ -35,6 +35,10 @@ public class CollisionSystem extends BasicSystem {
                 }
 
                 var res = collide(aEntity, bEntity);
+                if (res) {
+                    aEntity.destroy();
+                    bEntity.destroy();
+                }
             }
         }
     }

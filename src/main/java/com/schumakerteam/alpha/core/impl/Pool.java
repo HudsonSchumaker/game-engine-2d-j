@@ -6,23 +6,20 @@ import com.schumakerteam.alpha.component.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class Pool<T> implements IPool<Component> {
+public final class Pool<C> implements IPool<Component> {
 
-    private final Map<Integer, T> data = new HashMap<>();
-
-    public Pool() {
-    }
+    private final Map<Integer, C> data = new HashMap<>();
 
     @Override
     public void set(int index, Component object) {
-        this.data.put(index, (T) object);
+        this.data.put(index, (C) object);
     }
 
     @Override
     public Component get(int index) {
         return (Component) this.data.getOrDefault(index, null);
     }
-    
+
     @Override
     public void remove(int index) {
         this.data.remove(index);
