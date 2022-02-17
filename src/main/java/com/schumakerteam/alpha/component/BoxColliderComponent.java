@@ -1,12 +1,13 @@
 package com.schumakerteam.alpha.component;
 
+import com.schumakerteam.alpha.common.IdComponentMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
 public class BoxColliderComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 5;
+    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(BoxColliderComponent.class.getName());
     private final int id;
 
     private final int width;
