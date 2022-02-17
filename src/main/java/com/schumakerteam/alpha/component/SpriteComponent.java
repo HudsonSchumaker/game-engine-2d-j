@@ -1,13 +1,13 @@
 package com.schumakerteam.alpha.component;
 
-import com.schumakerteam.alpha.common.IdComponentMap;
+import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.core.impl.AssetTextureManager;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
 public class SpriteComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(SpriteComponent.class.getName());
+    public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(SpriteComponent.class.getName());
     private final int id;
     private final int width;
     private final int height;
