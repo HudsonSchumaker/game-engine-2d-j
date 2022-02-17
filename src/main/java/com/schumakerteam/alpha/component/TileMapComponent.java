@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.component;
 
-import com.schumakerteam.alpha.common.IdComponentMap;
+import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.io.TileMapReader;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TileMapComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(TileMapComponent.class.getName());
+    public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(TileMapComponent.class.getName());
     private final int id;
 
     private final String spriteName;
