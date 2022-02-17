@@ -11,6 +11,8 @@ public interface IEntity {
     void removeComponent(int componentTypeId);
     boolean hasComponent(Component c);
     boolean hasComponentType(int componentTypeId);
+    void destroy();
+    void destroy(long milliseconds);
     Signature getSignature();
     void setOnSignature(int n);
     void setOffSignature(int n);
