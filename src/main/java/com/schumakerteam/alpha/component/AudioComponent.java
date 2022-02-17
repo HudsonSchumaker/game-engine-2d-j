@@ -1,17 +1,14 @@
 package com.schumakerteam.alpha.component;
 
-import com.schumakerteam.alpha.common.IdComponentMap;
+import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
-import com.schumakerteam.alpha.io.GeAudioLoader;
 import com.schumakerteam.alpha.sfx.GeAudioClip;
 import com.schumakerteam.alpha.sfx.MemoryAudioClip;
 import com.schumakerteam.alpha.sfx.PlayType;
 import com.schumakerteam.alpha.sfx.StreamAudioClip;
 
-import java.util.stream.Stream;
-
 public class AudioComponent extends Component {
-    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(AudioComponent.class.getName());
+    public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(AudioComponent.class.getName());
     private final int id;
 
     private boolean playOnAwake;
