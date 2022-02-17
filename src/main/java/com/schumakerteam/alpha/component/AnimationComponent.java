@@ -1,11 +1,12 @@
 package com.schumakerteam.alpha.component;
 
+import com.schumakerteam.alpha.common.IdComponentMap;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
 public final class AnimationComponent extends Component {
 
-    public static final int COMPONENT_TYPE_ID = 4;
+    public static final int COMPONENT_TYPE_ID = IdComponentMap.getTypeId(AnimationComponent.class.getName());
     private final int id;
 
     private final int numberFrames;
