@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public final class IdComponentMap {
+public final class ComponentIdMap {
 
     private static final HashMap<String, Integer> systemTypeId = new HashMap<>();
 
@@ -21,7 +21,7 @@ public final class IdComponentMap {
         systemTypeId.put(AudioComponent.class.getName(), 7);
     }
 
-    private IdComponentMap() {}
+    private ComponentIdMap() {}
 
     public static int getTypeId(String fqcn) {
         return systemTypeId.getOrDefault(fqcn, -1);
