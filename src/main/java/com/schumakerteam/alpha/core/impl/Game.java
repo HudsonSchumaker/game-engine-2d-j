@@ -158,6 +158,7 @@ public class Game implements IGame {
         chopper0.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper0.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper0.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper0.destroy(9000);
 
         Entity chopper = r.createEntity();
         chopper.addComponent(new TransformComponent(new Vector2D(0.0, 411.0)));
