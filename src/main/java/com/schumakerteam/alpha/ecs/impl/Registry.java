@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.ecs.impl;
 
+import com.schumakerteam.alpha.common.IdComponentMap;
 import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
@@ -48,6 +49,7 @@ public final class Registry implements IRegistry {
     public void update() {
         for (var entity : entitiesToBeDestroyed) {
             this.removeEntityFromSystem(entity);
+            this.removeComponents(entity);
         }
         this.entitiesToBeDestroyed.clear();
 
@@ -91,13 +93,9 @@ public final class Registry implements IRegistry {
         for (var system : systems) {
             if (Signature.contains(entitySignature, system.getComponentSignature())) {
                 system.removeEntityFromSystem(entity);
+                LogService.getInstance().engine("Entity removed from system: " + system.getClass().getSimpleName());
             }
         }
-
-        //entitySignature.
-
-
-        LogService.getInstance().engine("Entity removed");
     }
 
     @Override
@@ -114,19 +112,38 @@ public final class Registry implements IRegistry {
     }
 
     @Override
-    public void removeComponent(Entity entity, int componentId) {
-        entity.setOffSignature(componentId);
+    public void removeComponent(Entity entity, int componentTypeId) {
+        if (hasComponentType(entity, componentTypeId)) {
+            entity.setOffSignature(componentTypeId);
+            var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
+            var name = pool.get(entity.getId()).getClass().getSimpleName();
+            pool.remove(entity.getId());
+            LogService.getInstance().engine("Component: " + name + " removed from entity");
+        }
     }
 
     @Override
-    public boolean hasComponent(Entity entity, int componentId) {
-        return entity.testSignature(componentId);
+    public void removeComponents(Entity entity) {
+        List<Integer> componentTypeIds = IdComponentMap.getTypeIds();
+        for (var id : componentTypeIds) {
+            removeComponent(entity, id);
+        }
     }
 
     @Override
-    public boolean hasComponentType(Entity e, int componentTypeId) {
+    public boolean hasComponent(Entity entity, int componentTypeId) {
         var pool = ComponentMap.getPoolByComponentTypeId(componentTypeId);
-        return pool.get(e.getId()) != null;
+        return pool.get(entity.getId()) != null;
+    }
+
+    @Override
+    public boolean hasComponentType(Entity entity, int componentTypeId) {
+        return entity.testSignature(componentTypeId);
+    }
+
+    @Override
+    public void destroyEntity(Entity entity) {
+        this.entitiesToBeDestroyed.add(entity);
     }
 
     @Override
