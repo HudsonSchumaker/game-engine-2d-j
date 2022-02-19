@@ -1,6 +1,8 @@
 package com.schumakerteam.alpha.core;
 
-public interface IGame extends Runnable {
+import com.schumakerteam.alpha.events.EventListener;
+
+public interface IGame extends Runnable, EventListener {
     void initialize();
     void setup();
     void update(double deltaTime);
