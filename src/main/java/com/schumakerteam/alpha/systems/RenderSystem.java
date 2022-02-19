@@ -19,7 +19,6 @@ public final class RenderSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 1;
     private final int id;
-    private Graphics2D render;
     private final GeImageLoader imageLoader;
 
     public RenderSystem() {
@@ -30,13 +29,8 @@ public final class RenderSystem extends BasicSystem {
         LogService.getInstance().engine("RenderSystem created with id: " + id);
     }
 
-    public void update(Graphics2D g) {
-        this.render = g;
-        this.update();
-    }
-
     @Override
-    protected void update() {
+    public void update(Graphics2D render) {
         for (var entity : getSystemEntities()) {
             var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var sprite = entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
