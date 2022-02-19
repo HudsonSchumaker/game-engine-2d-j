@@ -1,4 +1,4 @@
 package com.schumakerteam.alpha.events;
 
-public interface Event {
+public interface Event<T> {
 }
