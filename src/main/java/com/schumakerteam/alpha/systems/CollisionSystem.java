@@ -6,6 +6,7 @@ import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.events.EventBus;
+import com.schumakerteam.alpha.events.EventType;
 import com.schumakerteam.alpha.events.OnCollisionEvent;
 import com.schumakerteam.alpha.log.LogService;
 
@@ -37,7 +38,7 @@ public class CollisionSystem extends BasicSystem {
                 }
 
                 if (this.collide(aEntity, bEntity)) {
-                    EventBus.getInstance().notify("", new OnCollisionEvent(aEntity, bEntity));
+                    EventBus.getInstance().notify(EventType.ON_COLLISION_EVENT, new OnCollisionEvent(aEntity, bEntity));
                 }
             }
         }
