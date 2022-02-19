@@ -8,26 +8,26 @@ import java.util.List;
 
 public final class ComponentIdMap {
 
-    private static final HashMap<String, Integer> systemTypeId = new HashMap<>();
+    private static final HashMap<String, Integer> componentTypeId = new HashMap<>();
 
     static {
-        systemTypeId.put(TransformComponent.class.getName(), 0);
-        systemTypeId.put(RigidBodyComponent.class.getName(), 1);
-        systemTypeId.put(SpriteComponent.class.getName(), 2);
-        systemTypeId.put(TileMapComponent.class.getName(), 3);
-        systemTypeId.put(TileComponent.class.getName(), 4);
-        systemTypeId.put(AnimationComponent.class.getName(), 5);
-        systemTypeId.put(BoxColliderComponent.class.getName(), 6);
-        systemTypeId.put(AudioComponent.class.getName(), 7);
+        componentTypeId.put(TransformComponent.class.getName(), 0);
+        componentTypeId.put(RigidBodyComponent.class.getName(), 1);
+        componentTypeId.put(SpriteComponent.class.getName(), 2);
+        componentTypeId.put(TileMapComponent.class.getName(), 3);
+        componentTypeId.put(TileComponent.class.getName(), 4);
+        componentTypeId.put(AnimationComponent.class.getName(), 5);
+        componentTypeId.put(BoxColliderComponent.class.getName(), 6);
+        componentTypeId.put(AudioComponent.class.getName(), 7);
     }
 
     private ComponentIdMap() {}
 
     public static int getTypeId(String fqcn) {
-        return systemTypeId.getOrDefault(fqcn, -1);
+        return componentTypeId.getOrDefault(fqcn, -1);
     }
 
     public static List<Integer> getTypeIds() {
-        return new ArrayList<>(systemTypeId.values());
+        return new ArrayList<>(componentTypeId.values());
     }
 }
