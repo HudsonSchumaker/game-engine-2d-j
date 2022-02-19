@@ -14,10 +14,6 @@ public final class LogEntry implements Runnable {
         return type;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     @Override
     public void run() {
         System.out.println(message);
