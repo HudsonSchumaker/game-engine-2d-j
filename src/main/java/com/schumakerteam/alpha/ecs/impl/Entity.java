@@ -87,4 +87,9 @@ public final class Entity implements IEntity {
     public boolean testSignature(int n) {
         return this.signature.get(n);
     }
+
+    @Override
+    public String toString() {
+        return "Entity{" + "id=" + id + ", signature=" + signature + '}';
+    }
 }
