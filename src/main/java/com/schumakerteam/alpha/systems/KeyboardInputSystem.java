@@ -1,4 +1,4 @@
 package com.schumakerteam.alpha.systems;
 
-public class KeyboardInputlSystem {
+public class KeyboardInputSystem {
 }
