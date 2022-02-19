@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasicSystem {
-    private Signature componentSignature;
+    private final Signature componentSignature;
     private List<Entity> entities;
 
     public BasicSystem() {
