@@ -14,7 +14,6 @@ public class DamageSystem extends BasicSystem implements OnCollisionEventListene
 
     public DamageSystem() {
         this.id = Registry.getInstance().getSystemId();
-        EventBus.getInstance().addCollisionEventListener(this);
     }
 
     @Override
