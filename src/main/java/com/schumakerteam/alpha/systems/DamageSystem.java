@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.systems;
 
+import com.schumakerteam.alpha.component.BoxColliderComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.events.*;
@@ -12,6 +13,7 @@ public class DamageSystem extends BasicSystem implements EventListener {
 
     public DamageSystem() {
         this.id = Registry.getInstance().getSystemId();
+        this.setOnSignature(BoxColliderComponent.COMPONENT_TYPE_ID);
         EventBus.getInstance().subscribe(EventType.ON_COLLISION_EVENT, this);
     }
 
@@ -32,6 +34,8 @@ public class DamageSystem extends BasicSystem implements EventListener {
     @Override
     public void update(EventType eventType, Event<?> event) {
         var onCollisionEvent = (OnCollisionEvent) event;
-        LogService.getInstance().warning(onCollisionEvent.getA().toString());
+        onCollisionEvent.getA().destroy();
+        onCollisionEvent.getB().destroy();
+        LogService.getInstance().warning(onCollisionEvent.getA().toString() + " and " + onCollisionEvent.getB().toString() + " were destroyed.");
     }
 }
