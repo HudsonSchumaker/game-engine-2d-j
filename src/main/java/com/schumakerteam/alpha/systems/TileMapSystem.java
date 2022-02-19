@@ -28,7 +28,7 @@ public class TileMapSystem extends BasicSystem {
     }
 
     @Override
-    protected void update() {
+    public void update() {
         for (var entity : getSystemEntities()) {
             var mapTransform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
