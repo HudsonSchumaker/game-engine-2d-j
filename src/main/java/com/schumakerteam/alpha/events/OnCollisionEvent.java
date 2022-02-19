@@ -2,7 +2,7 @@ package com.schumakerteam.alpha.events;
 
 import com.schumakerteam.alpha.ecs.impl.Entity;
 
-public class OnCollisionEvent implements Event {
+public class OnCollisionEvent implements Event<OnCollisionEvent> {
 
     private final Entity a;
     private final Entity b;
