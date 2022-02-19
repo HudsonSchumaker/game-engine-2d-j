@@ -1,19 +1,18 @@
 package com.schumakerteam.alpha.systems;
 
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
-import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
-import com.schumakerteam.alpha.events.EventBus;
-import com.schumakerteam.alpha.events.OnCollisionEventListener;
+import com.schumakerteam.alpha.events.*;
 import com.schumakerteam.alpha.log.LogService;
 
-public class DamageSystem extends BasicSystem implements OnCollisionEventListener {
+public class DamageSystem extends BasicSystem implements EventListener {
 
     public static final int SYSTEM_TYPE_ID = 5;
     private final int id;
 
     public DamageSystem() {
         this.id = Registry.getInstance().getSystemId();
+        EventBus.getInstance().subscribe(EventType.ON_COLLISION_EVENT, this);
     }
 
     @Override
@@ -31,7 +30,8 @@ public class DamageSystem extends BasicSystem implements OnCollisionEventListene
     }
 
     @Override
-    public void onCollisionEvent(Entity a, Entity b) {
-        LogService.getInstance().info("received event");
+    public void update(EventType eventType, Event<?> event) {
+        var onCollisionEvent = (OnCollisionEvent) event;
+        LogService.getInstance().warning(onCollisionEvent.getA().toString());
     }
 }
