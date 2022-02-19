@@ -18,10 +18,6 @@ public class DamageSystem extends BasicSystem implements EventListener {
     }
 
     @Override
-    protected void update() {
-    }
-
-    @Override
     public int getId() {
         return this.id;
     }
