@@ -19,12 +19,8 @@ public final class AnimationSystem extends BasicSystem {
         LogService.getInstance().engine("AnimationSystem created with id: " + id);
     }
 
-    public void update(double ignore) {
-        this.update();
-    }
-
     @Override
-    protected void update() {
+    public void update() {
         for (var entity : getSystemEntities()) {
             var sprite = (SpriteSheetComponent) entity.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
             var animation = (AnimationComponent) entity.getComponent(AnimationComponent.COMPONENT_TYPE_ID);
