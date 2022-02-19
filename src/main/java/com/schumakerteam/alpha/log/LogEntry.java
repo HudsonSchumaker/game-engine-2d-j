@@ -1,9 +1,9 @@
 package com.schumakerteam.alpha.log;
 
-public final class LogEntry {
+public final class LogEntry implements Runnable {
 
-    private LogTypeEnum type;
-    private String message;
+    private final LogTypeEnum type;
+    private final String message;
 
     public LogEntry(LogTypeEnum type, String message) {
         this.type = type;
@@ -14,11 +14,12 @@ public final class LogEntry {
         return type;
     }
 
-    public void setType(LogTypeEnum type) {
-        this.type = type;
-    }
-
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(message);
     }
 }
