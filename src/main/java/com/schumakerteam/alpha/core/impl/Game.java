@@ -1,9 +1,13 @@
 package com.schumakerteam.alpha.core.impl;
 
+import com.schumakerteam.alpha.common.KeyboardInput;
 import com.schumakerteam.alpha.component.*;
 import com.schumakerteam.alpha.core.IGame;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 import com.schumakerteam.alpha.ecs.impl.Registry;
+import com.schumakerteam.alpha.events.Event;
+import com.schumakerteam.alpha.events.EventBus;
+import com.schumakerteam.alpha.events.EventType;
 import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.gfx.Scene;
@@ -14,6 +18,7 @@ import com.schumakerteam.alpha.systems.*;
 
 import java.awt.*;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
@@ -25,9 +30,9 @@ public class Game implements IGame {
     private DisplayMode displayMode;
     private GraphicsEnvironment environment;
     private GraphicsDevice device;
-
     private Scene scene;
     private Window windowGame;
+
     private boolean isRunning = false;
     //private double deltaTime = 0.0;
 
@@ -44,13 +49,13 @@ public class Game implements IGame {
         this.displayMode = new DisplayMode(width, height, 32, 60);
         this.environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.device = environment.getDefaultScreenDevice();
+        EventBus.getInstance().subscribe(EventType.ON_WINDOW_CLOSING, this);
     }
 
     @Override
     public void initialize() {
         this.scene = new Scene(this.width, this.height);
         this.windowGame = new Window(scene);
-        this.scene.initialize();
         //this.device.setDisplayMode(displayMode);
         //this.device.setFullScreenWindow(windowGame);
 
@@ -68,9 +73,6 @@ public class Game implements IGame {
         r.addSystem(new CollisionSystem());
         r.addSystem(new DamageSystem());
 
-        // AssetManager.addTexture("tank-panther-right.png");
-        // AssetManager.addTexture("truck-ford-left.png");
-        // AssetManager.addTexture("radar.png");
         List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png", "chopper.png");
 
         var future = AssetTextureManager.loadInBatch(textures);
@@ -211,7 +213,7 @@ public class Game implements IGame {
         chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
-        chopper6.addComponent(new AudioComponent(true, true, PlayType.STREAM, "helicopter.wav"));
+        chopper6.addComponent(new AudioComponent(true, false, PlayType.STREAM, "helicopter.wav"));
 
         var a = (AudioComponent) chopper6.getComponent(AudioComponent.COMPONENT_TYPE_ID);
         Timer timer = new Timer(true);
@@ -238,6 +240,11 @@ public class Game implements IGame {
 
     @Override
     public void processInput() {
+        this.scene.getKeys().poll();
+        if (this.scene.getKeys().keyDownOnce(KeyEvent.VK_SPACE)) {
+            LogService.getInstance().warning("event received.");
+            System.out.println("VK_SPACE");
+        }
     }
 
     @Override
@@ -286,7 +293,7 @@ public class Game implements IGame {
         setup();
 
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 60; // UPS
+        final int MAX_UPDATES_SECOND = 75; // UPS
 
         final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
@@ -330,6 +337,12 @@ public class Game implements IGame {
         }
     }
 
+    @Override
+    public void notifyEvent(EventType eventType, Event<?> event) {
+        LogService.getInstance().warning("OnWindowClosingEvent received.");
+        this.stop();
+    }
+
     public void start() {
         Thread thread = new Thread(this, "Engine2DJ");
         thread.setPriority(Thread.MAX_PRIORITY);
@@ -337,10 +350,7 @@ public class Game implements IGame {
     }
 
     public void stop() {
-        try {
-            Thread.currentThread().join();
-            isRunning = false;
-        } catch (InterruptedException ignore) {
-        }
+        isRunning = false;
+        System.exit(0);
     }
 }
