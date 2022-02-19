@@ -1,9 +1,11 @@
 package com.schumakerteam.alpha.ecs.impl;
 
+import com.schumakerteam.alpha.systems.Updatable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasicSystem {
+public abstract class BasicSystem implements Updatable {
     private final Signature componentSignature;
     private List<Entity> entities;
 
@@ -12,7 +14,6 @@ public abstract class BasicSystem {
         this.entities = new ArrayList<>();
     }
 
-    protected abstract void update();
     public abstract int getId();
     public abstract int getTypeId();
 
