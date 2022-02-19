@@ -38,7 +38,7 @@ public class CollisionSystem extends BasicSystem {
                 }
 
                 if (this.collide(aEntity, bEntity)) {
-                    EventBus.getInstance().notify(EventType.ON_COLLISION_EVENT, new OnCollisionEvent(aEntity, bEntity));
+                    EventBus.getInstance().publish(EventType.ON_COLLISION_EVENT, new OnCollisionEvent(aEntity, bEntity));
                 }
             }
         }
