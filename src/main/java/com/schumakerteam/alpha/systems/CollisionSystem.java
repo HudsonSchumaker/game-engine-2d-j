@@ -27,7 +27,7 @@ public class CollisionSystem extends BasicSystem {
     }
 
     @Override
-    protected void update() {
+    public void update() {
         for (int i = 0; i < getSystemEntities().size(); i++) {
             for (int j = i; j < getSystemEntities().size(); j++) {
                 var aEntity = getSystemEntities().get(i);
