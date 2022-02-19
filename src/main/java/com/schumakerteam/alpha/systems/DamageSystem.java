@@ -32,7 +32,7 @@ public class DamageSystem extends BasicSystem implements EventListener {
     }
 
     @Override
-    public void update(EventType eventType, Event<?> event) {
+    public void notifyEvent(EventType eventType, Event<?> event) {
         var onCollisionEvent = (OnCollisionEvent) event;
         onCollisionEvent.getA().destroy();
         onCollisionEvent.getB().destroy();
