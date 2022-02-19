@@ -1,13 +1,19 @@
 package com.schumakerteam.alpha.events;
 
-import com.schumakerteam.alpha.ecs.impl.Entity;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class EventBus {
-
+public final class EventBus {
     private static final EventBus INSTANCE = new EventBus();
+    private static final Map<EventType, List<EventListener>> LISTENERS = new HashMap<>();
 
-    private OnCollisionEventListener collisionEventListener;
-
+    static {
+        for (var operation : EventType.values()) {
+            LISTENERS.put(operation, new ArrayList<>());
+        }
+    }
 
     private EventBus() {
     }
@@ -16,9 +22,17 @@ public class EventBus {
         return INSTANCE;
     }
 
-    public void notify(String eventType, Event event) {
-
+    public void subscribe(EventType eventType, EventListener listener) {
+        List<EventListener> users = LISTENERS.get(eventType);
+        users.add(listener);
     }
 
-
+    public void notify(EventType eventType, Event<?> event) {
+        new Thread(() -> {
+            List<EventListener> listeners = LISTENERS.get(eventType);
+            for (var listener : listeners) {
+                listener.update(eventType, event);
+            }
+        }).start();
+    }
 }
