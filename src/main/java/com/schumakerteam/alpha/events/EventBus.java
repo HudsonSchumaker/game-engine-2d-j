@@ -32,12 +32,10 @@ public final class EventBus {
         listeners.remove(listener);
     }
 
-    public void notify(EventType eventType, Event<?> event) {
-        new Thread(() -> {
-            List<EventListener> listeners = LISTENERS.get(eventType);
-            for (var listener : listeners) {
-                listener.update(eventType, event);
-            }
-        }).start();
+    public void publish(EventType eventType, Event<?> event) {
+        List<EventListener> listeners = LISTENERS.get(eventType);
+        for (var listener : listeners) {
+            listener.notifyEvent(eventType, event);
+        }
     }
 }
