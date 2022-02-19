@@ -27,6 +27,11 @@ public final class EventBus {
         users.add(listener);
     }
 
+    public void unsubscribe(EventType eventType, EventListener listener) {
+        List<EventListener> listeners = LISTENERS.get(eventType);
+        listeners.remove(listener);
+    }
+
     public void notify(EventType eventType, Event<?> event) {
         new Thread(() -> {
             List<EventListener> listeners = LISTENERS.get(eventType);

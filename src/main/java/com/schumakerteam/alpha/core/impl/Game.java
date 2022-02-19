@@ -66,6 +66,7 @@ public class Game implements IGame {
         r.addSystem(new RenderSystem());
         r.addSystem(new AnimationSystem());
         r.addSystem(new CollisionSystem());
+        r.addSystem(new DamageSystem());
 
         // AssetManager.addTexture("tank-panther-right.png");
         // AssetManager.addTexture("truck-ford-left.png");
