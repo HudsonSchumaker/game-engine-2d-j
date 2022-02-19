@@ -16,11 +16,9 @@ public class EventBus {
         return INSTANCE;
     }
 
-    public void addCollisionEventListener(OnCollisionEventListener listener) {
-        this.collisionEventListener = listener;
-    }
-
-    public void sendCollisionEvent(Entity a, Entity b) {
+    public void notify(String eventType, Event event) {
 
     }
+
+
 }
