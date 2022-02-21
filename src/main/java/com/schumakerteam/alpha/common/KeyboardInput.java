@@ -1,10 +1,14 @@
 package com.schumakerteam.alpha.common;
 
+import com.schumakerteam.alpha.events.EventBus;
+import com.schumakerteam.alpha.events.EventType;
+import com.schumakerteam.alpha.events.OnKeyPressedEvent;
+
 import java.awt.event.*;
 
 public class KeyboardInput implements KeyListener {
 
-    private boolean[] keys;
+    private final boolean[] keys;
     private int[] polled;
 
     public KeyboardInput() {
@@ -35,6 +39,7 @@ public class KeyboardInput implements KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode >= 0 && keyCode < keys.length) {
             keys[keyCode] = true;
+            EventBus.getInstance().publish(EventType.ON_KEY_PRESSED, new OnKeyPressedEvent(keyCode));
         }
     }
 
