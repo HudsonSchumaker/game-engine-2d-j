@@ -14,6 +14,7 @@ public abstract class BasicSystem implements Updatable {
         this.entities = new ArrayList<>();
     }
 
+    protected abstract void setOnSignatures();
     public abstract int getId();
     public abstract int getTypeId();
 
