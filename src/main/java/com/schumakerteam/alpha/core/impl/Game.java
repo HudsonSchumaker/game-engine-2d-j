@@ -1,6 +1,5 @@
 package com.schumakerteam.alpha.core.impl;
 
-import com.schumakerteam.alpha.common.KeyboardInput;
 import com.schumakerteam.alpha.component.*;
 import com.schumakerteam.alpha.core.IGame;
 import com.schumakerteam.alpha.ecs.impl.Entity;
@@ -72,6 +71,7 @@ public class Game implements IGame {
         r.addSystem(new AnimationSystem());
         r.addSystem(new CollisionSystem());
         r.addSystem(new DamageSystem());
+        r.addSystem(new KeyboardInputSystem());
 
         List<String> textures = Arrays.asList("tank-panther-right.png", "truck-ford-left.png", "radar.png", "chopper.png");
 
@@ -93,65 +93,76 @@ public class Game implements IGame {
         car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
         car.addComponent(new SpriteComponent("car.png"));
         car.addComponent(new BoxColliderComponent(32, 32, new Vector2D(8, -2)));
+        car.addComponent(new MovementComponent());
 
         Entity tank = r.createEntity();
         tank.addComponent(new TransformComponent(new Vector2D(0, 10), Scale2D.scale(), 0.0));
-        tank.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        tank.addComponent(new RigidBodyComponent(new Vector2D(2, 2)));
         tank.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        //tank.addComponent(new InputComponent());
 
         Entity tank9 = r.createEntity();
         tank9.addComponent(new TransformComponent(new Vector2D(1560, 10), Scale2D.scale(), 0.0));
-        tank9.addComponent(new RigidBodyComponent(Vector2D.Backward()));
+        tank9.addComponent(new RigidBodyComponent(new Vector2D(-3, 0)));
         tank9.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank9.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank9.addComponent(new MovementComponent());
 
         Entity tank2 = r.createEntity();
         tank2.addComponent(new TransformComponent(new Vector2D(0, 50), Scale2D.scale2x(), 0.0));
         tank2.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank2.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
         tank2.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank2.addComponent(new MovementComponent());
 
         Entity tank3 = r.createEntity();
         tank3.addComponent(new TransformComponent(new Vector2D(0, 90), Scale2D.scale3x(), 0.0));
         tank3.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank3.addComponent(new SpriteComponent(2, "tank-panther-right.png"));
         tank3.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank3.addComponent(new MovementComponent());
 
         Entity tank7 = r.createEntity();
         tank7.addComponent(new TransformComponent(new Vector2D(32, 116), Scale2D.scale(), 0.0));
         tank7.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank7.addComponent(new SpriteComponent(10, "tank-panther-right.png"));
         tank7.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank7.addComponent(new MovementComponent());
 
         Entity truck = r.createEntity();
         truck.addComponent(new TransformComponent(new Vector2D(1000, 155), Scale2D.scale2x(), 0.0));
         truck.addComponent(new RigidBodyComponent(Vector2D.Backward()));
         truck.addComponent(new SpriteComponent("truck-ford-left.png"));
+        truck.addComponent(new MovementComponent());
 
         Entity tank4 = r.createEntity();
         tank4.addComponent(new TransformComponent(new Vector2D(0, 200)));
         tank4.addComponent(new RigidBodyComponent(Vector2D.Down()));
         tank4.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank4.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank4.addComponent(new MovementComponent());
 
         Entity tank5 = r.createEntity();
         tank5.addComponent(new TransformComponent(new Vector2D(0, 264)));
         tank5.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank5.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank5.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank5.addComponent(new MovementComponent());
 
         Entity tank6 = r.createEntity();
         tank6.addComponent(new TransformComponent(new Vector2D(0, 300)));
         tank6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank6.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank6.addComponent(new MovementComponent());
 
         Entity tank8 = r.createEntity();
         tank8.addComponent(new TransformComponent(new Vector2D(0, 316)));
         tank8.addComponent(new RigidBodyComponent(Vector2D.Forward()));
         tank8.addComponent(new SpriteComponent("tank-panther-right.png"));
         tank8.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        tank8.addComponent(new MovementComponent());
 
         Entity radar = r.createEntity();
         radar.addComponent(new TransformComponent(new Vector2D(50, 10)));
@@ -170,6 +181,7 @@ public class Game implements IGame {
         chopper0.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper0.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper0.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper0.addComponent(new MovementComponent());
         chopper0.destroy(9000);
 
         Entity chopper = r.createEntity();
@@ -178,6 +190,7 @@ public class Game implements IGame {
         chopper.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper.addComponent(new MovementComponent());
 
         Entity chopper2 = r.createEntity();
         chopper2.addComponent(new TransformComponent(new Vector2D(0.0, 444.0)));
@@ -185,6 +198,7 @@ public class Game implements IGame {
         chopper2.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper2.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper2.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper2.addComponent(new MovementComponent());
 
         Entity chopper3 = r.createEntity();
         chopper3.addComponent(new TransformComponent(new Vector2D(0.0, 477.0)));
@@ -192,6 +206,7 @@ public class Game implements IGame {
         chopper3.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper3.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper3.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper3.addComponent(new MovementComponent());
 
         Entity chopper4 = r.createEntity();
         chopper4.addComponent(new TransformComponent(new Vector2D(0.0, 511.0)));
@@ -199,6 +214,7 @@ public class Game implements IGame {
         chopper4.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper4.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper4.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper4.addComponent(new MovementComponent());
 
         Entity chopper5 = r.createEntity();
         chopper5.addComponent(new TransformComponent(new Vector2D(0.0, 544.0)));
@@ -206,14 +222,16 @@ public class Game implements IGame {
         chopper5.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper5.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper5.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
+        chopper5.addComponent(new MovementComponent());
 
         Entity chopper6 = r.createEntity();
         chopper6.addComponent(new TransformComponent(new Vector2D(0.0, 577.0)));
-        chopper6.addComponent(new RigidBodyComponent(Vector2D.Forward()));
+        chopper6.addComponent(new RigidBodyComponent(new Vector2D(12, 5)));
         chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
         chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
         chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
-        chopper6.addComponent(new AudioComponent(true, false, PlayType.STREAM, "helicopter.wav"));
+        chopper6.addComponent(new AudioComponent(true, false, PlayType.MEMORY, "helicopter.wav"));
+        chopper6.addComponent(new InputComponent());
 
         var a = (AudioComponent) chopper6.getComponent(AudioComponent.COMPONENT_TYPE_ID);
         Timer timer = new Timer(true);
@@ -241,22 +259,21 @@ public class Game implements IGame {
     @Override
     public void processInput() {
         this.scene.getKeys().poll();
-        if (this.scene.getKeys().keyDownOnce(KeyEvent.VK_SPACE)) {
-            LogService.getInstance().warning("event received.");
-            System.out.println("VK_SPACE");
-        }
     }
 
     @Override
     public void update(double deltaTime) {
         var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
-        movementSystem.update(deltaTime);
+        movementSystem.update();
 
         var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
-        animationSystem.update(deltaTime);
+        animationSystem.update();
 
         var collisionSystem = (CollisionSystem) Registry.getInstance().getSystem(CollisionSystem.SYSTEM_TYPE_ID);
-        collisionSystem.update(deltaTime);
+        collisionSystem.update();
+
+        var keyboardInputSystem = (KeyboardInputSystem) Registry.getInstance().getSystem(KeyboardInputSystem.SYSTEM_TYPE_ID);
+        keyboardInputSystem.update(deltaTime);
 
         Registry.getInstance().update();
     }
@@ -295,8 +312,8 @@ public class Game implements IGame {
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
         final int MAX_UPDATES_SECOND = 75; // UPS
 
-        final double uOPTIMAL_TIME = 1000000000.0 / MAX_UPDATES_SECOND;
-        final double fOPTIMAL_TIME = 1000000000.0 / MAX_FRAMES_PER_SECOND;
+        final double uOPTIMAL_TIME = 1000.0 / MAX_UPDATES_SECOND;
+        final double fOPTIMAL_TIME = 1000.0 / MAX_FRAMES_PER_SECOND;
 
         double uDeltaTime = 0.0;
         double fDeltaTime = 0.0;
@@ -304,24 +321,24 @@ public class Game implements IGame {
         int frames = 0;
         int updates = 0;
 
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         long timer = System.currentTimeMillis();
 
         while (isRunning) {
-            long currentTime = System.nanoTime();
+            long currentTime = System.currentTimeMillis();
             uDeltaTime += (currentTime - startTime);
             fDeltaTime += (currentTime - startTime);
             startTime = currentTime;
 
             if (uDeltaTime >= uOPTIMAL_TIME) {
-                processInput();
-                update(uDeltaTime / 1000000000.0); // Create the deltaTime like Unity
+                this.update(uDeltaTime / 60); // Create the deltaTime like Unity
+                this.processInput();
                 updates++;
                 uDeltaTime -= uOPTIMAL_TIME;
             }
 
             if (fDeltaTime >= fOPTIMAL_TIME) {
-                render();
+                this.render();
                 frames++;
                 fDeltaTime -= fOPTIMAL_TIME;
             }
