@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.core;
 
-import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.ecs.impl.Component;
 
 public interface IPool<C extends Component> {
     void set(int index, Component object);
