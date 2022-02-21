@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.core.impl;
 
 import com.schumakerteam.alpha.core.IPool;
 import com.schumakerteam.alpha.component.*;
+import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.log.LogService;
 
 import java.util.HashMap;
@@ -15,6 +16,8 @@ public final class ComponentMap {
     private static final Pool<TileMapComponent> tileMapComponentPool = new Pool<>();
     private static final Pool<BoxColliderComponent> boxColliderComponentPool = new Pool<>();
     private static final Pool<AudioComponent> audioComponentPool = new Pool<>();
+    private static final Pool<InputComponent> inputComponentPool = new Pool<>();
+    private static final Pool<MovementComponent> movementComponentPool = new Pool<>();
 
     private static final HashMap<Integer, IPool<Component>> COMPONENT_POOL = new HashMap<>();
 
@@ -26,6 +29,8 @@ public final class ComponentMap {
         COMPONENT_POOL.put(TileMapComponent.COMPONENT_TYPE_ID, tileMapComponentPool);
         COMPONENT_POOL.put(BoxColliderComponent.COMPONENT_TYPE_ID, boxColliderComponentPool);
         COMPONENT_POOL.put(AudioComponent.COMPONENT_TYPE_ID, audioComponentPool);
+        COMPONENT_POOL.put(InputComponent.COMPONENT_TYPE_ID, inputComponentPool);
+        COMPONENT_POOL.put(MovementComponent.COMPONENT_TYPE_ID, movementComponentPool);
     }
 
     private ComponentMap() {
