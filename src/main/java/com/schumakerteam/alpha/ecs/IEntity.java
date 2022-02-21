@@ -1,6 +1,6 @@
 package com.schumakerteam.alpha.ecs;
 
-import com.schumakerteam.alpha.component.Component;
+import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Signature;
 
 public interface IEntity {
