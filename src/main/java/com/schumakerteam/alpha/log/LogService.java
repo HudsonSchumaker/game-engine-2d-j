@@ -20,8 +20,7 @@ public final class LogService implements ILogService {
     private final ExecutorService executor =
             new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, blockingQueue);
 
-    private LogService() {
-    }
+    private LogService() {}
 
     public static LogService getInstance() {
         return INSTANCE;
