@@ -17,9 +17,14 @@ public class CollisionSystem extends BasicSystem {
 
     public CollisionSystem() {
         this.id = Registry.getInstance().getSystemId();
+        this.setOnSignatures();
+        LogService.getInstance().engine("CollisionSystem created with id: " + id);
+    }
+
+    @Override
+    protected void setOnSignatures() {
         this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
         this.setOnSignature(BoxColliderComponent.COMPONENT_TYPE_ID);
-        LogService.getInstance().engine("CollisionSystem created with id: " + id);
     }
 
     public void update(double ignore) {
