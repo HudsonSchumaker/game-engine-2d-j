@@ -1,6 +1,7 @@
 package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.common.ComponentIdMap;
+import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.sfx.GeAudioClip;
 import com.schumakerteam.alpha.sfx.MemoryAudioClip;
