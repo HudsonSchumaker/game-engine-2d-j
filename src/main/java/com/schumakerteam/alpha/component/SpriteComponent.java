@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.component;
 
 import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.core.impl.AssetTextureManager;
+import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
