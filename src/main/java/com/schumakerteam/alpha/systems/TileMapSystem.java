@@ -13,22 +13,21 @@ public class TileMapSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 2;
     private final int id;
-    private Graphics2D render;
 
     public TileMapSystem() {
         this.id = Registry.getInstance().getSystemId();
-        this.setOnSignature(TileMapComponent.COMPONENT_TYPE_ID);
-        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
+        this.setOnSignatures();
         LogService.getInstance().engine("TileMapSystem created with id: " + id);
     }
 
-    public void update(Graphics2D g) {
-        this.render = g;
-        this.update();
+    @Override
+    protected void setOnSignatures() {
+        this.setOnSignature(TileMapComponent.COMPONENT_TYPE_ID);
+        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
     }
 
     @Override
-    public void update() {
+    public void update(Graphics2D render) {
         for (var entity : getSystemEntities()) {
             var mapTransform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
             var tileMap = (TileMapComponent) entity.getComponent(TileMapComponent.COMPONENT_TYPE_ID);
