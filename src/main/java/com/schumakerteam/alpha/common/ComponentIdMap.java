@@ -19,6 +19,8 @@ public final class ComponentIdMap {
         componentTypeId.put(AnimationComponent.class.getName(), 5);
         componentTypeId.put(BoxColliderComponent.class.getName(), 6);
         componentTypeId.put(AudioComponent.class.getName(), 7);
+        componentTypeId.put(InputComponent.class.getName(), 8);
+        componentTypeId.put(MovementComponent.class.getName(), 9);
     }
 
     private ComponentIdMap() {}
