@@ -23,10 +23,15 @@ public final class RenderSystem extends BasicSystem {
 
     public RenderSystem() {
         this.id = Registry.getInstance().getSystemId();
-        this.setOnSignature(SpriteComponent.COMPONENT_TYPE_ID);
-        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
+        this.setOnSignatures();
         this.imageLoader = new GeImageLoader();
         LogService.getInstance().engine("RenderSystem created with id: " + id);
+    }
+
+    @Override
+    protected void setOnSignatures() {
+        this.setOnSignature(SpriteComponent.COMPONENT_TYPE_ID);
+        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
     }
 
     @Override
