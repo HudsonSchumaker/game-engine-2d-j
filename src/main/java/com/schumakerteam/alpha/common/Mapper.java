@@ -31,6 +31,5 @@ public interface Mapper<S, T> {
         return targetList;
     }
 
-    default void map(S source, T target) {
-    }
+    default void map(S source, T target) {}
 }
