@@ -1,5 +1,6 @@
 package com.schumakerteam.alpha.systems;
 
+import com.schumakerteam.alpha.component.MovementComponent;
 import com.schumakerteam.alpha.component.RigidBodyComponent;
 import com.schumakerteam.alpha.component.TransformComponent;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
@@ -13,23 +14,28 @@ public final class MovementSystem extends BasicSystem {
 
     public MovementSystem() {
         this.id = Registry.getInstance().getSystemId();
-        this.setOnSignature(RigidBodyComponent.COMPONENT_TYPE_ID);
-        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
+        this.setOnSignatures();
         LogService.getInstance().engine("MovementSystem created with id: " + id);
     }
 
-    public void update(double deltaTime) {
-        this.update();
+    @Override
+    protected void setOnSignatures() {
+        this.setOnSignature(RigidBodyComponent.COMPONENT_TYPE_ID);
+        this.setOnSignature(TransformComponent.COMPONENT_TYPE_ID);
+        this.setOnSignature(MovementComponent.COMPONENT_TYPE_ID);
     }
 
     @Override
-    protected void update() {
+    public void update() {
         for (var entity : getSystemEntities()) {
-            var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
-            var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+            var movement = (MovementComponent) entity.getComponent(MovementComponent.COMPONENT_TYPE_ID);
+            if (movement.isMoving()) {
+                var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+                var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
-            transform.getPosition().setX(transform.getPosition().getX() + rigidBody.getVelocity().getX());
-            transform.getPosition().setY(transform.getPosition().getY() + rigidBody.getVelocity().getY());
+                transform.getPosition().setX(transform.getPosition().getX() + rigidBody.getVelocity().getX());
+                transform.getPosition().setY(transform.getPosition().getY() + rigidBody.getVelocity().getY());
+            }
         }
     }
 
