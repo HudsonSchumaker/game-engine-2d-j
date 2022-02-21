@@ -1,7 +1,6 @@
 package com.schumakerteam.alpha.ecs.impl;
 
 import com.schumakerteam.alpha.common.ComponentIdMap;
-import com.schumakerteam.alpha.component.Component;
 import com.schumakerteam.alpha.component.SpriteComponent;
 import com.schumakerteam.alpha.core.impl.ComponentMap;
 import com.schumakerteam.alpha.core.impl.SystemMap;
