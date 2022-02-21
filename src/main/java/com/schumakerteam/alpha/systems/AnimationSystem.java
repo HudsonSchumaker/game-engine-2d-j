@@ -14,9 +14,14 @@ public final class AnimationSystem extends BasicSystem {
 
     public AnimationSystem() {
         this.id = Registry.getInstance().getSystemId();
+        this.setOnSignatures();
+        LogService.getInstance().engine("AnimationSystem created with id: " + id);
+    }
+
+    @Override
+    protected void setOnSignatures() {
         this.setOnSignature(SpriteComponent.COMPONENT_TYPE_ID);
         this.setOnSignature(AnimationComponent.COMPONENT_TYPE_ID);
-        LogService.getInstance().engine("AnimationSystem created with id: " + id);
     }
 
     @Override
