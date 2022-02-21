@@ -13,8 +13,13 @@ public class DamageSystem extends BasicSystem implements EventListener {
 
     public DamageSystem() {
         this.id = Registry.getInstance().getSystemId();
-        this.setOnSignature(BoxColliderComponent.COMPONENT_TYPE_ID);
+        this.setOnSignatures();
         EventBus.getInstance().subscribe(EventType.ON_COLLISION_EVENT, this);
+    }
+
+    @Override
+    protected void setOnSignatures() {
+        this.setOnSignature(BoxColliderComponent.COMPONENT_TYPE_ID);
     }
 
     @Override
