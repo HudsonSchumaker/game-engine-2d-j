@@ -8,7 +8,7 @@ import java.awt.image.BufferStrategy;
 public final class Scene extends Canvas {
 
     private static final int numberOfBuffers = 2;
-    private KeyboardInput keys;
+    private final KeyboardInput keys;
 
     public Scene(int width, int height) {
         this.setIgnoreRepaint(true);
