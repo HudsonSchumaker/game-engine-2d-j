@@ -39,31 +39,29 @@ public class KeyboardInputSystem extends BasicSystem implements EventListener {
     public void notifyEvent(EventType eventType, Event<?> event) {
         var onKeyPressedEvent = (OnKeyPressedEvent) event;
 
-            if (onKeyPressedEvent.getKeyCode() == KeyEvent.VK_LEFT) {
-                for (var entity : getSystemEntities()) {
-                    var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
-                    var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+       // LogService.getInstance().error("deltaTime: " + deltaTime);
+        if (onKeyPressedEvent.getKeyCode() == KeyEvent.VK_LEFT) {
+            for (var entity : getSystemEntities()) {
+                var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+                var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
-                    transform.getPosition().setX(
-                            transform.getPosition().getX()
-                                    + ((rigidBody.getVelocity().getX() * -1) * deltaTime));
-                }
-                return;
+                transform.getPosition().setX(
+                        transform.getPosition().getX()
+                                + ((rigidBody.getVelocity().getX() * -1) * deltaTime));
             }
+            return;
+        }
 
-            if (onKeyPressedEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-                for (var entity : getSystemEntities()) {
-                    var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
-                    var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
+        if (onKeyPressedEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
+            for (var entity : getSystemEntities()) {
+                var transform = (TransformComponent) entity.getComponent(TransformComponent.COMPONENT_TYPE_ID);
+                var rigidBody = (RigidBodyComponent) entity.getComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
-                    transform.getPosition().setX(
-                            transform.getPosition().getX()
-                                    + ((rigidBody.getVelocity().getX() * 1) * deltaTime));
-
-                    LogService.getInstance().error("deltaTime: " + deltaTime);
-                }
+                transform.getPosition().setX(
+                        transform.getPosition().getX()
+                                + ((rigidBody.getVelocity().getX() * 1) ));
             }
-
+        }
     }
 
     @Override
