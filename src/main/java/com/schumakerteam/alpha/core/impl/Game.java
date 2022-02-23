@@ -90,7 +90,7 @@ public class Game implements IGame {
 
         Entity car = r.createEntity();
         car.addComponent(new TransformComponent(new Vector2D(768, 0)));
-        car.addComponent(new RigidBodyComponent(new Vector2D(-1, 1)));
+        car.addComponent(new RigidBodyComponent(new Vector2D(-3, 3)));
         car.addComponent(new SpriteComponent("car.png"));
         car.addComponent(new BoxColliderComponent(32, 32, new Vector2D(8, -2)));
         car.addComponent(new MovementComponent());
@@ -226,9 +226,9 @@ public class Game implements IGame {
 
         Entity chopper6 = r.createEntity();
         chopper6.addComponent(new TransformComponent(new Vector2D(0.0, 577.0)));
-        chopper6.addComponent(new RigidBodyComponent(new Vector2D(12, 5)));
+        chopper6.addComponent(new RigidBodyComponent(new Vector2D(5, 5)));
         chopper6.addComponent(new SpriteSheetComponent(64, 32, 10, 32, 32, 2, "chopper.png"));
-        chopper6.addComponent(new AnimationComponent(2, 1, 15, true));
+        chopper6.addComponent(new AnimationComponent(2, 1, 14, true));
         chopper6.addComponent(new BoxColliderComponent(32, 32, Vector2D.offset()));
         chopper6.addComponent(new AudioComponent(true, false, PlayType.MEMORY, "helicopter.wav"));
         chopper6.addComponent(new InputComponent());
@@ -263,17 +263,17 @@ public class Game implements IGame {
 
     @Override
     public void update(double deltaTime) {
-        var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
-        movementSystem.update();
+        var keyboardInputSystem = (KeyboardInputSystem) Registry.getInstance().getSystem(KeyboardInputSystem.SYSTEM_TYPE_ID);
+        keyboardInputSystem.update(deltaTime);
 
-        var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
-        animationSystem.update();
+        var movementSystem = (MovementSystem) Registry.getInstance().getSystem(MovementSystem.SYSTEM_TYPE_ID);
+        movementSystem.update(deltaTime);
 
         var collisionSystem = (CollisionSystem) Registry.getInstance().getSystem(CollisionSystem.SYSTEM_TYPE_ID);
         collisionSystem.update();
 
-        var keyboardInputSystem = (KeyboardInputSystem) Registry.getInstance().getSystem(KeyboardInputSystem.SYSTEM_TYPE_ID);
-        keyboardInputSystem.update(deltaTime);
+        var animationSystem = (AnimationSystem) Registry.getInstance().getSystem(AnimationSystem.SYSTEM_TYPE_ID);
+        animationSystem.update();
 
         Registry.getInstance().update();
     }
@@ -306,11 +306,10 @@ public class Game implements IGame {
 
     @Override
     public void run() {
-        initialize();
-        setup();
-
+        this.initialize();
+        this.setup();
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 75; // UPS
+        final int MAX_UPDATES_SECOND = 60; // UPS
 
         final double uOPTIMAL_TIME = 1000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000.0 / MAX_FRAMES_PER_SECOND;
@@ -330,9 +329,10 @@ public class Game implements IGame {
             fDeltaTime += (currentTime - startTime);
             startTime = currentTime;
 
+            this.processInput();
+
             if (uDeltaTime >= uOPTIMAL_TIME) {
-                this.update(uDeltaTime / 60); // Create the deltaTime like Unity
-                this.processInput();
+                this.update(uDeltaTime / uOPTIMAL_TIME);// Create the deltaTime like Unity
                 updates++;
                 uDeltaTime -= uOPTIMAL_TIME;
             }
