@@ -67,4 +67,16 @@ public class AudioComponent extends Component {
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "AudioComponent{" +
+                "id=" + id +
+                ", playOnAwake=" + playOnAwake +
+                ", loop=" + loop +
+                ", playType=" + playType +
+                ", fileName='" + fileName + '\'' +
+                ", audioClip=" + audioClip +
+                '}';
+    }
 }
