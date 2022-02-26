@@ -59,4 +59,14 @@ public final class SpriteSheetComponent extends SpriteComponent {
     public int getFrameHeight() {
         return this.frameHeight;
     }
+
+    @Override
+    public String toString() {
+        return "SpriteSheetComponent{" +
+                "frameWidth=" + frameWidth +
+                ", frameHeight=" + frameHeight +
+                ", numberFrames=" + numberFrames +
+                ", frameNames=" + frameNames +
+                '}';
+    }
 }
