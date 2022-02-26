@@ -73,4 +73,12 @@ public class KeyboardInputSystem extends BasicSystem implements EventListener {
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "KeyboardInputSystem{" +
+                "id=" + id +
+                ", deltaTime=" + deltaTime +
+                '}';
+    }
 }
