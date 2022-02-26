@@ -42,8 +42,6 @@ public class DamageSystem extends BasicSystem implements EventListener {
 
     @Override
     public String toString() {
-        return "DamageSystem{" +
-                "id=" + id +
-                '}';
+        return "DamageSystem{" + "id=" + id + '}';
     }
 }
