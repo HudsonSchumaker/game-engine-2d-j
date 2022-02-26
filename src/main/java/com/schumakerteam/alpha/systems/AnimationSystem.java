@@ -47,4 +47,11 @@ public final class AnimationSystem extends BasicSystem {
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "AnimationSystem{" +
+                "id=" + id +
+                '}';
+    }
 }
