@@ -81,4 +81,10 @@ public class CollisionSystem extends BasicSystem {
         return SYSTEM_TYPE_ID;
     }
 
+    @Override
+    public String toString() {
+        return "CollisionSystem{" +
+                "id=" + id +
+                '}';
+    }
 }
