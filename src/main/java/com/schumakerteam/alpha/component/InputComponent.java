@@ -22,5 +22,9 @@ public class InputComponent extends Component {
     public int getTypeId() {
         return COMPONENT_TYPE_ID;
     }
-    // TODO toString
+
+    @Override
+    public String toString() {
+        return "InputComponent{" + "id=" + id + '}';
+    }
 }
