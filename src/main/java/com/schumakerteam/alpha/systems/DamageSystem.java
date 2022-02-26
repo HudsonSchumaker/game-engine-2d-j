@@ -39,4 +39,11 @@ public class DamageSystem extends BasicSystem implements EventListener {
         onCollisionEvent.getB().destroy();
         LogService.getInstance().warning(onCollisionEvent.getA().toString() + " and " + onCollisionEvent.getB().toString() + " were destroyed.");
     }
+
+    @Override
+    public String toString() {
+        return "DamageSystem{" +
+                "id=" + id +
+                '}';
+    }
 }
