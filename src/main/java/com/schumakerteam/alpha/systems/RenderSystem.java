@@ -144,4 +144,12 @@ public final class RenderSystem extends BasicSystem {
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "RenderSystem{" +
+                "id=" + id +
+                ", imageLoader=" + imageLoader +
+                '}';
+    }
 }
