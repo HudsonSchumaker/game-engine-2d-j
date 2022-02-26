@@ -55,4 +55,11 @@ public class TileMapSystem extends BasicSystem {
     public int getTypeId() {
         return SYSTEM_TYPE_ID;
     }
+
+    @Override
+    public String toString() {
+        return "TileMapSystem{" +
+                "id=" + id +
+                '}';
+    }
 }
