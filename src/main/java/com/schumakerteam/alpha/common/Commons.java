@@ -1,5 +1,8 @@
 package com.schumakerteam.alpha.common;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Commons {
 
     public static final String AUDIO_PATH = "/resources/audio/";
