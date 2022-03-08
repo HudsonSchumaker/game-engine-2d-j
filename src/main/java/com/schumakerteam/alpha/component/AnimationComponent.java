@@ -5,6 +5,9 @@ import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class AnimationComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(AnimationComponent.class.getName());
