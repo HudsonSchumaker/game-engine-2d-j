@@ -4,6 +4,9 @@ import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class MovementComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(MovementComponent.class.getName());
