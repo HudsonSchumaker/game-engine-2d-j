@@ -4,6 +4,9 @@ import com.schumakerteam.alpha.common.ComponentIdMap;
 import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class InputComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(InputComponent.class.getName());
