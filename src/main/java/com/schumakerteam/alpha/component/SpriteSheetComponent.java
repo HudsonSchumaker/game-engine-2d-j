@@ -8,6 +8,9 @@ import com.schumakerteam.alpha.log.LogService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class SpriteSheetComponent extends SpriteComponent {
 
     private final int frameWidth;
