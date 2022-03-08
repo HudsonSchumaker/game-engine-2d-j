@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.common;
 
 import java.io.File;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class FileUtils {
 
     private FileUtils() {
