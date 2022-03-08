@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.common;
 
 import java.util.concurrent.ThreadFactory;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class GeThreadFactory implements ThreadFactory {
 
     public static long number = 0L;
