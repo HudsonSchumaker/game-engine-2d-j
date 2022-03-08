@@ -8,6 +8,9 @@ import com.schumakerteam.alpha.sfx.MemoryAudioClip;
 import com.schumakerteam.alpha.sfx.PlayType;
 import com.schumakerteam.alpha.sfx.StreamAudioClip;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class AudioComponent extends Component {
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(AudioComponent.class.getName());
     private final int id;
