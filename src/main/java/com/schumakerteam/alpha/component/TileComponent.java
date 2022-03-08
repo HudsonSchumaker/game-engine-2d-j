@@ -5,6 +5,9 @@ import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.log.LogService;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class TileComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(TileMapComponent.class.getName());
