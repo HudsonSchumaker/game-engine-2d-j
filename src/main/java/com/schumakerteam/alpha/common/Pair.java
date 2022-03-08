@@ -1,5 +1,8 @@
 package com.schumakerteam.alpha.common;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Pair<L, R> {
     private final L left;
     private final R right;
