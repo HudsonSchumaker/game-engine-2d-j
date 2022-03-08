@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+/**
+ * @author Hudson Schumaker
+ */
 public interface Mapper<S, T> {
 
     default T from(S source) {
