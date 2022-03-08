@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.events.OnKeyPressedEvent;
 
 import java.awt.event.*;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class KeyboardInput implements KeyListener {
 
     private final boolean[] keys;

@@ -244,7 +244,7 @@ public class Game implements IGame {
         //timer.schedule(task, 5000);
 
         spriteComponent = (SpriteComponent) chopper.getComponent(SpriteComponent.COMPONENT_TYPE_ID);
-        // spriteComponent.setFlip(true);
+        spriteComponent.setFlip(true);
 
         // truck.removeComponent(RigidBodyComponent.COMPONENT_TYPE_ID);
 
@@ -309,7 +309,7 @@ public class Game implements IGame {
         this.initialize();
         this.setup();
         final int MAX_FRAMES_PER_SECOND = 144; // FPS
-        final int MAX_UPDATES_SECOND = 60; // UPS
+        final int MAX_UPDATES_SECOND = 75; // UPS
 
         final double uOPTIMAL_TIME = 1000.0 / MAX_UPDATES_SECOND;
         final double fOPTIMAL_TIME = 1000.0 / MAX_FRAMES_PER_SECOND;
