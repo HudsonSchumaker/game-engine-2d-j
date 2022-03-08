@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class ComponentIdMap {
 
     private static final HashMap<String, Integer> componentTypeId = new HashMap<>();
