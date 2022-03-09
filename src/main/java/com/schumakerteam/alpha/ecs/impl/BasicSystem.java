@@ -5,6 +5,9 @@ import com.schumakerteam.alpha.systems.Updatable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Hudson Schumaker
+ */
 public abstract class BasicSystem implements Updatable {
     private final Signature componentSignature;
     private List<Entity> entities;
