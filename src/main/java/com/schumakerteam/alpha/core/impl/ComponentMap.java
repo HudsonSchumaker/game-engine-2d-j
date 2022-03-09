@@ -7,6 +7,9 @@ import com.schumakerteam.alpha.log.LogService;
 
 import java.util.HashMap;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class ComponentMap {
 
     private static final Pool<TransformComponent> transformComponentPool = new Pool<>();
