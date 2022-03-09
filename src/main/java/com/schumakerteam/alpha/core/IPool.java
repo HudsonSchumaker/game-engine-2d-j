@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.core;
 
 import com.schumakerteam.alpha.ecs.impl.Component;
 
+/**
+ * @author Hudson Schumaker
+ */
 public interface IPool<C extends Component> {
     void set(int index, Component object);
     C get(int index);
