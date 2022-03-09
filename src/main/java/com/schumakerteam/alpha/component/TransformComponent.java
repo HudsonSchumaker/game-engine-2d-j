@@ -7,6 +7,9 @@ import com.schumakerteam.alpha.geometry.Scale2D;
 import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class TransformComponent extends Component {
 
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(TransformComponent.class.getName());
