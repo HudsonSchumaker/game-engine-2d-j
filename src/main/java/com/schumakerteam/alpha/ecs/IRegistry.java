@@ -4,6 +4,9 @@ import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.BasicSystem;
 import com.schumakerteam.alpha.ecs.impl.Entity;
 
+/**
+ * @author Hudson Schumaker
+ */
 public interface IRegistry {
     void update();
     Entity createEntity();
