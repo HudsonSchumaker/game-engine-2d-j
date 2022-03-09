@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class AssetTextureManager {
     private static final Map<String, Texture> TEXTURE_CACHE = new HashMap<>();
     private static final Map<String, TileMapTexture> TILEMAP_CACHE = new HashMap<>();
