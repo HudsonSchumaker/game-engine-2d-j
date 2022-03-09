@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.ecs.impl;
 
 import java.util.BitSet;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Signature extends BitSet {
 
     private static final int N_BITS = 16;
