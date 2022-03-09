@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.ecs.impl.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Pool<C> implements IPool<Component> {
 
     private final Map<Integer, C> data = new HashMap<>();
