@@ -24,6 +24,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class Game implements IGame {
 
     private DisplayMode displayMode;
