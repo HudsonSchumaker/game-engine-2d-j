@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class SystemMap {
     private static final HashMap<Integer, BasicSystem> SYSTEM_MAP = new HashMap<>();
 
