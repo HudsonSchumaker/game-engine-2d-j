@@ -12,6 +12,9 @@ import java.util.*;
 
 import static java.util.Comparator.comparingInt;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Registry implements IRegistry {
 
     private static final Registry INSTANCE = new Registry();
