@@ -5,6 +5,9 @@ import com.schumakerteam.alpha.ecs.IEntity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Entity implements IEntity {
 
     private final int id;
