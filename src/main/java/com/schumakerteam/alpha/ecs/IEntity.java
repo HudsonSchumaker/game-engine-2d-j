@@ -3,6 +3,9 @@ package com.schumakerteam.alpha.ecs;
 import com.schumakerteam.alpha.ecs.impl.Component;
 import com.schumakerteam.alpha.ecs.impl.Signature;
 
+/**
+ * @author Hudson Schumaker
+ */
 public interface IEntity {
     int getId();
     void addComponent(Component c);
