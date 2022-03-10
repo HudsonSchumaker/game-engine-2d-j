@@ -15,6 +15,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class RenderSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 1;
