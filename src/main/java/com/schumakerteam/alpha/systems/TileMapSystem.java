@@ -9,6 +9,9 @@ import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.*;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class TileMapSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 2;
