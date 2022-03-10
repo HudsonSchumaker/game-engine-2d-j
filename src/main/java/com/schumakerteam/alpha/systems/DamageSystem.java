@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.ecs.impl.Registry;
 import com.schumakerteam.alpha.events.*;
 import com.schumakerteam.alpha.log.LogService;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class DamageSystem extends BasicSystem implements EventListener {
 
     public static final int SYSTEM_TYPE_ID = 5;
