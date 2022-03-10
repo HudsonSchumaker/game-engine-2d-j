@@ -10,6 +10,9 @@ import com.schumakerteam.alpha.log.LogService;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class KeyboardInputSystem extends BasicSystem implements EventListener {
 
     public static final int SYSTEM_TYPE_ID = 6;
