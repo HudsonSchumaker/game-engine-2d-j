@@ -10,6 +10,9 @@ import com.schumakerteam.alpha.events.EventType;
 import com.schumakerteam.alpha.events.OnCollisionEvent;
 import com.schumakerteam.alpha.log.LogService;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class CollisionSystem extends BasicSystem {
 
     public static final int SYSTEM_TYPE_ID = 4;
