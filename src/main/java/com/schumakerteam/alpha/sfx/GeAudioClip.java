@@ -1,5 +1,8 @@
 package com.schumakerteam.alpha.sfx;
 
+/**
+ * @author Hudson Schumaker
+ */
 public abstract class GeAudioClip {
     private final boolean isLoop;
 
