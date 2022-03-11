@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.log.LogService;
 import javax.sound.sampled.*;
 import java.io.IOException;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class StreamAudioClip extends GeAudioClip implements Runnable {
 
     private static final int BUFFER_SIZE = 4096;
