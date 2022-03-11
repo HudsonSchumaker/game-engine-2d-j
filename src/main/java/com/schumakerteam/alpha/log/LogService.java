@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.log;
 
 import java.util.concurrent.*;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class LogService implements ILogService {
 
     private static final LogService INSTANCE = new LogService();
