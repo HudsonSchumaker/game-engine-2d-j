@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.log.LogService;
 import javax.sound.sampled.*;
 import java.io.IOException;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class MemoryAudioClip extends GeAudioClip implements Runnable, LineListener {
 
     private final AudioInputStream audioStream;
