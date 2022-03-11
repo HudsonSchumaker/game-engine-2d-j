@@ -1,5 +1,8 @@
 package com.schumakerteam.alpha.log;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class LogEntry implements Runnable {
 
     private final LogTypeEnum type;
