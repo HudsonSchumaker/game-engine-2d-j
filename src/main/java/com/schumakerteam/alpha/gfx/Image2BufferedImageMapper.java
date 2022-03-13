@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class Image2BufferedImageMapper implements Mapper<Image, BufferedImage> {
 
     @Override
