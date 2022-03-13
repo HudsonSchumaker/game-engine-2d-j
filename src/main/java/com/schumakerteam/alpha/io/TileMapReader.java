@@ -17,6 +17,9 @@ import java.util.List;
 
 import static com.schumakerteam.alpha.common.Commons.TILEMAP_PATH;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class TileMapReader {
 
     private static final String COMMA_DELIMITER = ",";
