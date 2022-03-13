@@ -5,6 +5,9 @@ import com.schumakerteam.alpha.common.KeyboardInput;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Scene extends Canvas {
 
     private static final int numberOfBuffers = 2;
