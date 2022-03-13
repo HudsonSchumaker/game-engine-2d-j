@@ -6,6 +6,9 @@ import com.schumakerteam.alpha.io.GeImageLoader;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Hudson Schumaker
+ */
 public class BufferedImage2ImageMapper implements Mapper<BufferedImage, Image> {
 
     @Override
