@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Window extends JFrame {
 
     public Window(Scene scene) {
