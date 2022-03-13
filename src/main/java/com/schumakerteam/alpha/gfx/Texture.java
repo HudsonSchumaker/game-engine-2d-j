@@ -2,6 +2,9 @@ package com.schumakerteam.alpha.gfx;
 
 import java.awt.Image;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class Texture {
 
     private final int width;
