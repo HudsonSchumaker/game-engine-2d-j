@@ -10,6 +10,9 @@ import java.util.Objects;
 
 import static com.schumakerteam.alpha.common.Commons.AUDIO_PATH;
 
+/**
+ * @author Hudson Schumaker
+ */
 public final class GeAudioLoader {
 
     public GeAudioLoader() {}
