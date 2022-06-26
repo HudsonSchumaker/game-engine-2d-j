@@ -7,6 +7,7 @@ import com.schumakerteam.alpha.geometry.Vector2D;
 import com.schumakerteam.alpha.log.LogService;
 
 /**
+ * SchumakerLab
  * @author Hudson Schumaker
  */
 public final class RigidBodyComponent extends Component {
