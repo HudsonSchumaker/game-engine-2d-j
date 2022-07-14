@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.common;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class Pair<L, R> {
     private final L left;
