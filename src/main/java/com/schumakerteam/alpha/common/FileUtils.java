@@ -4,6 +4,7 @@ import java.io.File;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class FileUtils {
 
