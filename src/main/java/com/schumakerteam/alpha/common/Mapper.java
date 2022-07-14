@@ -8,6 +8,7 @@ import java.util.function.BiConsumer;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public interface Mapper<S, T> {
 
