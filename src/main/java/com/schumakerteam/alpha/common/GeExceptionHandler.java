@@ -2,6 +2,7 @@ package com.schumakerteam.alpha.common;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class GeExceptionHandler implements Thread.UncaughtExceptionHandler {
     @Override
