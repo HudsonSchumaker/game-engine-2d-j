@@ -7,6 +7,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class AnimationComponent extends Component {
 
