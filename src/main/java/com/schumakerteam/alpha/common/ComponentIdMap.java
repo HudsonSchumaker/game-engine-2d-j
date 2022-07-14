@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class ComponentIdMap {
 
