@@ -8,6 +8,7 @@ import com.schumakerteam.alpha.log.LogService;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public class BoxColliderComponent extends Component {
 
