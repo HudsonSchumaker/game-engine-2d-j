@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public class KeyboardInput implements KeyListener {
 
