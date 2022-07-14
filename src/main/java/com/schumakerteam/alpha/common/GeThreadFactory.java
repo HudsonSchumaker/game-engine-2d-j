@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadFactory;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public final class GeThreadFactory implements ThreadFactory {
 
