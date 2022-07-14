@@ -10,6 +10,7 @@ import com.schumakerteam.alpha.sfx.StreamAudioClip;
 
 /**
  * @author Hudson Schumaker
+ * Schumaker Labs
  */
 public class AudioComponent extends Component {
     public static final int COMPONENT_TYPE_ID = ComponentIdMap.getTypeId(AudioComponent.class.getName());
