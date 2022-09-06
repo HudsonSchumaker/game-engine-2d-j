@@ -13,7 +13,7 @@ import java.awt.event.*;
 public class KeyboardInput implements KeyListener {
 
     private final boolean[] keys;
-    private int[] polled;
+    private final int[] polled;
 
     public KeyboardInput() {
         keys = new boolean[256];
