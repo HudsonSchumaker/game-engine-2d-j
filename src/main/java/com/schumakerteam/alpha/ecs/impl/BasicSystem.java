@@ -10,9 +10,9 @@ import java.util.List;
  */
 public abstract class BasicSystem implements Updatable {
     private final Signature componentSignature;
-    private List<Entity> entities;
+    private final List<Entity> entities;
 
-    public BasicSystem() {
+    protected BasicSystem() {
         this.componentSignature = new Signature();
         this.entities = new ArrayList<>();
     }
